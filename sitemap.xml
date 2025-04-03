@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main HTML page -->
+  <url>
+    <loc>https://avishayomer.github.io/Jerusalem-Trips/</loc>
+    <lastmod>2025-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Image files -->
+  <url>
+    <loc>https://www.yourdomain.com/images/1.jpg</loc>
+  </url>
+  <url>
+    <loc>https://www.yourdomain.com/images/2.jpg</loc>
+  </url>
+  <url>
+    <loc>https://www.yourdomain.com/images/3.jpg</loc>
+  </url>
+  <url>
+    <loc>https://www.yourdomain.com/images/4.jpg</loc>
+  </url>
+  <url>
+    <loc>https://www.yourdomain.com/images/5.jpg</loc>
+  </url>
+  <url>
+    <loc>https://www.yourdomain.com/images/6.jpg</loc>
+  </url>
+
+</urlset>

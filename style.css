@@ -13,6 +13,20 @@ header {
     font-size: 24px;
 }
 
+#header-wrap {
+    display: flex;
+    justify-content: center;  /* centers the whole group horizontally */
+    align-items: center;      /* aligns items vertically */
+    gap: 30px;                /* space between logo and title */
+    flex-direction: row-reverse; /* since you're using RTL, keeps logo on right */
+}
+
+#logo {
+    height: 100px;
+    width: auto;
+}
+
+
 .services h3 {
     color: #444;
     margin: 10px 0;

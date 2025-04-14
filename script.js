@@ -25,3 +25,8 @@ whatsappBtn.onclick = () => {
   const phone = "972584181598"; // מספר וואטסאפ
   window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 };
+document.querySelectorAll('.gallery-image').forEach(img => {
+  img.addEventListener('click', () => {
+    img.classList.toggle('active');
+  });
+});

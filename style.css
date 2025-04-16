@@ -1,91 +1,227 @@
 
 
+/* בסיס */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Varela Round', 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #f6f9fc, #e0eafc);
+  color: #2c3e50;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 18px;
+  padding: 0 10px;
+  scroll-behavior: smooth;
+}
+
+/* כותרת */
+header {
+  background: linear-gradient(90deg, #004d7a, #008793);
+  color: white;
+  padding: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeInDown 1.2s ease-in-out;
+}
+
+#header-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#logo {
+  height: 100px;
+  border-radius: 12px;
+  margin-top: 15px;
+  animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* אזורים כלליים */
+section, .contacts {
+  background: white;
+  margin: 30px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  max-width: 800px;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
+
+section:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+section:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+section:nth-of-type(4) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  color: #004d7a;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+.description, .services p {
+  margin: 10px 0;
+}
+
+/* יצירת קשר */
+.contacts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts a {
+  color: #008793;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  display: inline-block;
+  margin: 5px;
+  background-color: #e0f7fa;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.contacts a:hover {
+  background-color: #b2ebf2;
+  transform: scale(1.05);
+}
+
 /* גלריה */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 40px 20px;
-  justify-items: center;
-  background-color: #fff;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-}
-
-.gallery img {
+  position: relative;
   width: 100%;
-  max-width: 320px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 16px;
-  filter: grayscale(100%);
-  transition: all 0.4s ease-in-out;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.gallery img:hover {
-  transform: scale(1.1);
-  filter: grayscale(0%);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+  animation-delay: 0.8s;
 }
 
 .image-wrapper {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
-/* הכיתוב המים (לוגו מעל התמונות) בוטל */
+.image-wrapper.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.gallery img:not(.watermark) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  filter: grayscale(100%);
+  transition: filter 1s ease-in-out, transform 0.5s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.image-wrapper.active img:not(.watermark):hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
 .watermark {
-  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
-/* Responsive Adjustments */
+/* תחתית הדף */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 16px;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+  animation-delay: 1s;
+}
+
+/* רספונסיביות */
 @media (max-width: 768px) {
+  #logo {
+    height: 80px;
+  }
+
+  .gallery {
+    height: 250px;
+  }
+}
+
+@media (max-width: 600px) {
   header {
-      font-size: 22px;
-      padding: 20px;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  #header-wrap {
+    flex-direction: column;
   }
 
   #logo {
-      height: 60px;
+    margin-top: 10px;
   }
 
-  .gallery-image {
-      filter: grayscale(100%);
-      transition: filter 0.5s ease;
-      cursor: pointer;
-      position: relative;
-  }
-
-  .gallery-image.active {
-      filter: grayscale(0%);
-  }
-
-  .description {
-      font-size: 16px;
-      padding: 0 10px;
-  }
-
-  .services h3 {
-      font-size: 20px;
-  }
-}
-
-@media (max-width: 480px) {
   .gallery {
-      grid-template-columns: 1fr;
-      padding: 20px 10px;
-  }
-  .gallery img {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-  
-  .gallery img:first-child {
-    opacity: 1;
-  }
-  
-  .gallery img {
-      max-width: 90%;
+    height: 250px;
   }
 }
+
+

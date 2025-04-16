@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>טיולי ירושלים</title>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <style>
     * {
@@ -44,18 +44,24 @@
     #logo {
       height: 60px;
       border-radius: 10px;
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     section, .contacts {
       background: white;
       margin: 30px auto;
       border-radius: 12px;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       padding: 30px 20px;
       max-width: 800px;
     }
 
-    .services h2, .contacts h2, .gallery h2 {
+    h2 {
       color: #004d7a;
       margin-bottom: 20px;
       font-size: 26px;
@@ -94,7 +100,7 @@
       border-radius: 12px;
     }
 
-    .gallery .image-wrapper {
+    .image-wrapper {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -102,12 +108,12 @@
       transition: opacity 1s ease-in-out;
     }
 
-    .gallery .image-wrapper.active {
+    .image-wrapper.active {
       opacity: 1;
       z-index: 1;
     }
 
-    .gallery img {
+    .gallery img:not(.watermark) {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -116,7 +122,7 @@
       transition: all 0.4s ease-in-out;
     }
 
-    .gallery .image-wrapper.active img:hover {
+    .image-wrapper.active img:not(.watermark):hover {
       transform: scale(1.05);
       filter: grayscale(0%);
     }
@@ -158,7 +164,8 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false">
+
   <header>
     <div id="header-wrap">
       <h1>טיולי ירושלים -- Jerusalem Trips</h1>
@@ -167,15 +174,17 @@
   </header>
 
   <section class="services">
-    <h2>השירותים שלנו</h2>
+    <h2>המקצועיות  שלנו</h2>
     <p>אבטחה רפואית - מערים וחובשים</p>
     <p>שירותי אבטחה</p>
     <p>מדריכי/ות טיולים</p>
     <p>Medical and security services</p>
   </section>
 
-  <p class="description">אזורי שירות: ירושלים וסביבותיה, ניתן גם לפי הזמנה בכל הארץ. שירות ומחיר ללא תחרות.</p>
-  <p class="description">ניתן לקבל את כל שירותי הטיולים משירותי הדרכה ועד שירותי אבטחה רפואית ושמירה.</p>
+  <section class="description">
+    <p>אזורי שירות: ירושלים וסביבותיה, ניתן גם לפי הזמנה בכל הארץ. שירות ומחיר ללא תחרות.</p>
+    <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה ועד שירותי אבטחה רפואית ושמירה.</p>
+  </section>
 
   <section class="contacts">
     <h2>צרו קשר</h2>
@@ -187,83 +196,41 @@
   </section>
 
   <section>
-    <h2 style="color:#004d7a; margin-bottom:20px; font-size:26px;">גלריה</h2>
+    <h2>גלריה</h2>
     <div class="gallery" id="gallery">
       <div class="image-wrapper active">
-        <img src="./images/1.jpg" alt="תמונה 1" />
-        <img src="images/logo.png" class="watermark" />
+        <img src="images/1.jpg" alt="תמונה 1" />
+        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
       </div>
       <div class="image-wrapper">
-        <img src="./images/2.jpg" alt="תמונה 2" />
-        <img src="images/logo.png" class="watermark" />
+        <img src="images/2.jpg" alt="תמונה 2" />
+        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
       </div>
       <div class="image-wrapper">
-        <img src="./images/3.jpg" alt="תמונה 3" />
-        <img src="images/logo.png" class="watermark" />
+        <img src="images/3.jpg" alt="תמונה 3" />
+        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
       </div>
       <div class="image-wrapper">
-        <img src="./images/4.jpg" alt="תמונה 4" />
-        <img src="images/logo.png" class="watermark" />
+        <img src="images/4.jpg" alt="תמונה 4" />
+        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
       </div>
       <div class="image-wrapper">
-        <img src="./images/5.jpg" alt="תמונה 5" />
-        <img src="images/logo.png" class="watermark" />
+        <img src="images/5.jpg" alt="תמונה 5" />
+        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
       </div>
       <div class="image-wrapper">
-        <img src="./images/6.jpg" alt="תמונה 6" />
-        <img src="images/logo.png" class="watermark" />
+        <img src="images/6.jpg" alt="תמונה 6" />
+        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
       </div>
     </div>
   </section>
-  <script>
-    // מספר שניות בין כל מעבר לתמונה
-    const switchInterval = 3000; // 3 שניות
-  
-    // בחר את כל התמונות בגלריה
-    const galleryImages = document.querySelectorAll('.gallery img');
-    
-    let currentIndex = 0;
-  
-    function changeImage() {
-      // הסר את התמונה הנוכחית
-      galleryImages[currentIndex].style.opacity = 0;
-  
-      // עדכן את המיקום לתמונה הבאה
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-  
-      // הצג את התמונה הבאה
-      galleryImages[currentIndex].style.opacity = 1;
-    }
-  
-    // התחלת המעבר הראשון
-    setInterval(changeImage, switchInterval);
-  
-    // סגנונות CSS עבור התמונות המתעלמות במעבר
-    galleryImages.forEach((image, index) => {
-      image.style.transition = 'opacity 1s ease';
-      if (index !== 0) {
-        image.style.opacity = 0; // כל התמונות פרט לראשונה יהיו מוסתרות
-      }
-    });
-  </script>
-  
+
   <footer>
     <p>&copy; כל הזכויות שמורות - טיולי ירושלים 2018</p>
     <p>שירות מקצועי באהבה ❤️</p>
   </footer>
 
-  <script>
-    const images = document.querySelectorAll('.gallery .image-wrapper');
-    let current = 0;
-
-    function showNextImage() {
-      images[current].classList.remove('active');
-      current = (current + 1) % images.length;
-      images[current].classList.add('active');
-    }
-
-    setInterval(showNextImage, 4000); // מעבר כל 4 שניות
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
 

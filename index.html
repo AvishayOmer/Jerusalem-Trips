@@ -22,53 +22,42 @@
       text-align: center;
       line-height: 1.6;
       font-size: 18px;
-      padding: 0 10px;
-    }
-
-    header {
-      background: linear-gradient(90deg, #004d7a, #008793);
-      color: white;
-      padding: 30px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    #header-wrap {
+      padding: 0;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
+      height: 100vh;
+      min-height: 100%;
+      background-color: #f3f5f7;
+      direction: rtl;
     }
 
-    #logo {
-      height: 60px;
-      border-radius: 10px;
-      animation: floatLogo 3s ease-in-out infinite;
-    }
-
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    section, .contacts {
-      background: white;
-      margin: 30px auto;
+    .wrapper {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 20px;
+      padding: 20px;
+      background-color: white;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      padding: 30px 20px;
-      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #004d7a;
+      margin-bottom: 20px;
     }
 
     h2 {
+      font-size: 28px;
       color: #004d7a;
       margin-bottom: 20px;
-      font-size: 26px;
     }
 
-    .description, .services p {
+    p {
+      font-size: 18px;
       margin: 10px 0;
+      color: #555;
     }
 
     .contacts ul {
@@ -93,36 +82,31 @@
     }
 
     .gallery {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
     }
 
     .image-wrapper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+      position: relative;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .image-wrapper.active {
-      opacity: 1;
-      z-index: 1;
-    }
-
-    .gallery img:not(.watermark) {
+    .image-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 12px;
       filter: grayscale(100%);
       transition: all 0.4s ease-in-out;
     }
 
-    .image-wrapper.active img:not(.watermark):hover {
+    .image-wrapper img:hover {
       transform: scale(1.05);
       filter: grayscale(0%);
     }
@@ -131,7 +115,7 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      width: 40px;
+      width: 50px;
       opacity: 0.7;
       pointer-events: none;
     }
@@ -142,97 +126,115 @@
       padding: 20px;
       margin-top: 40px;
       font-size: 16px;
+      text-align: center;
     }
 
     @media (max-width: 600px) {
-      header {
-        text-align: center;
-        padding: 20px 10px;
+      h1 {
+        font-size: 28px;
       }
 
-      #header-wrap {
-        flex-direction: column;
+      h2 {
+        font-size: 22px;
       }
 
-      #logo {
-        margin-top: 10px;
+      p {
+        font-size: 16px;
+      }
+
+      .image-wrapper {
+        width: 100%;
+        height: auto;
       }
 
       .gallery {
-        height: 250px;
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
-<body oncontextmenu="return false">
+<body>
 
-  <header>
-    <div id="header-wrap">
+  <div class="wrapper">
+    <header>
       <h1>טיולי ירושלים -- Jerusalem Trips</h1>
-      <img src="images/logo.jpg" alt="לוגו" id="logo" />
-    </div>
-  </header>
+      <img src="images/logo.jpg" alt="לוגו" id="logo" style="height: 80px; border-radius: 10px; animation: floatLogo 3s ease-in-out infinite;" />
+    </header>
 
-  <section class="services">
-    <h2>המקצועיות  שלנו</h2>
-    <p>אבטחה רפואית - מערים וחובשים</p>
-    <p>שירותי אבטחה</p>
-    <p>מדריכי/ות טיולים</p>
-    <p>Medical and security services</p>
-  </section>
+    <section class="services">
+      <h2>המקצועיות שלנו</h2>
+      <p>אבטחה רפואית - מערים וחובשים</p>
+      <p>שירותי אבטחה</p>
+      <p>מדריכי/ות טיולים</p>
+      <p>Medical and security services</p>
+    </section>
 
-  <section class="description">
-    <p>אזורי שירות: ירושלים וסביבותיה, ניתן גם לפי הזמנה בכל הארץ. שירות ומחיר ללא תחרות.</p>
-    <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה ועד שירותי אבטחה רפואית ושמירה.</p>
-  </section>
+    <section class="description">
+      <p>אזורי שירות: ירושלים וסביבותיה, ניתן גם לפי הזמנה בכל הארץ. שירות ומחיר ללא תחרות.</p>
+      <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה עד שירות אבטחה רפואית ושמירה.</p>
+    </section>
 
-  <section class="contacts">
-    <h2>צרו קשר</h2>
-    <ul>
-      <li><a href="tel:0584181598">☎ עומר Omer : 058-418-1598</a></li>
-      <li><a href="tel:0542879174">☎ אקי Eki : 054-287-9174</a></li>
-      <li><a href="mailto:jerusalemtrips@gmail.com">✉ jerusalemtrips@gmail.com</a></li>
-    </ul>
-  </section>
+    <section class="contacts">
+      <h2>צרו קשר</h2>
+      <ul>
+        <li><a href="tel:0584181598">☎ עומר Omer : 058-418-1598</a></li>
+        <li><a href="tel:0542879174">☎ אקי Eki : 054-287-9174</a></li>
+        <li><a href="mailto:jerusalemtrips@gmail.com">✉ jerusalemtrips@gmail.com</a></li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>גלריה</h2>
-    <div class="gallery" id="gallery">
-      <div class="image-wrapper active">
-        <img src="images/1.jpg" alt="תמונה 1" />
-        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
+    <section>
+      <h2>גלריה</h2>
+      <div class="gallery">
+        <div class="image-wrapper">
+          <img src="images/1.jpg" alt="תמונה 1" />
+          <img src="images/watermark.png" class="watermark" alt="Watermark" />
+        </div>
+        <div class="image-wrapper">
+          <img src="images/2.jpg" alt="תמונה 2" />
+          <img src="images/watermark.png" class="watermark" alt="Watermark" />
+        </div>
+        <div class="image-wrapper">
+          <img src="images/3.jpg" alt="תמונה 3" />
+          <img src="images/watermark.png" class="watermark" alt="Watermark" />
+        </div>
+        <div class="image-wrapper">
+          <img src="images/4.jpg" alt="תמונה 4" />
+          <img src="images/watermark.png" class="watermark" alt="Watermark" />
+        </div>
+        <div class="image-wrapper">
+          <img src="images/5.jpg" alt="תמונה 5" />
+          <img src="images/watermark.png" class="watermark" alt="Watermark" />
+        </div>
+        <div class="image-wrapper">
+          <img src="images/6.jpg" alt="תמונה 6" />
+          <img src="images/watermark.png" class="watermark" alt="Watermark" />
+        </div>
       </div>
-      <div class="image-wrapper">
-        <img src="images/2.jpg" alt="תמונה 2" />
-        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
-      </div>
-      <div class="image-wrapper">
-        <img src="images/3.jpg" alt="תמונה 3" />
-        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
-      </div>
-      <div class="image-wrapper">
-        <img src="images/4.jpg" alt="תמונה 4" />
-        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
-      </div>
-      <div class="image-wrapper">
-        <img src="images/5.jpg" alt="תמונה 5" />
-        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
-      </div>
-      <div class="image-wrapper">
-        <img src="images/6.jpg" alt="תמונה 6" />
-        <img src="images/logo.png" class="watermark" alt="לוגו מים" />
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <p>&copy; כל הזכויות שמורות - טיולי ירושלים 2018</p>
-    <p>שירות מקצועי באהבה ❤️</p>
-  </footer>
+    <section>
+      <h2>סרטוני וידאו</h2>
+      <div class="gallery">
+        <video controls width="300">
+          <source src="videos/VID-20250327-WA0013.mp4" type="video/mp4">
+          הדפדפן שלך אינו תומך בניגון וידאו.
+        </video>
+        <video controls width="300">
+          <source src="videos/VID-20250327-WA0014.mp4" type="video/mp4">
+          הדפדפן שלך אינו תומך בניגון וידאו.
+        </video>
+      </div>
+    </section>
 
-  <script src="script.js"></script>
+    <footer>
+      <p>&copy; כל הזכויות שמורות - </p>
+      <p>שירות מקצועי באהבה ❤️</p>
+    </footer>
+  </div>
+
 </body>
 </html>
-
 
 

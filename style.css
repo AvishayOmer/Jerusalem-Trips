@@ -258,16 +258,5 @@ footer {
     height: 200px;
   }
 }
-body.dark {
-  background: linear-gradient(to bottom right, #1c1c1c, #333);
-  color: #eee;
-}
 
-body.dark section {
-  background: #222;
-}
-
-body.dark header {
-  background: linear-gradient(90deg, #004d7a, #008793);
-}
 

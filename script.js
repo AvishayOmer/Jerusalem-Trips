@@ -79,44 +79,38 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('whatsapp-chat').addEventListener('click', () => {
     window.open('https://wa.me/972505437050', '_blank');
   });
-});
-// JavaScript - שיפור החלפת התמונות
-let currentImageIndex = 0;
-const images = [
-  'images/1.jpg',
-  'images/2.jpg',
-  'images/3.jpg',
-  'images/4.jpg',
-  'images/5.jpg',
-  'images/6.jpg'
-];
 
-function changeImage() {
-  currentImageIndex = (currentImageIndex + 1) % images.length;
-  const imageElement = document.getElementById('image-slider');
-  imageElement.src = images[currentImageIndex];
-}
-
-// החלפת תמונות כל 8 שניות
-setInterval(changeImage, 8000);
-
-// JavaScript - תיקון הווידיאו
-const videoElements = document.querySelectorAll('video');
-
-videoElements.forEach(video => {
-  video.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
+  // תיקון הווידיאו (הפעלה/השהיה בלחיצה)
+  const videoElements = document.querySelectorAll('video');
+  videoElements.forEach(video => {
+    video.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
   });
-});
 
-// מענה על מצב לילה
-const toggleDarkButton = document.getElementById('toggle-dark');
-toggleDarkButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
+  // שיפור החלפת התמונות
+  let currentImageIndex = 0;
+  const images = [
+    'images/1.jpg',
+    'images/2.jpg',
+    'images/3.jpg',
+    'images/4.jpg',
+    'images/5.jpg',
+    'images/6.jpg'
+  ];
+
+  function changeImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    const imageElement = document.getElementById('image-slider');
+    imageElement.src = images[currentImageIndex];
+  }
+
+  // החלפת תמונות כל 8 שניות
+  setInterval(changeImage, 8000);
 });
 
 

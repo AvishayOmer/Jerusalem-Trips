@@ -44,25 +44,22 @@
     <section>
       <h2>גלריה</h2>
       <div class="gallery">
-        <div class="image-wrapper"><img src="images/1.jpg" alt="תמונה 1"></div>
-        <div class="image-wrapper"><img src="images/2.jpg" alt="תמונה 2"></div>
-        <div class="image-wrapper"><img src="images/3.jpg" alt="תמונה 3"></div>
-        <div class="image-wrapper"><img src="images/4.jpg" alt="תמונה 4"></div>
-        <div class="image-wrapper"><img src="images/5.jpg" alt="תמונה 5"></div>
-        <div class="image-wrapper"><img src="images/6.jpg" alt="תמונה 6"></div>
+        <div class="image-wrapper">
+          <img id="image-slider" src="images/1.jpg" alt="תמונה 1">
+        </div>
       </div>
     </section>
 
     <section class="video-section">
       <h2>וידאוים</h2>
       <div class="video-wrapper">
-        <video class="responsive-video" controls autoplay muted>
+        <video class="responsive-video" id="video1" controls autoplay muted>
           <source src="video1.mp4" type="video/mp4">
           הווידיאו לא נתמך.
         </video>
       </div>
       <div class="video-wrapper">
-        <video class="responsive-video" controls autoplay muted>
+        <video class="responsive-video" id="video2" controls autoplay muted>
           <source src="video2.mp4" type="video/mp4">
           הווידיאו לא נתמך.
         </video>
@@ -80,3 +77,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+

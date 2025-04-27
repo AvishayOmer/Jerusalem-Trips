@@ -3,7 +3,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const wrapperList = Array.from(document.querySelectorAll('.gallery .image-wrapper'));
   const validSlides = [];
-
   let current = 0;
 
   function preloadImage(wrapper, callback) {
@@ -36,12 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
       validSlides[current].classList.remove('active');
       current = (current + 1) % validSlides.length;
       validSlides[current].classList.add('active');
-    }, 8000); // 8 שניות לכל תמונה
+    }, 8000); // תמונות יתעדכנו כל 8 שניות
   }
 
-  // טוען כל תמונה אחת־אחת
   let loaded = 0;
-  wrapperList.forEach((wrapper, index) => {
+  wrapperList.forEach(wrapper => {
     preloadImage(wrapper, () => {
       loaded++;
       if (loaded === wrapperList.length) {
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // אפקט צבע בלחיצה
     const img = wrapper.querySelector('img');
     img.addEventListener('click', e => {
       e.preventDefault();
@@ -58,8 +55,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // מניעת לחצן ימני
+  // מניעת קליק ימני
   document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // מצב לילה
+  const toggleBtn = document.getElementById('toggle-dark');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️ מצב יום' : '🌙 מצב לילה';
+  });
+
+  // כפתור גלילה למעלה
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+  });
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // כפתור וואטסאפ
+  document.getElementById('whatsapp-chat').addEventListener('click', () => {
+    window.open('https://wa.me/972505437050', '_blank');
+  });
 });
 
 

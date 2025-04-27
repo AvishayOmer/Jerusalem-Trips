@@ -111,15 +111,6 @@
       filter: grayscale(0%);
     }
 
-    .watermark {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 50px;
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
     footer {
       background-color: #333;
       color: white;
@@ -172,7 +163,7 @@
 
     <section class="description">
       <p>אזורי שירות: ירושלים וסביבותיה, ניתן גם לפי הזמנה בכל הארץ. שירות ומחיר ללא תחרות.</p>
-      <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה עד שירות אבטחה רפואית ושמירה.</p>
+      <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה ועד שירותי אבטחה רפואית ושמירה.</p>
     </section>
 
     <section class="contacts">
@@ -189,42 +180,22 @@
       <div class="gallery">
         <div class="image-wrapper">
           <img src="images/1.jpg" alt="תמונה 1" />
-          <img src="images/watermark.png" class="watermark" alt="Watermark" />
         </div>
         <div class="image-wrapper">
           <img src="images/2.jpg" alt="תמונה 2" />
-          <img src="images/watermark.png" class="watermark" alt="Watermark" />
         </div>
         <div class="image-wrapper">
           <img src="images/3.jpg" alt="תמונה 3" />
-          <img src="images/watermark.png" class="watermark" alt="Watermark" />
         </div>
         <div class="image-wrapper">
           <img src="images/4.jpg" alt="תמונה 4" />
-          <img src="images/watermark.png" class="watermark" alt="Watermark" />
         </div>
         <div class="image-wrapper">
           <img src="images/5.jpg" alt="תמונה 5" />
-          <img src="images/watermark.png" class="watermark" alt="Watermark" />
         </div>
         <div class="image-wrapper">
           <img src="images/6.jpg" alt="תמונה 6" />
-          <img src="images/watermark.png" class="watermark" alt="Watermark" />
         </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>סרטוני וידאו</h2>
-      <div class="gallery">
-        <video controls width="300">
-          <source src="videos/VID-20250327-WA0013.mp4" type="video/mp4">
-          הדפדפן שלך אינו תומך בניגון וידאו.
-        </video>
-        <video controls width="300">
-          <source src="videos/VID-20250327-WA0014.mp4" type="video/mp4">
-          הדפדפן שלך אינו תומך בניגון וידאו.
-        </video>
       </div>
     </section>
 
@@ -236,5 +207,21 @@
 
 </body>
 </html>
+<section class="video-section">
+  <div class="video-wrapper">
+    <video class="responsive-video" controls>
+      <source src="video1.mp4" type="video/mp4">
+      הווידיאו לא נתמך בדפדפן שלך.
+    </video>
+  </div>
+  
+  <div class="video-wrapper">
+    <video class="responsive-video" controls>
+      <source src="video2.mp4" type="video/mp4">
+      הווידיאו לא נתמך בדפדפן שלך.
+    </video>
+  </div>
+</section>
+
 
 

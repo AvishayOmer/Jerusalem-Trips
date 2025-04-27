@@ -61,3 +61,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // מניעת לחצן ימני
   document.addEventListener('contextmenu', e => e.preventDefault());
 });
+
+

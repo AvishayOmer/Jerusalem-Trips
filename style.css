@@ -1,6 +1,6 @@
 
 
-/* הגדרות כללי */
+/* הגדרות כלליות */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,9 +11,8 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to bottom right, #f6f9fc, #e0eafc);
   color: #2c3e50;
-  transition: background 0.5s, color 0.5s;
-  margin: 0;
   direction: rtl;
+  transition: background 0.5s, color 0.5s;
 }
 
 body.dark {
@@ -21,7 +20,7 @@ body.dark {
   color: #eee;
 }
 
-/* הגדרות Header */
+/* Header */
 header {
   background: linear-gradient(90deg, #004d7a, #008793);
   color: white;
@@ -61,11 +60,81 @@ header {
   background: #004d7a;
 }
 
-/* הגדרות Main ו-Sections */
+/* Main */
 main {
   padding: 20px;
 }
 
+/* גלריה */
+.gallery {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.gallery .image-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery .image-wrapper.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.gallery .image-wrapper img,
+.gallery .image-wrapper video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.image-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.image-wrapper img {
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* וידאו */
+.video-wrapper {
+  margin-top: 20px;
+}
+
+.responsive-video {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+}
+
+/* Sections */
 section {
   background: white;
   margin: 30px auto;
@@ -84,81 +153,6 @@ h2 {
   margin-bottom: 20px;
   font-size: 26px;
   color: #004d7a;
-}
-
-.contacts ul {
-  list-style: none;
-  padding: 0;
-}
-
-.contacts a {
-  display: inline-block;
-  margin: 5px;
-  padding: 8px 12px;
-  background: #e0f7fa;
-  color: #008793;
-  font-weight: bold;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.contacts a:hover {
-  background: #b2ebf2;
-}
-/* הגדרות גלריה */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.image-wrapper {
-  position: relative;
-  width: 400px; /* הגדל את הרוחב */
-  height: 300px; /* הגדל את הגובה */
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out; /* הוסף אנימציה להגדלה */
-}
-
-.image-wrapper:hover {
-  transform: scale(1.1); /* הגדל את התמונה בזמן ריחוף */
-}
-
-.image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: all 0.5s ease;
-}
-
-.image-wrapper img:hover {
-  transform: scale(1.05);
-  filter: grayscale(0%);
-}
-
-
-/* הגדרות וידאו */
-.video-wrapper {
-  margin-top: 20px;
-}
-
-.responsive-video {
-  width: 100%;
-  max-height: 400px;
-  border-radius: 12px;
-}
-
-/* הגדרות Footer */
-footer {
-  background: #333;
-  color: white;
-  padding: 20px;
-  text-align: center;
 }
 
 /* כפתור חזרה למעלה */
@@ -193,32 +187,103 @@ footer {
   cursor: pointer;
 }
 
+/* Footer */
+footer {
+  background: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* אנשי קשר */
+.contacts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts a {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 12px;
+  background: #e0f7fa;
+  color: #008793;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.contacts a:hover {
+  background: #b2ebf2;
+}
+
+/* כפתור וואטסאפ צף נוסף */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #25D366;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 40px;
+  height: 40px;
+}
+
+.whatsapp-float:hover {
+  background-color: #1ebe5d;
+  transform: scale(1.1);
+}
+
+/* כפתור וואטסאפ עגול */
+.whatsapp-button {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
+}
+
 /* אנימציות */
 @keyframes floatLogo {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+  animation-delay: 5s;
+  animation-iteration-count: 3;
 }
 
 /* רספונסיביות */
-@media (max-width: 600px) {
-  .gallery {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #logo {
-    width: 80px;
-  }
-
-  .image-wrapper {
-    height: 300px;
-  }
-
-  .responsive-video {
-    max-height: 250px;
-  }
-}
-
 @media (max-width: 768px) {
   header {
     padding: 0.8rem;
@@ -226,7 +291,7 @@ footer {
   }
 
   #logo {
-    width: 100px;
+    width: 80px;
     margin-top: 0.5rem;
   }
 
@@ -254,67 +319,25 @@ footer {
     bottom: 20px;
   }
 
-  #scrollTop {
-    font-size: 1.2rem;
-    padding: 0.8rem;
+  .responsive-video {
+    max-height: 250px;
   }
 
   .slideshow {
     height: 200px;
   }
-}
-.whatsapp-button {
-  display: inline-block;
-  background-color: #25D366;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-family: 'Varela Round', sans-serif;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
-}
 
-.whatsapp-button:hover {
-  background-color: #1ebe5d;
-}
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  left: 20px; /* רוצה צד ימין? תשנה ל-right: 20px; */
-  background-color: #25D366;
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
-  text-align: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.whatsapp-float img {
-  width: 40px;
-  height: 40px;
-}
-
-.whatsapp-float:hover {
-  background-color: #1ebe5d;
-  transform: scale(1.1);
-}
-
-/* אנימציית קפיצה */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
+  .gallery .image-wrapper img,
+  .gallery .image-wrapper video {
+    max-height: 70vh;
   }
 }
 
-.animate-bounce {
-  animation: bounce 1s infinite;
-  animation-delay: 5s; /* יתחיל אחרי 5 שניות */
-  animation-iteration-count: 3; /* יקפוץ 3 פעמים ואז יפסיק */
+@media (max-width: 600px) {
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 

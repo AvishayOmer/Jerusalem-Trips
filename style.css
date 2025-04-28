@@ -106,7 +106,6 @@ h2 {
 .contacts a:hover {
   background: #b2ebf2;
 }
-
 /* הגדרות גלריה */
 .gallery {
   display: flex;
@@ -117,11 +116,16 @@ h2 {
 
 .image-wrapper {
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 400px; /* הגדל את הרוחב */
+  height: 300px; /* הגדל את הגובה */
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out; /* הוסף אנימציה להגדלה */
+}
+
+.image-wrapper:hover {
+  transform: scale(1.1); /* הגדל את התמונה בזמן ריחוף */
 }
 
 .image-wrapper img {
@@ -136,6 +140,7 @@ h2 {
   transform: scale(1.05);
   filter: grayscale(0%);
 }
+
 
 /* הגדרות וידאו */
 .video-wrapper {

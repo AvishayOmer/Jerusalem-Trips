@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function preloadImage(wrapper, callback) {
     const img = wrapper.querySelector('img');
+    if (!img) {
+      callback();
+      return;
+    }
     const tempImg = new Image();
     tempImg.src = img.src;
 
@@ -27,17 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validSlides.length === 0) return;
 
     validSlides.forEach((slide, i) => {
-      if (i !== 0) slide.classList.remove('active');
-      else slide.classList.add('active');
+      slide.classList.toggle('active', i === 0);
     });
 
     setInterval(() => {
       validSlides[current].classList.remove('active');
       current = (current + 1) % validSlides.length;
       validSlides[current].classList.add('active');
-    }, 8000); // תמונות יתעדכנו כל 8 שניות
+    }, 8000);
   }
 
+  // טעינת תמונות
   let loaded = 0;
   wrapperList.forEach(wrapper => {
     preloadImage(wrapper, () => {
@@ -48,11 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const img = wrapper.querySelector('img');
-    img.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
-      img.style.filter = img.style.filter === 'grayscale(0%)' ? 'grayscale(100%)' : 'grayscale(0%)';
-    });
+    if (img) {
+      img.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        img.style.filter = img.style.filter === 'grayscale(0%)' ? 'grayscale(100%)' : 'grayscale(0%)';
+      });
+    }
   });
 
   // מניעת קליק ימני
@@ -60,27 +66,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // מצב לילה
   const toggleBtn = document.getElementById('toggle-dark');
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️ מצב יום' : '🌙 מצב לילה';
-  });
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️ מצב יום' : '🌙 מצב לילה';
+    });
+  }
 
   // כפתור גלילה למעלה
   const scrollTopBtn = document.getElementById('scrollTop');
-  window.addEventListener('scroll', () => {
-    scrollTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-  });
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
 
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // כפתור וואטסאפ
-  document.getElementById('whatsapp-chat').addEventListener('click', () => {
-    window.open('https://wa.me/972505437050', '_blank');
-  });
+  const whatsappBtn = document.getElementById('whatsapp-chat');
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', () => {
+      window.open('https://wa.me/972505437050', '_blank');
+    });
+  }
 
-  // תיקון הווידיאו (הפעלה/השהיה בלחיצה)
+  // הפעלת / עצירת וידאו בלחיצה
   const videoElements = document.querySelectorAll('video');
   videoElements.forEach(video => {
     video.addEventListener('click', () => {
@@ -92,25 +105,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // שיפור החלפת התמונות
-  let currentImageIndex = 0;
-  const images = [
-    'images/1.jpg',
-    'images/2.jpg',
-    'images/3.jpg',
-    'images/4.jpg',
-    'images/5.jpg',
-    'images/6.jpg'
-  ];
+  // החלפת תמונה בגלריה אם יש אלמנט כזה
+  const imageElement = document.getElementById('image-slider');
+  if (imageElement) {
+    const images = [
+      'images/1.jpg',
+      'images/2.jpg',
+      'images/3.jpg',
+      'images/4.jpg',
+      'images/5.jpg',
+      'images/6.jpg'
+    ];
+    let currentImageIndex = 0;
 
-  function changeImage() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    const imageElement = document.getElementById('image-slider');
-    imageElement.src = images[currentImageIndex];
+    function changeImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      imageElement.src = images[currentImageIndex];
+    }
+
+    setInterval(changeImage, 8000);
   }
-
-  // החלפת תמונות כל 8 שניות
-  setInterval(changeImage, 8000);
 });
 
 

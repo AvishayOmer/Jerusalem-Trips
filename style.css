@@ -20,6 +20,43 @@ body.dark {
   color: #eee;
 }
 
+/* אנימציות לטקסט */
+@keyframes slideUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+h2, p {
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+h2 {
+  animation-name: slideUp;
+}
+
+p {
+  animation-name: slideDown;
+}
+
 /* Header */
 header {
   background: linear-gradient(90deg, #004d7a, #008793);
@@ -181,163 +218,27 @@ h2 {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  background: #25d366;
   width: 60px;
   height: 60px;
-  background: url('images/whatsapp.png') no-repeat center/cover;
-  cursor: pointer;
-}
-
-/* Footer */
-footer {
-  background: #333;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-/* אנשי קשר */
-.contacts ul {
-  list-style: none;
-  padding: 0;
-}
-
-.contacts a {
-  display: inline-block;
-  margin: 5px;
-  padding: 8px 12px;
-  background: #e0f7fa;
-  color: #008793;
-  font-weight: bold;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.contacts a:hover {
-  background: #b2ebf2;
-}
-
-/* כפתור וואטסאפ צף נוסף */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background-color: #25D366;
   border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
-  text-align: center;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: background 0.3s ease-in-out;
 }
 
-.whatsapp-float img {
+#whatsapp-chat:hover {
+  background: #128c7e;
+}
+
+#whatsapp-chat img {
   width: 40px;
   height: 40px;
 }
 
-.whatsapp-float:hover {
-  background-color: #1ebe5d;
-  transform: scale(1.1);
-}
-
-/* כפתור וואטסאפ עגול */
-.whatsapp-button {
-  display: inline-block;
-  background-color: #25D366;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-family: 'Varela Round', sans-serif;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
-}
-
-.whatsapp-button:hover {
-  background-color: #1ebe5d;
-}
-
-/* אנימציות */
-@keyframes floatLogo {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-bounce {
-  animation: bounce 1s infinite;
-  animation-delay: 5s;
-  animation-iteration-count: 3;
-}
-
-/* רספונסיביות */
-@media (max-width: 768px) {
-  header {
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
-
-  #logo {
-    width: 80px;
-    margin-top: 0.5rem;
-  }
-
-  main {
-    padding: 1rem;
-  }
-
-  section {
-    padding: 1rem;
-    margin-bottom: 2rem;
-    font-size: 1rem;
-  }
-
-  input,
-  textarea,
-  button {
-    font-size: 0.9rem;
-    padding: 0.6rem;
-  }
-
-  #scrollTop,
-  #whatsapp-chat {
-    width: 50px;
-    height: 50px;
-    bottom: 20px;
-  }
-
-  .responsive-video {
-    max-height: 250px;
-  }
-
-  .slideshow {
-    height: 200px;
-  }
-
-  .gallery .image-wrapper img,
-  .gallery .image-wrapper video {
-    max-height: 70vh;
-  }
-}
-
-@media (max-width: 600px) {
-  .gallery {
-    flex-direction: column;
-    align-items: center;
-  }
-}
 
 

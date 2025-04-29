@@ -376,7 +376,39 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open('https://wa.me/972505437050', '_blank');
     });
   }
-
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.gallery img');
+    let index = 0;
+  
+    function rotateImages() {
+      images.forEach(img => img.classList.remove('active'));
+      images[index].classList.add('active');
+      index = (index + 1) % images.length;
+    }
+  
+    setInterval(rotateImages, 3000);
+    rotateImages();
+  
+    const modeToggle = document.getElementById('modeToggle');
+    modeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  
+    const backToTopBtn = document.getElementById('backToTop');
+  
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'block';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+  
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  
   // הפעלת / עצירת וידאו בלחיצה
   const videoElements = document.querySelectorAll('video');
   videoElements.forEach(video => {

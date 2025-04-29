@@ -314,32 +314,97 @@ body.dark {
 #scrollTop:hover {
   background: #004d7a;
 }
+body {
+  margin: 0;
+  font-family: 'Varela Round', sans-serif;
+  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+  color: #333;
+  transition: background 0.5s, color 0.5s;
+}
 
-/* כפתור וואטסאפ */
-#whatsapp-chat {
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #ffffff88;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+  font-size: 2.5em;
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+button {
+  font-size: 1em;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  background: #4a90e2;
+  color: white;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #357ABD;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  filter: grayscale(100%);
+  transition: filter 1s;
+  pointer-events: none;
+  user-select: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.gallery img.active {
+  filter: grayscale(0%);
+}
+
+body.dark-mode {
+  background: linear-gradient(to bottom, #1e1e1e, #2e2e2e);
+  color: #f0f0f0;
+}
+
+#backToTop {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  width: 60px;
-  height: 60px;
+  left: 20px;
+  display: none;
+  background: #000;
+  color: #fff;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-  transition: background 0.3s ease-in-out;
-}
-
-#whatsapp-chat:hover {
-  background: #128c7e;
-}
-
-#whatsapp-chat img {
   width: 40px;
   height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-
+@media (max-width: 600px) {
+  #logo {
+    font-size: 1.8em;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}

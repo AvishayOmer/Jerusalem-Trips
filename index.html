@@ -3,22 +3,29 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>טיולי ירושלים</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <header>
     <div id="header-wrap">
-      <h1>טיולי ירושלים - Jerusalem Trips</h1>
-      <img src="images/logo.jpg" alt="לוגו" id="logo" />
-      <button id="toggle-dark">🌙 מצב לילה</button>
+      <h1 id="logo">טיולי ירושלים - Jerusalem Trips</h1>
+      <img src="images/logo.jpg" alt="לוגו" id="logo-img">
+      <button id="modeToggle">🌙 מצב כהה / בהיר</button>
     </div>
   </header>
 
   <main>
+    <section class="gallery">
+      <img src="images/img1.jpg" alt="תמונה 1" class="color-transition">
+      <img src="images/img2.jpg" alt="תמונה 2" class="color-transition">
+      <img src="images/img3.jpg" alt="תמונה 3" class="color-transition">
+    </section>
+
     <section class="services">
       <h2>המקצועיות שלנו</h2>
       <p>אבטחה רפואית - חובשים</p>
@@ -28,16 +35,8 @@
     </section>
 
     <section class="description">
-      <p>אזורי שירות:
-        בכל הארץ 
-        ובמיוחד באיזור ירושלים וסביבותיה,
-         ניתן לפי הזמנה  
-         שירות ומחיר ומקצועיות.</p>
-     
-      <p>ניתן לקבל את כל שירותי הטיולים
-         משירותי הדרכה
-          ועד שירותי אבטחה רפואית 
-          ושמירה.</p>
+      <p>אזורי שירות: בכל הארץ ובמיוחד באיזור ירושלים וסביבותיה, ניתן לפי הזמנה שירות ומחיר ומקצועיות.</p>
+      <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה ועד שירותי אבטחה רפואית ושמירה.</p>
     </section>
 
     <section class="contacts">
@@ -53,70 +52,38 @@
       <h2>גלריה</h2>
       <div class="gallery">
         <div class="image-wrapper">
-          <img id="image-slider" src="images/1.jpg" alt="תמונה 1">
+          <img id="image-slider" src="images/1.jpg" alt="תמונה מתחלפת">
+        </div>
+        <div class="image-wrapper">
+          <img src="images/image1.jpg" alt="תמונה 1">
+        </div>
+        <div class="image-wrapper">
+          <img src="images/image2.jpg" alt="תמונה 2">
+        </div>
+        <div class="image-wrapper">
+          <img src="images/image3.jpg" alt="תמונה 3">
         </div>
       </div>
     </section>
+  </main>
 
-  
   <a href="https://wa.me/972505437050" target="_blank" class="whatsapp-float animate-bounce" title="צור קשר בוואטסאפ">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="וואטסאפ">
   </a>
-  <div class="gallery">
-    <div class="image-wrapper">
-      <img src="image1.jpg" alt="תמונה 1">
-    </div>
-    <div class="image-wrapper">
-      <img src="image2.jpg" alt="תמונה 2">
-    </div>
-    <div class="image-wrapper">
-      <img src="image3.jpg" alt="תמונה 3">
-    </div>
-  </div>
-  
+<!-- כפתור וואטסאפ צף -->
+<div id="whatsapp-chat" title="צור קשר בוואטסאפ">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="וואטסאפ">
+</div>
+
+
   <footer>
     <p>© כל הזכויות שמורות --- שירות מקצועי באהבה ❤️</p>
   </footer>
 
-  <div id="scrollTop">⬆️</div>
-  <div id="whatsapp-chat"></div>
+  <button id="backToTop">↑</button>
 
   <script src="script.js"></script>
 </body>
 </html>
-<!-- כפתור מצב לילה -->
-<button id="toggle-dark">🌙 מצב לילה</button>
-
-<!-- כפתור חזרה למעלה -->
-<button id="scrollTop" style="display: none;">↑</button>
-
-<!-- כפתור וואטסאפ -->
-<div id="whatsapp-chat">
-  <img src="whatsapp-icon.png" alt="WhatsApp Chat">
-</div>
-<main>
-  <section class="gallery">
-    <img src="img1.jpg" alt="תמונה 1" class="color-transition">
-    <img src="img2.jpg" alt="תמונה 2" class="color-transition">
-    <img src="img3.jpg" alt="תמונה 3" class="color-transition">
-  </section>
-</main>
-
-<button id="backToTop">↑</button>
-
-<script src="script.js"></script>
-</body>
-</html>
-
-<!-- הגלריה -->
-<div class="gallery">
-  <div class="image-wrapper">
-    <img src="image1.jpg" alt="Image 1">
-  </div>
-  <div class="image-wrapper">
-    <img src="image2.jpg" alt="Image 2">
-  </div>
-  <!-- הוספת תמונות נוספות בהתאם -->
-</div>
 
 

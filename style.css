@@ -8,16 +8,17 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #f6f9fc, #e0eafc);
-  color: #2c3e50;
+  font-family: 'Varela Round', sans-serif;
+  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+  color: #333;
   direction: rtl;
   transition: background 0.5s, color 0.5s;
+  text-align: center;
 }
 
 body.dark {
-  background: linear-gradient(to bottom right, #1c1c1c, #333);
-  color: #eee;
+  background: linear-gradient(to bottom, #1e1e1e, #2e2e2e);
+  color: #f0f0f0;
 }
 
 /* אנימציות לטקסט */
@@ -59,26 +60,23 @@ p {
 
 /* Header */
 header {
-  background: linear-gradient(90deg, #004d7a, #008793);
-  color: white;
-  padding: 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-#header-wrap {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  padding: 20px;
+  background: #ffffff88;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #logo {
-  width: 100px;
-  border-radius: 10px;
-  margin-top: 10px;
-  animation: floatLogo 3s ease-in-out infinite;
+  font-size: 2em;
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 #toggle-dark {
@@ -97,169 +95,43 @@ header {
   background: #004d7a;
 }
 
-/* Main */
-main {
+/* חלונית טקסט וכותרת */
+.text-container {
+  background-color: #a0d8f1; /* צבע תכלת */
   padding: 20px;
-}
-
-/* גלריה */
-.gallery {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.gallery .image-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
 }
 
-.gallery .image-wrapper.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-.gallery .image-wrapper img,
-.gallery .image-wrapper video {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  max-height: 90vh;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.image-wrapper:hover {
-  transform: scale(1.1);
-}
-
-.image-wrapper img {
-  filter: grayscale(100%);
-  transition: all 0.5s ease;
-}
-
-.image-wrapper img:hover {
-  transform: scale(1.05);
-  filter: grayscale(0%);
-}
-
-/* וידאו */
-.video-wrapper {
-  margin-top: 20px;
-}
-
-.responsive-video {
-  width: 100%;
-  max-height: 400px;
-  border-radius: 12px;
-}
-
-/* כפתור וואטסאפ */
-#whatsapp-chat {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-  transition: background 0.3s ease-in-out;
-}
-
-#whatsapp-chat:hover {
-  background: #128c7e;
-}
-
-#whatsapp-chat img {
-  width: 40px;
-  height: 40px;
-}
-
-/* כפתור חזרה למעלה */
-#scrollTop {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #008793;
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 24px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-#scrollTop:hover {
-  background: #004d7a;
-}
-/* הגדרות כלליות */
-* {
-  box-sizing: border-box;
+h2, p {
   margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #f6f9fc, #e0eafc);
-  color: #2c3e50;
-  direction: rtl;
-  transition: background 0.5s, color 0.5s;
-}
-
-body.dark {
-  background: linear-gradient(to bottom right, #1c1c1c, #333);
-  color: #eee;
+  padding: 10px;
+  font-weight: 400;
 }
 
 /* גלריה */
+.gallery-wrapper {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .gallery {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .gallery .image-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   opacity: 0;
   transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
-  width: 100%;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -286,13 +158,33 @@ body.dark {
   transform: scale(1.05);
   filter: grayscale(0%);
 }
-
-/* ווידאו */
-.responsive-video {
-  width: 100%;
-  max-height: 400px;
-  border-radius: 12px;
+/* כפתור וואטסאפ */
+#whatsapp-chat {
+  position: fixed;
+  bottom: 80px; /* כדי שלא יתנגש עם כפתור חזרה למעלה */
+  right: 20px;
+  background: #25d366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease-in-out;
 }
+
+#whatsapp-chat:hover {
+  background: #128c7e;
+}
+
+#whatsapp-chat img {
+  width: 35px;
+  height: 35px;
+}
+
 
 /* כפתור חזרה למעלה */
 #scrollTop {
@@ -314,75 +206,8 @@ body.dark {
 #scrollTop:hover {
   background: #004d7a;
 }
-body {
-  margin: 0;
-  font-family: 'Varela Round', sans-serif;
-  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
-  color: #333;
-  transition: background 0.5s, color 0.5s;
-}
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #ffffff88;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-#logo {
-  font-size: 2.5em;
-  animation: bounce 3s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-button {
-  font-size: 1em;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-  background: #4a90e2;
-  color: white;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #357ABD;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  filter: grayscale(100%);
-  transition: filter 1s;
-  pointer-events: none;
-  user-select: none;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.gallery img.active {
-  filter: grayscale(0%);
-}
-
-body.dark-mode {
-  background: linear-gradient(to bottom, #1e1e1e, #2e2e2e);
-  color: #f0f0f0;
-}
-
+/* מיתוג כפתור חזרה למעלה */
 #backToTop {
   position: fixed;
   bottom: 20px;
@@ -399,7 +224,39 @@ body.dark-mode {
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
 
+  #logo-img {
+    width: 120px;
+    margin-top: 10px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  #modeToggle {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .contacts ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .gallery .image-wrapper img {
+    max-height: 60vh;
+  }
+}
+
+/* Media Queries */
 @media (max-width: 600px) {
   #logo {
     font-size: 1.8em;
@@ -408,3 +265,5 @@ body.dark-mode {
     grid-template-columns: 1fr;
   }
 }
+
+

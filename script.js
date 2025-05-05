@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrapperList = Array.from(document.querySelectorAll('.gallery .image-wrapper'));
   const validSlides = [];
   let current = 0;
+// ניתן להרחיב בעתיד לאפקטים נוספים
+console.log("ברוך הבא לאתר טיולי ירושלים!");
+
 
   // טעינת תמונות בגלריה
   function preloadImage(wrapper, callback) {
@@ -115,7 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'images/3.jpg',
       'images/4.jpg',
       'images/5.jpg',
-      'images/6.jpg'
+      'images/6.jpg',
+      'images/7.jpg',
+      'images/8.jpg',
+      'images/9.jpg',
+      'images/10.jpg',
+
+
     ];
     let currentImageIndex = 0;
 
@@ -161,8 +170,11 @@ backToTop.addEventListener('click', () => {
 
 // כפתור וואטסאפ
 const whatsappChat = document.getElementById('whatsapp-chat');
-whatsappChat.addEventListener('click', () => {
-  window.open('https://wa.me/972501234567', '_blank');
-});
-
+if (whatsappChat) {
+  whatsappChat.addEventListener('click', () => {
+    window.open('https://wa.me/972505437050', '_blank');
+  });
+} else {
+  console.warn('אזהרה: כפתור וואטסאפ הצף לא נמצא בדף.');
+} 
 

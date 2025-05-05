@@ -32,9 +32,14 @@ body.dark-mode {
   100% { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes logoFloat {
+@keyframes floatUpDown {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 h2, p {
@@ -54,8 +59,10 @@ p {
 /* Header */
 header {
   display: flex;
-  justify-content: center;  /* מרכוז הלוגו והכפתור במחשב ובמובייל */
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  text-align: center;
   padding: 20px;
   background: #ffffff88;
   backdrop-filter: blur(10px);
@@ -70,13 +77,6 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 
 #modeToggle {
@@ -86,11 +86,12 @@ header {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
 #modeToggle:hover {
   background: #004d7a;
+  transform: scale(1.05);
 }
 
 /* טקסט */
@@ -98,21 +99,21 @@ header {
   background-color: #a0d8f1;
   padding: 20px;
   border-radius: 16px;
-  max-width: 100px;
+  max-width: 600px;
   margin: 20px auto;
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* גלריה בתוך חלונית */
+/* גלריה */
 .gallery-wrapper {
   background-color: #ffffffdd;
   border-radius: 16px;
   padding: 30px;
-  max-width: 100px;
+  max-width: 1000px;
   margin: 40px auto;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 1.2s ease-in-out;
 }
-
-
 
 .gallery {
   display: grid;
@@ -125,6 +126,7 @@ header {
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s;
+  animation: fadeIn 1s ease;
 }
 
 .gallery .image-wrapper img {
@@ -141,7 +143,7 @@ header {
   transform: scale(1.05);
 }
 
-/* כפתור וואטסאפ צף */
+/* כפתור וואטסאפ */
 #whatsapp-chat {
   position: fixed;
   bottom: 80px;
@@ -156,11 +158,12 @@ header {
   cursor: pointer;
   z-index: 100;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s ease-in-out;
+  transition: background 0.3s, transform 0.3s;
 }
 
 #whatsapp-chat:hover {
   background: #128c7e;
+  transform: scale(1.1);
 }
 
 #whatsapp-chat img {
@@ -184,6 +187,7 @@ header {
   justify-content: center;
   cursor: pointer;
   z-index: 1000;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 #backToTop:hover {
@@ -191,12 +195,7 @@ header {
 }
 
 /* רספונסיביות */
- 
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
+@media (max-width: 768px) {
   .gallery {
     grid-template-columns: 1fr;
   }
@@ -210,29 +209,14 @@ header {
     padding: 8px 16px;
   }
 
-  /* שינוי גודל הלוגו בנייד */
   #logo {
     font-size: 3em;
   }
+}
 
-  @media (max-width: 78px) {
-    #logo {
-      font-size: 2em;
-    }
-  }
-  
-  @media (min-width: 79px) {
-    #logo {
-      font-size: 2.5em;
-    }
-  }
-  
-@media (max-width: 60px) {
+@media (max-width: 480px) {
   #logo {
-    font-size: 4em;
-  }
-  .gallery {
-    grid-template-columns: 1fr;
+    font-size: 2em;
   }
 }
 

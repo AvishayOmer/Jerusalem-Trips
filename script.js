@@ -4,11 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrapperList = Array.from(document.querySelectorAll('.gallery .image-wrapper'));
   const validSlides = [];
   let current = 0;
-// ניתן להרחיב בעתיד לאפקטים נוספים
-console.log("ברוך הבא לאתר טיולי ירושלים!");
 
+  console.log("ברוך הבא לאתר טיולי ירושלים!");
 
-  // טעינת תמונות בגלריה
   function preloadImage(wrapper, callback) {
     const img = wrapper.querySelector('img');
     if (!img) {
@@ -42,10 +40,9 @@ console.log("ברוך הבא לאתר טיולי ירושלים!");
       validSlides[current].classList.remove('active');
       current = (current + 1) % validSlides.length;
       validSlides[current].classList.add('active');
-    }, 8000); // הזמן שבין החלפת תמונות
+    }, 8000);
   }
 
-  // טעינת תמונות
   let loaded = 0;
   wrapperList.forEach(wrapper => {
     preloadImage(wrapper, () => {
@@ -65,23 +62,21 @@ console.log("ברוך הבא לאתר טיולי ירושלים!");
     }
   });
 
-  // מניעת קליק ימני
   document.addEventListener('contextmenu', e => e.preventDefault());
 
-  // מצב לילה / יום
   const toggleBtn = document.getElementById('modeToggle');
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
+      document.body.classList.toggle('dark-mode'); // לשמירה על תאימות עם הקוד התחתון
       toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️ מצב יום' : '🌙 מצב לילה';
     });
   }
 
-  // כפתור חזרה למעלה
   const scrollTopBtn = document.getElementById('backToTop');
   if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
-      scrollTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+      scrollTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
 
     scrollTopBtn.addEventListener('click', () => {
@@ -89,15 +84,15 @@ console.log("ברוך הבא לאתר טיולי ירושלים!");
     });
   }
 
-  // כפתור וואטסאפ
   const whatsappBtn = document.getElementById('whatsapp-chat');
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', () => {
       window.open('https://wa.me/972505437050', '_blank');
     });
+  } else {
+    console.warn('אזהרה: כפתור וואטסאפ הצף לא נמצא בדף.');
   }
 
-  // הפעלת / עצירת וידאו בלחיצה
   const videoElements = document.querySelectorAll('video');
   videoElements.forEach(video => {
     video.addEventListener('click', () => {
@@ -109,10 +104,9 @@ console.log("ברוך הבא לאתר טיולי ירושלים!");
     });
   });
 
-  // החלפת תמונה בגלריה אם יש אלמנט כזה
   const imageElement = document.getElementById('image-slider');
   if (imageElement) {
-    const images = [
+    const sliderImages = [
       'images/1.jpg',
       'images/2.jpg',
       'images/3.jpg',
@@ -122,59 +116,33 @@ console.log("ברוך הבא לאתר טיולי ירושלים!");
       'images/7.jpg',
       'images/8.jpg',
       'images/9.jpg',
-      'images/10.jpg',
-
-
+      
     ];
     let currentImageIndex = 0;
 
     function changeImage() {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      imageElement.src = images[currentImageIndex];
+      currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+      imageElement.src = sliderImages[currentImageIndex];
     }
 
     setInterval(changeImage, 8000);
   }
 
   // הגלריה בסיבוב אוטומטי
-  const images = document.querySelectorAll('.gallery img');
+  const galleryImages = document.querySelectorAll('.gallery img');
   let activeIndex = 0;
 
   function activateImage(index) {
-    images.forEach(img => img.classList.remove('active'));
-    images[index].classList.add('active');
+    galleryImages.forEach(img => img.classList.remove('active'));
+    galleryImages[index].classList.add('active');
   }
 
-  setInterval(() => {
-    activeIndex = (activeIndex + 1) % images.length;
-    activateImage(activeIndex);
-  }, 8000); // כל 8 שניות
-});
-// script.js
-
-// מצב כהה ובהיר
-const toggleBtn = document.getElementById('modeToggle');
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+  if (galleryImages.length > 0) {
+    setInterval(() => {
+      activeIndex = (activeIndex + 1) % galleryImages.length;
+      activateImage(activeIndex);
+    }, 8000);
+  }
 });
 
-// כפתור חזור למעלה
-const backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
-  backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-});
-
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// כפתור וואטסאפ
-const whatsappChat = document.getElementById('whatsapp-chat');
-if (whatsappChat) {
-  whatsappChat.addEventListener('click', () => {
-    window.open('https://wa.me/972505437050', '_blank');
-  });
-} else {
-  console.warn('אזהרה: כפתור וואטסאפ הצף לא נמצא בדף.');
-} 
 

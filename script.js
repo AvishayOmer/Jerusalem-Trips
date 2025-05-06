@@ -59,20 +59,37 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         img.style.filter = img.style.filter === 'grayscale(0%)' ? 'grayscale(100%)' : 'grayscale(0%)';
       });
+
+      // הוספת אנימציה לאנימציות של הגלריה
+      img.addEventListener('mouseenter', () => {
+        img.style.transition = 'transform 0.3s ease-out, filter 0.3s ease-out';
+        img.style.transform = 'scale(1.1)';
+        img.style.filter = 'grayscale(0%)';
+      });
+
+      img.addEventListener('mouseleave', () => {
+        img.style.transition = 'transform 0.3s ease-out, filter 0.3s ease-out';
+        img.style.transform = 'scale(1)';
+        img.style.filter = 'grayscale(100%)';
+      });
     }
   });
 
+  // מניעת קליקים עם כפתור ימני
   document.addEventListener('contextmenu', e => e.preventDefault());
 
+  // מצב לילה ויום
   const toggleBtn = document.getElementById('modeToggle');
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-      document.body.classList.toggle('dark-mode'); // לשמירה על תאימות עם הקוד התחתון
+      document.body.classList.toggle('dark-mode');
       toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️ מצב יום' : '🌙 מצב לילה';
+      toggleBtn.classList.toggle('button-toggle-animate');
     });
   }
 
+  // כפתור חזרה למעלה
   const scrollTopBtn = document.getElementById('backToTop');
   if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
@@ -84,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // כפתור וואטסאפ
   const whatsappBtn = document.getElementById('whatsapp-chat');
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', () => {
@@ -93,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('אזהרה: כפתור וואטסאפ הצף לא נמצא בדף.');
   }
 
+  // וידאו
   const videoElements = document.querySelectorAll('video');
   videoElements.forEach(video => {
     video.addEventListener('click', () => {
@@ -104,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // סלאיידר תמונות
   const imageElement = document.getElementById('image-slider');
   if (imageElement) {
     const sliderImages = [
@@ -116,33 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
       'images/7.jpg',
       'images/8.jpg',
       'images/9.jpg',
-      
     ];
     let currentImageIndex = 0;
 
     function changeImage() {
       currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
       imageElement.src = sliderImages[currentImageIndex];
+      imageElement.classList.add('image-fade-in');
+      setTimeout(() => {
+        imageElement.classList.remove('image-fade-in');
+      }, 1000);
     }
 
     setInterval(changeImage, 8000);
   }
 
-  // הגלריה בסיבוב אוטומטי
+  // אנימציה לגלריה
   const galleryImages = document.querySelectorAll('.gallery img');
-  let activeIndex = 0;
-
-  function activateImage(index) {
-    galleryImages.forEach(img => img.classList.remove('active'));
-    galleryImages[index].classList.add('active');
-  }
-
-  if (galleryImages.length > 0) {
-    setInterval(() => {
-      activeIndex = (activeIndex + 1) % galleryImages.length;
-      activateImage(activeIndex);
-    }, 8000);
-  }
+  galleryImages.forEach(img => {
+    img.classList.add('gallery-image-animate');
+  });
 });
-
-

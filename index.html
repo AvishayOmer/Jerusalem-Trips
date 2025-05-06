@@ -11,273 +11,100 @@
 <body>
 
 <header>
-  <div id="header-wrap">
-    <h1>טיולי ירושלים - Jerusalem Trips</h1>
-    <img src="images/logo.jpg" alt="לוגו" id="logo" />
-  </div>
+  <div id="logo">טיולי ירושלים</div>
 </header>
 
-<main>
-  <section class="services">
-    <h2>השירותים שלנו</h2>
-    <p>אבטחה רפואית - מערים וחובשים</p>
-    <p>שירותי אבטחה</p>
-    <p>מדריכי/ות טיולים</p>
-    <p>Medical and security services</p>
-  </section>
+<section class="text-container">
+  <h2>ברוכים הבאים לטיולי ירושלים</h2>
+  <p>כאן תמצאו את המקומות השקטים והמפתיעים ביותר בעיר הבירה ובאזור!</p>
+</section>
 
-  <section class="description">
-    <p>אזורי שירות: ירושלים וסביבותיה, ניתן גם לפי הזמנה בכל הארץ.</p>
-    <p>שירות ומחיר ללא תחרות.</p>
-    <p>ניתן לקבל את כל שירותי הטיולים משירותי הדרכה ועד שירותי אבטחה רפואית ושמירה.</p>
-  </section>
+<section class="services">
+  <h2>השירותים שלנו</h2>
+  <p>שירותי אבטחה רפואית - פאראמדיקים וחובשים</p>
+  <p>שירותי שמירה</p>
+  <p>מדריכי ומדריכות טיולים מקצועיים</p>
+  <p>Medical and Security Services</p>
+</section>
 
-  <section class="contacts">
-    <h2>צרו קשר</h2>
-    <ul>
-      <li><a href="tel:0584181598">☎ עומר Omer : 058-418-1598</a></li>
-      <li><a href="tel:0542879174">☎ אקי Eki : 054-287-9174</a></li>
-      <li><a href="mailto:jerusalemtrips@gmail.com">✉ jerusalemtrips@gmail.com</a></li>
-    </ul>
-  </section>
+<section class="description">
+  <p>אזורי שירות: ירושלים וסביבותיה. ניתן להזמין גם שירותים בפריסה ארצית.</p>
+  <p>שירות ומחירים ללא תחרות.</p>
+  <p>החבילה כוללת את כל שירותי הטיולים - מהדרכה ועד אבטחה רפואית ושמירה.</p>
+</section>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<section class="contacts">
+  <h2>צרו קשר</h2>
+  <ul>
+    <li><a href="tel:0584181598">☎ עומר (Omer): 058-418-1598</a></li>
+    <li><a href="tel:0542879174">☎ אקי (Eki): 054-287-9174</a></li>
+    <li><a href="mailto:jerusalemtrips@gmail.com">✉ jerusalemtrips@gmail.com</a></li>
+  </ul>
+</section>
 
-    body {
-      font-family: 'Varela Round', sans-serif;
-      background: linear-gradient(to bottom, #e0eafc, #cfdef3);
-      color: #333;
-      direction: rtl;
-      transition: background 0.5s, color 0.5s;
-      text-align: center;
-    }
-
-    body.dark-mode {
-      background: linear-gradient(to bottom, #1e1e1e, #2e2e2e);
-      color: #f0f0f0;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background: #ffffff88;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    #logo {
-      font-size: 0.2em;
-      animation: floatUpDown 2.5s ease-in-out infinite;
-    }
-
-    @keyframes floatUpDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    #modeToggle {
-      padding: 10px 20px;
-      background: #008793;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-
-    #modeToggle:hover {
-      background: #004d7a;
-    }
-
-    .text-container {
-      background-color: #a0d8f1;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 1000px;
-      margin: 20px auto;
-    }
-
-    h2, p {
-      margin: 0;
-      padding: 10px;
-      font-weight: 400;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
-      animation-fill-mode: both;
-    }
-
-    h2 {
-      animation-name: slideUp;
-    }
-
-    p {
-      animation-name: slideDown;
-    }
-
-    @keyframes slideUp {
-      0% { transform: translateY(30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes slideDown {
-      0% { transform: translateY(-30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    .gallery-wrapper {
-      background-color: white;
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 1000px;
-      margin: 40px auto;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .image-wrapper {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .image-wrapper:hover {
-      transform: scale(1.03);
-    }
-
-    .image-wrapper img {
-      width: 100%;
-      height: auto;
-      filter: grayscale(100%);
-      transition: filter 0.5s ease;
-    }
-
-    .image-wrapper img:hover {
-      filter: grayscale(0%);
-    }
-
-    #whatsapp-chat {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      background: #25d366;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    #whatsapp-chat:hover {
-      background: #128c7e;
-    }
-
-    #whatsapp-chat img {
-      width: 35px;
-      height: 35px;
-    }
-
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      display: none;
-      background: #000;
-      color: #fff;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      text-align: center;
-      line-height: 40px;
-      font-size: 20px;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      #modeToggle {
-        margin-top: 10px;
-        font-size: 14px;
-        padding: 8px 16px;
-      }
-
-      .image-wrapper img {
-        max-height: 60vh;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div id="logo">טיולי ירושלים</div>
-    <button id="modeToggle">מצב כהה / בהיר</button>
-  </header>
-
-  <section class="text-container">
-    <h2>ברוכים הבאים לטיולי ירושלים</h2>
-    <p>כאן תמצאו את המקומות השקטים והמפתיעים ביותר של עיר הבירה ואיזור !</p>
-  </section>
-
-  <section class="gallery-wrapper">
-    <h2>גלריית תמונות</h2>
-    <div class="gallery">
-      <div class="image-wrapper">
-        <img src="images/image1.jpg" alt="">
-      </div>
-      <div class="image-wrapper">
-        <img src="images/image2.jpg" alt="">
-      </div>
-      <div class="image-wrapper">
-        <img src="images/image3.jpg" alt="">
-      </div>
-    </div>
-    
-  </section>
-
-  <div id="whatsapp-chat" onclick="window.open('https://wa.me/972505437050', '_blank')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="וואטסאפ">
+<section class="gallery-wrapper">
+  <h2>גלריית תמונות</h2>
+  <div class="gallery">
+    <img id="image-slider" src="images/1.jpg" alt="תמונה מתוך טיולי ירושלים">
   </div>
+</section>
 
-  <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</div>
+<div id="modeToggle">מצב כהה / בהיר</div>
 
-  <script>
+<div id="whatsapp-chat" onclick="window.open('https://wa.me/972505437050', '_blank')">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="וואטסאפ">
+</div>
+
+<div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
     const modeToggle = document.getElementById('modeToggle');
     modeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
+      modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ מצב יום' : '🌙 מצב לילה';
     });
 
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 200 ? 'flex' : 'none';
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
-  </script>
+
+    const imageElement = document.getElementById('image-slider');
+    if (imageElement) {
+      const sliderImages = [
+        'images/1.jpg',
+        'images/2.jpg',
+        'images/3.jpg',
+        'images/4.jpg',
+        'images/5.jpg',
+        'images/6.jpg',
+        'images/7.jpg',
+        'images/8.jpg',
+        'images/9.jpg'
+      ];
+      let currentImageIndex = 0;
+
+      function changeImage() {
+        currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+        imageElement.src = sliderImages[currentImageIndex];
+      }
+
+      setInterval(changeImage, 8000);
+    }
+  });
+</script>
+
 </body>
 </html>
+<head>
+  <style>
+    /* הקוד CSS ששלחת */
+  </style>
+</head>
 
-
+}
+<שירות ומקצועיות באהבה>
+}
+<p>מחפשים השראה למסלול הבא? <a href="https://www.ynet.co.il/vacation/israeltrips/article/bjigjcyx0" target="_blank">צפו בכתבה על 10 המקומות הכי שקטים ומרגיעים בירושלים</a> וקבלו רעיונות לטיול בלתי נשכח.</p>
+{

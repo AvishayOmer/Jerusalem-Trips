@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -72,6 +73,12 @@
     window.addEventListener('scroll', () => {
       backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
     });
+});
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
 
     const imageElement = document.getElementById('image-slider');
     if (imageElement) {
@@ -84,7 +91,8 @@
         'images/6.jpg',
         'images/7.jpg',
         'images/8.jpg',
-        'images/9.jpg'
+        'images/9.jpg',
+        'images/10.jpg',
       ];
       let currentImageIndex = 0;
 
@@ -95,8 +103,22 @@
 
       setInterval(changeImage, 8000);
     }
-  });
+
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<section class="gallery-wrapper">
+  <h2>ועוד קצת עלינו :)</h2>
+  <div class="gallery">
+    <img id="image-slider" src="images/1.jpg" alt="תמונה מתוך טיולי ירושלים">
+  </div>
+</section>
+
+<div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</div>
+<div class="gallery">
+  <img src="path/to/your-image.jpg" alt="Image description">
+  <img class="logo-overlay" src="path/to/logo.png" alt="Logo">
+</div>
 
 </body>
 </html>
@@ -108,6 +130,10 @@
 
 }
 <שירות ומקצועיות באהבה>
-}
-<p>מחפשים השראה למסלול הבא? <a href="https://www.ynet.co.il/vacation/israeltrips/article/bjigjcyx0" target="_blank">צפו בכתבה על 10 המקומות הכי שקטים ומרגיעים בירושלים</a> וקבלו רעיונות לטיול בלתי נשכח.</p>
-{
+
+<p><strong>מחפשים השראה למסלול הבא?</strong>
+  <a href="https://www.itraveljerusalem.com/he/lobby/magazine" target="_blank">
+    צפו בכתבה על המקומות הכי שקטים ומרגיעים בירושלים
+  </a> וקבלו רעיונות לטיול בלתי נשכח.
+</p>
+

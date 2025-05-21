@@ -1,238 +1,62 @@
-/* הגדרות כלליות */
+
+
+/* CSS כללי */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* עיצוב הלוגו והכותרת */
-header {
-  text-align: center;
-  padding: 20px;
-  background-color: #ffffff;
-  position: relative; /* שימור אחידות עבור הלוגו */
-}
-
-#logo {
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #008793;
-  margin-bottom: 10px;
-  animation: slideInFromTop 1s ease-out forwards;
-}
-
-.logo-img-container {
-  margin-top: 20px;
-  opacity: 0; /* בהתחלה נסתר */
-  animation: fadeInUp 1s ease-out forwards; /* האנימציה שתפעיל את הפייד-אין */
-}
-
-.logo {
-  width: 120px; /* גודל הלוגו קטן עד בינוני */
-  height: auto;
-  object-fit: contain; /* שומר על פרופורציות */
-}
-
-/* אנימציות */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInFromTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* עיצוב רספונסיבי - מותאם למובייל */
-@media (max-width: 768px) {
-  #logo {
-    font-size: 2em; /* הקטנה קלה לכותרת */
-  }
-
-  .logo {
-    width: 90px; /* התאמת גודל הלוגו למובייל */
-  }
-}
-
-@media (max-width: 480px) {
-  #logo {
-    font-size: 1.8em;
-  }
-
-  .logo {
-    width: 80px;
-  }
-}
-
-/* אנימציה של בהירות לתמונות */
-.image-fade-in {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* שינוי צבעים עבור מצב כהה */
-body.dark-mode {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-}
-
-body.dark-mode .gallery img {
-  filter: brightness(80%);
-}
-
-.logo-img-container {
-  margin-top: 20px;
-  opacity: 0; /* בהתחלה נסתר */
-  animation: fadeInUp 1s ease-out forwards; /* האנימציה שתפעיל את הפייד-אין */
-}
-
-.logo {
-  width: 100px; /* גודל הלוגו קטן עד בינוני */
-  height: auto;
-  object-fit: contain; /* שומר על פרופורציות */
-}
-
-/* אנימציה לעדינות */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* עיצוב רספונסיבי - מותאם למובייל */
-@media (max-width: 768px) {
-  #logo {
-    font-size: 2em; /* הקטנה קלה לכותרת */
-  }
-
-  .logo {
-    width: 80px; /* התאמת גודל הלוגו למובייל */
-  }
-}
-
-body {
-  font-family: 'Varela Round', sans-serif;
-  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
-  color: #333;
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
   direction: rtl;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+header, section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  transition: background 0.5s, color 0.5s;
+  padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
+  animation: floatUpDown 3s ease-in-out infinite;
 }
 
 body.dark-mode {
-  background: linear-gradient(to bottom, #1e1e1e, #2e2e2e);
-  color: #f0f0f0;
+  background-color: #121212;
+  color: #ffffff;
 }
 
-/* אנימציות */
-@keyframes slideUp {
-  0% { transform: translateY(30px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+body.dark-mode header,
+body.dark-mode section {
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
 
-@keyframes slideDown {
-  0% { transform: translateY(-30px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes floatUpDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-@keyframes backgroundPulse {
-  0% { background-color: #ff6b6b; }
-  50% { background-color: #ffcc00; }
-  100% { background-color: #ff6b6b; }
-}
-
-h2, p {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
-}
-
-h2 {
-  animation-name: slideUp;
-}
-
-p {
-  animation-name: slideDown;
-}
-
-/* Header */
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-  background: #ffffff88;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-#logo {
-  font-size: 3em;
-  animation: floatUpDown 2.5s ease-in-out infinite;
-  color: #008793;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+body.dark-mode a {
+  color: #90caf9;
 }
 
 #modeToggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
   padding: 12px 24px;
   background: linear-gradient(45deg, #ff6b6b, #ffcc00);
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-  animation: pulse 2s infinite;
+  z-index: 1000;
   font-size: 18px;
+  animation: pulseButton 2s infinite;
+  transition: background 0.3s, transform 0.3s;
 }
 
 #modeToggle:hover {
@@ -240,24 +64,61 @@ header {
   transform: scale(1.1);
 }
 
-/* טקסט */
-.text-container {
-  background-color: #a0d8f1;
-  padding: 20px;
-  border-radius: 16px;
-  max-width: 600px;
-  margin: 20px auto;
-  animation: fadeIn 1s ease-in-out;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #008793;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
 }
 
-h2, p {
-  margin: 0;
-  padding: 10px;
-  font-weight: 400;
+#backToTop.show {
+  display: flex;
 }
 
-/* גלריה */
+#backToTop:hover {
+  background-color: #004d7a;
+}
+
+#whatsapp-chat {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #25d366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+  transition: background-color 0.3s;
+}
+
+#whatsapp-chat:hover {
+  background: #128c7e;
+  transform: scale(1.1);
+}
+
+#whatsapp-chat img {
+  width: 35px;
+  height: 35px;
+}
+
 .gallery-wrapper {
   background-color: white;
   border-radius: 20px;
@@ -284,7 +145,7 @@ h2, p {
   width: 100%;
   height: auto;
   border-radius: 16px;
-  transition: opacity 1s ease-in-out, transform 0.3s ease;
+  transition: opacity 1s ease-in-out, transform 0.3s ease, filter 0.3s ease;
   filter: grayscale(100%);
 }
 
@@ -293,129 +154,68 @@ h2, p {
   transform: scale(1.05);
 }
 
-/* כפתור וואטסאפ */
-#whatsapp-chat {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background: #25d366;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  z-index: 100;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s, transform 0.3s;
-  animation: backgroundPulse 2s infinite;
+.logo-img-container {
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
-#whatsapp-chat:hover {
-  background: #128c7e;
+.logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
   transform: scale(1.1);
 }
 
-#whatsapp-chat img {
-  width: 35px;
-  height: 35px;
-}
-
-/* כפתור חזרה למעלה */
-#backToTop {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #008793;
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 24px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1000;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-#backToTop:hover {
-  background: #004d7a;
-}
-
-/* רספונסיביות */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .gallery img {
-    max-height: 60vh;
-  }
-
-  #modeToggle {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  #logo {
-    font-size: 3em;
-  }
-}
-
-@media (max-width: 480px) {
-  #logo {
-    font-size: 2em;
-  }
-}
-/* גלריה */
-.gallery img {
-  transition: transform 0.3s ease-out, filter 0.3s ease-out;
-}
-
-/* אנימציה של תמונה */
-.gallery-image-animate {
-  animation: fadeInUp 1s ease-in-out;
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* אנימציה לכפתור במצב לילה/יום */
-.button-toggle-animate {
-  animation: pulseButton 1.5s infinite;
+#logo {
+  font-size: 3em;
+  font-weight: bold;
+  color: #008793;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: slideInFromTop 1s ease-out forwards;
 }
 
 @keyframes pulseButton {
-  0% { transform: scale(1); }
+  0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
 }
 
-/* אנימציה של בהירות לתמונות */
-.image-fade-in {
-  animation: fadeIn 1s ease-in-out;
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromTop {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.logo-img-container {
+  margin-top: 20px;
+  opacity: 0; /* בהתחלה נסתר */
+  animation: fadeInUp 1s ease-out forwards; /* האנימציה שתפעיל את הפייד-אין */
+}
+ 
 /* הגדרות בסיסיות */
 * {
   margin: 0;
@@ -558,5 +358,3 @@ body.dark-mode .gallery img {
 #backToTop:hover {
   background-color: #004d7a;
 }
-
-

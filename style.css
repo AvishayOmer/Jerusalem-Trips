@@ -1,6 +1,6 @@
 
 
-/* CSS כללי */
+/* ===================== CSS כללי וניקוי כפילויות ===================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,15 +8,33 @@
 }
 
 html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
   height: 100%;
+  overflow-x: hidden;
   direction: rtl;
-  font-family: Arial, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Varela Round', Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ===================== כותרות ופסקאות ===================== */
+h2, p {
+  margin-bottom: 20px;
+}
+
+/* ===================== קישורים ===================== */
+a {
+  text-decoration: none;
+  color: #008793;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #004d7a;
+}
+
+/* ===================== סידור בסיסי - header, section ===================== */
 header, section {
   display: flex;
   flex-direction: column;
@@ -24,25 +42,71 @@ header, section {
   justify-content: center;
   text-align: center;
   padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
   animation: floatUpDown 3s ease-in-out infinite;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ===================== מצב כהה ===================== */
 body.dark-mode {
   background-color: #121212;
-  color: #ffffff;
+  color: #f0f0f0;
 }
 
 body.dark-mode header,
 body.dark-mode section {
   background-color: #1e1e1e;
-  color: #ffffff;
+  color: #f0f0f0;
 }
 
 body.dark-mode a {
   color: #90caf9;
 }
 
+/* ===================== גלריה ===================== */
+.gallery-wrapper {
+  background-color: #fff;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  margin: auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease, opacity 1s ease-in-out;
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* במצב כהה גלריה מעט כהה */
+body.dark-mode .gallery img {
+  filter: brightness(80%) grayscale(100%);
+}
+body.dark-mode .gallery img:hover {
+  filter: brightness(100%) grayscale(0%);
+}
+
+/* ===================== כפתורים ===================== */
 #modeToggle {
   position: fixed;
   top: 20px;
@@ -53,12 +117,11 @@ body.dark-mode a {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  z-index: 1000;
   font-size: 18px;
-  animation: pulseButton 2s infinite;
-  transition: background 0.3s, transform 0.3s;
+  z-index: 1000;
+  animation: pulseButton 2.5s infinite ease-in-out;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
-
 #modeToggle:hover {
   background: #ff8c00;
   transform: scale(1.1);
@@ -68,25 +131,23 @@ body.dark-mode a {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background: #008793;
-  color: white;
   width: 50px;
   height: 50px;
+  background: #008793;
+  color: white;
   border-radius: 50%;
   font-size: 24px;
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
-
 #backToTop.show {
   display: flex;
 }
-
 #backToTop:hover {
   background-color: #004d7a;
 }
@@ -95,65 +156,29 @@ body.dark-mode a {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  background: #25d366;
   width: 60px;
   height: 60px;
+  background: #25d366;
   border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  animation: pulse 2s infinite;
-  transition: background-color 0.3s;
+  animation: pulse 2s infinite ease-in-out;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 #whatsapp-chat:hover {
-  background: #128c7e;
+  background-color: #128c7e;
   transform: scale(1.1);
 }
-
 #whatsapp-chat img {
   width: 35px;
   height: 35px;
 }
 
-.gallery-wrapper {
-  background-color: white;
-  border-radius: 20px;
-  padding: 30px;
-  max-width: 1000px;
-  margin: 40px auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1.2s ease-in-out;
-}
-
-.gallery {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  transition: opacity 1s ease-in-out, transform 0.3s ease, filter 0.3s ease;
-  filter: grayscale(100%);
-}
-
-.gallery img:hover {
-  filter: grayscale(0%);
-  transform: scale(1.05);
-}
-
+/* ===================== לוגו ===================== */
 .logo-img-container {
   margin-top: 20px;
   opacity: 0;
@@ -165,8 +190,8 @@ body.dark-mode a {
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
-
 .logo:hover {
   transform: scale(1.1);
 }
@@ -176,10 +201,12 @@ body.dark-mode a {
   font-weight: bold;
   color: #008793;
   margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 10px rgba(0,0,0,0.2);
   animation: slideInFromTop 1s ease-out forwards;
+  cursor: default;
 }
 
+/* ===================== אנימציות ===================== */
 @keyframes pulseButton {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
@@ -197,89 +224,21 @@ body.dark-mode a {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInFromTop {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatUpDown {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-.logo-img-container {
-  margin-top: 20px;
-  opacity: 0; /* בהתחלה נסתר */
-  animation: fadeInUp 1s ease-out forwards; /* האנימציה שתפעיל את הפייד-אין */
-}
- 
-/* הגדרות בסיסיות */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  font-family: 'Varela Round', sans-serif;
-  background: #f4f4f4;
-  color: #333;
-  direction: rtl;
-  text-align: center;
-  line-height: 1.5;
-}
-
-h2, p {
-  margin-bottom: 20px;
-}
-
-a {
-  text-decoration: none;
-  color: #008793;
-}
-
-a:hover {
-  color: #004d7a;
-}
-
-/* אחידות בתמונות */
-.gallery img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-/* גלריה */
-.gallery-wrapper {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 1000px;
-  margin: 40px auto;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* הוספת אנימציות */
-.gallery-image-animate {
-  animation: fadeInUp 1s ease-in-out;
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* תצוגה רספונסיבית */
+/* ===================== רספונסיביות ===================== */
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -293,68 +252,20 @@ a:hover {
   #logo {
     font-size: 1.8em;
   }
-
+  
+  /* אם יש אלמנטים נוספים כמו services, description */
   .services, .description {
     font-size: 14px;
   }
 }
-
-/* מצב כהה */
-body.dark-mode {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
+/* מונע גרירה של תמונות וסימון טקסט */
+.gallery img {
+  -webkit-user-drag: none;       /* Safari, Chrome */
+  -khtml-user-drag: none;        /* Konqueror */
+  -moz-user-select: none;         /* Firefox */
+  -webkit-user-select: none;      /* Safari, Chrome */
+  -ms-user-select: none;          /* Internet Explorer/Edge */
+  user-select: none;              /* סטנדרטי */
 }
 
-body.dark-mode .gallery img {
-  filter: brightness(80%);
-}
 
-/* כפתור מצב כהה / בהיר */
-#modeToggle {
-  margin: 20px;
-  padding: 10px 20px;
-  background-color: #008793;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-#modeToggle:hover {
-  background-color: #004d7a;
-}
-
-/* כפתור וואטסאפ */
-#whatsapp-chat {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  background-color: #25d366;
-  padding: 15px;
-  border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-#whatsapp-chat img {
-  width: 30px;
-  height: 30px;
-}
-
-/* כפתור חזרה למעלה */
-#backToTop {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  background-color: #008793;
-  color: white;
-  padding: 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-#backToTop:hover {
-  background-color: #004d7a;
-}

@@ -20,6 +20,63 @@
     <div class="logo.jpg-img-container">
       <img src="./images/logo.jpg" alt="לוגו טיולי ירושלים" class="logo">
     </div>
+    <style>
+    /* ====== סגנון חלונית יצירת קשר ====== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s;
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .modal-content button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #008793;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .modal-content button:hover {
+      background-color: #004d7a;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
   </header>
   
 
@@ -55,14 +112,28 @@
 
 <section class="contacts">
   <h2>צרו קשר</h2>
-  <p>להזמנה והצעת מחיר בקלות ובמהירות .</p>
-  <ul>
-    <li><a href="tel:0503251251">☎ עומר (Omer):</a></li>
-   
-    <li><a href="mailto:tripjeru@gmail.com">✉ tripjeru@gmail.com</a></li>
-  </ul>
+  <p>להזמנה והצעת מחיר בקלות ובמהירות</p>
+  <button id="openContactModal">📩 יצירת קשר מהירה</button>
 </section>
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>השארת פרטים</h2>
+    <form id="contactForm">
+      <input type="text" id="firstName" placeholder="שם פרטי" required>
+      <input type="text" id="lastName" placeholder="שם משפחה" required>
+      <input type="tel" id="phone" placeholder="טלפון" required>
+      <input type="email" id="email" placeholder="מייל" required>
+      <button type="submit">שליחה</button>
+    </form>
+  </div>
+</div>
 
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("u9MRRRVgErghPjkuE"); // Public Key שלך
+</script>
 <section class="gallery-wrapper">
   <h2>מתוך גלריית התמונות : </h2>
   <div class="gallery">
@@ -79,6 +150,42 @@
 <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</div>
 
 <script>
+  // חלונית יצירת קשר
+  const modal = document.getElementById('contactModal');
+  const openBtn = document.getElementById('openContactModal');
+  const closeBtn = document.querySelector('.close');
+  const form = document.getElementById('contactForm');
+
+  openBtn.onclick = () => modal.style.display = 'block';
+  closeBtn.onclick = () => modal.style.display = 'none';
+  window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
+
+  // שליחת טופס עם EmailJS כולל מייל
+  form.onsubmit = function(e){
+    e.preventDefault();
+
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+
+    const templateParams = {
+       first_name: firstName,
+       last_name: lastName,
+       phone: phone,
+       user_email: email // המייל של המשתמש
+    };
+
+    emailjs.send("tripjeru_service", "template_4qoa25e", templateParams)
+      .then(() => {
+        alert("ההודעה נשלחה בהצלחה!");
+        modal.style.display = 'none';
+        form.reset();
+      })
+      .catch((err) => {
+        alert("אירעה שגיאה בשליחת ההודעה: " + JSON.stringify(err));
+      });
+  };
   document.addEventListener('DOMContentLoaded', () => {
     const modeToggle = document.getElementById('modeToggle');
     modeToggle.addEventListener('click', () => {
@@ -171,3 +278,4 @@
   <p>  <tripjeru class="org il"></www.tripjeru.org.il></p>
 
 </p>
+

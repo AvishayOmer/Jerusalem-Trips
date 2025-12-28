@@ -1,281 +1,105 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <h1>Welcome </h1>
-  <title>טיולי ירושלים</title>
-  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
-
-  <link rel="stylesheet" href="style.css" />
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>טיולי ירושלים - דף הבית</title>
+  <link rel="icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
-  <header>
-    <div id="logo">ליווי ותכנון טיולים מקצועי</div>
-    <div class="logo.jpg-img-container">
-      <img src="./images/logo.jpg" alt="לוגו טיולי ירושלים" class="logo">
+
+<header>
+  <div id="logo">ליווי ותכנון טיולים מקצועי</div>
+  <div class="logo-img-container">
+    <img src="./images/logo.jpg" alt="לוגו טיולי ירושלים" class="logo">
+  </div>
+
+  <section class="gallery-wrapper slider-top">
+    <div class="gallery">
+      <img id="image-slider" src="images/1.jpg" alt="טיולי ירושלים">
     </div>
-    <style>
-    /* ====== סגנון חלונית יצירת קשר ====== */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.5);
-      animation: fadeIn 0.3s;
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      position: relative;
-    }
-    .modal-content input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .modal-content button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #008793;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .modal-content button:hover {
-      background-color: #004d7a;
-    }
-    .close {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-  </style>
-  </header>
-  
+  </section>
+</header>
 
 <section class="text-container">
   <h2>ברוכים הבאים לטיולי ירושלים</h2>
-  <p>שירות אישי ומקצועי מותאם אישית לכל לקוח 24/6 </p>
-  <p>ניסיון רב של מספר שנים בתחום  </p>
-    <p>לקוחות רבים ומרוצים בתחום </p>
-    <p>גמישות בזמנים בעת הזמנות חדשות</p>
+  <p>שירות אישי ומקצועי מותאם אישית לכל לקוח 24/6</p>
+  <p>ניסיון רב של מספר שנים בתחום</p>
+  <p>לקוחות רבים ומרוצים</p>
+  <p>גמישות בזמנים בעת הזמנות חדשות</p>
 </section>
 
 <section class="services">
   <h2>המקצועיות שלנו</h2>
-  <p>שירותי אבטחה רפואית -מערים חובשים ופאראמדיקים </p>
+  <p>שירותי אבטחה רפואית – חובשים ופאראמדיקים</p>
   <p>שמירה ואבטחה ברמה הגבוהה ביותר</p>
-  <p>מדריכי ומדריכות טיולים מקצועיים</p>
-  <p>אפשרות לטיולי שטח עם חיבורי חשמל והגברה על ידי חשמלאי ראשי מוסמך </p>
-  <p>Medical and Security Services</p>
-</section>
-
-<section class="description">
-             <h2>השירות שלנו:</h2>
-  <p> זמינות מלאה ללקוח לפי דרישה </p>
-     <p> מקצועיות בפריסה ארצית.</p>
-  <p>שירות ומחירים ללא תחרות.</p>
-  <p>אפשרות לכל שירותי הטיולים- מהדרכה מקצועית ועד שירותי חשמל ראשי </p>
-  <p> ועד אבטחה רפואית ושמירה.</p>
-
-   <h2>אפשרות לתכנון והגשמת הטיול המתוכנן לפי דרישת הלקוח.</h2>
-   
-    <p>מחירים שווים לכל לקוח  .</p>
+  <p>מדריכי טיולים מקצועיים</p>
+  <p>טיולי שטח עם חיבורי חשמל והגברה</p>
 </section>
 
 <section class="contacts">
   <h2>צרו קשר</h2>
-  <p>להזמנה והצעת מחיר בקלות ובמהירות</p>
+  <p>להזמנה והצעת מחיר</p>
   <button id="openContactModal">📩 יצירת קשר מהירה</button>
 </section>
+
 <div id="contactModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>השארת פרטים</h2>
     <form id="contactForm">
-      <input type="text" id="firstName" placeholder="שם פרטי" required>
-      <input type="text" id="lastName" placeholder="שם משפחה" required>
-      <input type="tel" id="phone" placeholder="טלפון" required>
-      <input type="email" id="email" placeholder="מייל" required>
+      <input id="firstName" placeholder="שם פרטי" required>
+      <input id="lastName" placeholder="שם משפחה" required>
+      <input id="phone" placeholder="טלפון" required>
+      <input id="email" type="email" placeholder="מייל" required>
       <button type="submit">שליחה</button>
     </form>
   </div>
 </div>
 
-<!-- EmailJS SDK -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("u9MRRRVgErghPjkuE"); // Public Key שלך
-</script>
 <section class="gallery-wrapper">
-  <h2>מתוך גלריית התמונות : </h2>
+  <h2>גלריית התמונות שלנו</h2>
   <div class="gallery">
-    <img id="image-slider" src="images/1.jpg" alt="תמונה מתוך טיולי ירושלים">
+    <img src="images/11.jpg" alt="תמונה 1">
+    <img src="images/12.jpg" alt="תמונה 2">
+  </div>
+  
+  <div class="gallery-navigation">
+    <a href="gallery.html" class="btn-gallery-link">📸 לצפייה בגלריה המלאה</a>
   </div>
 </section>
 
-<div id="modeToggle">מצב כהה / בהיר</div>
+<div id="modeToggle">🌙 מצב לילה</div>
+<div id="whatsapp-chat">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</div>
+<div id="backToTop">↑</div>
 
-<div id="whatsapp-chat" onclick="window.open('https://wa.me/972503251251', '_blank')">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="וואטסאפ">
+<div id="accessibility-btn" title="תפריט נגישות">
+    <img src="https://cdn-icons-png.flaticon.com/512/75/75154.png" alt="נגישות" style="width: 30px; filter: invert(1);">
 </div>
 
-<div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</div>
-
-<script>
-  // חלונית יצירת קשר
-  const modal = document.getElementById('contactModal');
-  const openBtn = document.getElementById('openContactModal');
-  const closeBtn = document.querySelector('.close');
-  const form = document.getElementById('contactForm');
-
-  openBtn.onclick = () => modal.style.display = 'block';
-  closeBtn.onclick = () => modal.style.display = 'none';
-  window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
-
-  // שליחת טופס עם EmailJS כולל מייל
-  form.onsubmit = function(e){
-    e.preventDefault();
-
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-
-    const templateParams = {
-       first_name: firstName,
-       last_name: lastName,
-       phone: phone,
-       user_email: email // המייל של המשתמש
-    };
-
-    emailjs.send("tripjeru_service", "template_4qoa25e", templateParams)
-      .then(() => {
-        alert("ההודעה נשלחה בהצלחה!");
-        modal.style.display = 'none';
-        form.reset();
-      })
-      .catch((err) => {
-        alert("אירעה שגיאה בשליחת ההודעה: " + JSON.stringify(err));
-      });
-  };
-  document.addEventListener('DOMContentLoaded', () => {
-    const modeToggle = document.getElementById('modeToggle');
-    modeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️ מצב יום' : '🌙 מצב לילה';
-    });
-
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-});
-
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-
-    const imageElement = document.getElementById('image-slider');
-    if (imageElement) {
-      const sliderImages = [
-        'images/1.jpg',
-        'images/2.jpg',
-        'images/3.jpg',
-        'images/4.jpg',
-        'images/5.jpg',
-        'images/6.jpg',
-        'images/7.jpg',
-        'images/8.jpg',
-        'images/9.jpg',
-        'images/10.jpg',
-        'images/12.jpg',
-        'images/13.jpg',
-        'images/logo.jpg',
-        'images/logo2.jpg',
-      ];
-      let currentImageIndex = 0;
-
-      function changeImage() {
-        currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
-        imageElement.src = sliderImages[currentImageIndex];
-      }
-
-      setInterval(changeImage, 8000);
-    }
-
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<section class="gallery-wrapper">
-  <h2>ועוד קצת עלינו : </h2>
-  <div class="gallery">
-    <img id="image-slider" 
-    src= "images/11.jpg"
-    
-
-    
-    alt="תמונה מתוך טיולי ירושלים">
-  </div>
-</section>
-
-<div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</div>
-<div class="gallery">
-  <img src="images/12.jpg" alt='image more about us'>
-  <img class="logo-overlay"
-   src="images/logo.jpg" 
-  alt="Logo">
+<div id="accessibility-menu" class="a11y-menu">
+    <h3>תפריט נגישות</h3>
+    <button onclick="toggleGrayscale()">🌑 גווני אפור</button>
+    <button onclick="toggleHighContrast()">🌓 ניגודיות גבוהה</button>
+    <button onclick="changeFontSize(1)">➕ הגדלת טקסט</button>
+    <button onclick="changeFontSize(-1)">➖ הקטנת טקסט</button>
+    <button onclick="resetA11y()">🔄 איפוס הגדרות</button>
+    <p style="font-size: 12px; margin-top: 10px; color: #bbb;">טיולי ירושלים לכולם</p>
 </div>
 
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-slogan">שירותיות ומקצועיות באהבה ❤️</p>
+        <p class="footer-inspiration">מחפשים השראה למסלול הבא? קבלו כתבות ורעיונות!</p>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">&copy; 2024 טיולי ירושלים - כל הזכויות שמורות</p>
+    </div>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>
-<head>
-  <style>
-    /* הקוד CSS ששלחת */
-  </style>
-</head>
-
-
-<שירות ומקצועיות באהבה>
-
-<p><strong>מחפשים השראה למסלול הבא?</strong>
-  <a href="https://www.itraveljerusalem.com/he/lobby/magazine" target="_blank">
-   
-    
-  </a>  קבלו כתבות ורעיונות לטיול בלתי נשכח
-
-  <h2> טיולי ירושלים בדרך לעוד לקוח מרוצה : </h2>
- <p>כל הזכויות שמורות ל tripjeru @ </p>
- 
-  <p>  <tripjeru class="org il"></www.tripjeru.org.il></p>
-
-</p>
-

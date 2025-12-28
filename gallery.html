@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>גלריה - טיולי ירושלים</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode-transition">
+
+  <header>
+    <div id="logo">הגלריה שלנו</div>
+    <div class="logo-img-container">
+        <img src="./images/logo.jpg" alt="לוגו" class="logo">
+    </div>
+    <br>
+    <a href="index.html" style="color: #15cfe0; text-decoration: none; font-size: 1.2em;">🔙 חזרה לדף הבית</a>
+  </header>
+
+<section class="gallery-wrapper">
+    <div class="gallery-grid-protected">
+        <div class="img-container">
+            <img src="images/1.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/2.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/3.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/4.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/5.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/6.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/7.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/8.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/11.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+        <div class="img-container">
+            <img src="images/12.jpg" alt="טיולי ירושלים">
+            <img src="./images/logo.jpg" class="watermark" alt="לוגו">
+        </div>
+    </div>
+</section>
+
+  <div id="modeToggle">🌙 מצב לילה</div>
+  <div id="backToTop">↑</div>
+
+  <div id="whatsapp-chat" style="position: fixed; bottom: 80px; right: 20px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 35px;">
+  </div>
+<div id="imageModal" class="image-viewer-modal">
+    <span class="close-viewer">&times;</span>
+    <img class="modal-content-full" id="fullImage">
+</div>
+
+<div id="accessibility-btn" title="תפריט נגישות">
+    <img src="https://cdn-icons-png.flaticon.com/512/75/75154.png" alt="נגישות" style="width: 30px; filter: invert(1);">
+</div>
+
+<div id="accessibility-menu" class="a11y-menu">
+    <h3>תפריט נגישות</h3>
+    <button onclick="toggleGrayscale()">🌑 גווני אפור</button>
+    <button onclick="toggleHighContrast()">🌓 ניגודיות גבוהה</button>
+    <button onclick="changeFontSize(1)">➕ הגדלת טקסט</button>
+    <button onclick="changeFontSize(-1)">➖ הקטנת טקסט</button>
+    <button onclick="resetA11y()">🔄 איפוס הגדרות</button>
+    <p style="font-size: 12px; margin-top: 10px; color: #bbb;">טיולי ירושלים לכולם</p>
+</div>
+
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p class="footer-slogan">שירותיות ומקצועיות באהבה ❤️</p>
+        <p class="footer-inspiration">מחפשים השראה למסלול הבא? קבלו כתבות ורעיונות!</p>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">&copy; 2024 טיולי ירושלים - כל הזכויות שמורות</p>
+    </div>
+</footer>
+  <script src="script.js"></script>
+</body>
+</html>

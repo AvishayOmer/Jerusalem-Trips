@@ -5,6 +5,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color:#ffffff;
 }
 
 html, body {
@@ -18,6 +19,38 @@ html, body {
   line-height: 1.5;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+
+body {
+  direction: rtl;
+  font-family: 'Varela Round', Arial, sans-serif;
+
+  /* 🔹 תמונת רקע */
+  background-image: url("images/3.jpg"); /* שנה לשם התמונה שלך */
+  background-size: cover;        /* מכסה את כל המסך */
+  background-position: center;   /* ממורכז */
+  background-repeat: no-repeat;  /* בלי חזרות */
+  background-attachment: fixed;  /* אפקט יפה במחשב */
+
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  z-index: 0;
+
+}
+body::before {
+  content: "";
+  position: fixed;        /* מכסה את כל המסך */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.32); /* עוצמת הכהות – אפשר לשחק עם המספר */
+  z-index: 0;            /* נשאר מאחורי התוכן */
+}
+
 
 /* ===================== כותרות ופסקאות ===================== */
 h2, p {
@@ -191,6 +224,7 @@ body.dark-mode .gallery img:hover {
   object-fit: contain;
   transition: transform 0.3s ease;
   cursor: pointer;
+  border-radius: 8px;
 }
 .logo:hover {
   transform: scale(1.1);
@@ -199,7 +233,7 @@ body.dark-mode .gallery img:hover {
 #logo {
   font-size: 3em;
   font-weight: bold;
-  color: #008793;
+  color: #15cfe0;
   margin-bottom: 10px;
   text-shadow: 0 0 10px rgba(0,0,0,0.2);
   animation: slideInFromTop 1s ease-out forwards;
@@ -269,3 +303,548 @@ body.dark-mode .gallery img:hover {
 }
 
 
+#openContactModal{
+  background-color: rgba(207, 200, 200, 0.279);
+  width: 200px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius:8px;
+}
+
+#openContactModal:hover{
+  background-color: rgba(125, 119, 119, 0.279);
+
+}
+
+
+/* גלריה מתחלפת בראש */
+.slider-top {
+  margin-top: 20px;
+}
+
+.slider img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+}
+
+/* footer + לוגו בתחתית */
+.site-footer {
+  margin-top: 80px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-logo {
+  width: 120px;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+/* ================= מודאל יצירת קשר ================= */
+.modal {
+  display: none; /* מוסתר כברירת מחדל */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #222;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeInUp 0.5s ease;
+}
+
+.modal-content input,
+.modal-content button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.modal-content button {
+  background: #15cfe0;
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: #0fb3c2;
+}
+
+.close {
+  font-size: 28px;
+  cursor: pointer;
+  float: left;
+}
+
+
+/* כפתור מעבר לגלריה */
+.btn-gallery {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, #15cfe0, #008793);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.btn-gallery:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(21, 207, 224, 0.4);
+}
+
+/* התאמת המודאל לגלריה רחבה */
+.full-gallery-content {
+  max-width: 90% !important;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.full-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.full-gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.full-gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+.close-gallery {
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+/* עיצוב הקישור לדף הגלריה */
+.gallery-navigation {
+    margin-top: 30px;
+    z-index: 1;
+}
+
+.btn-gallery-link {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #15cfe0, #0fb3c2);
+    color: #000 !important; /* טקסט שחור בולט על הרקע התכלת */
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(21, 207, 224, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-gallery-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(21, 207, 224, 0.5);
+    background: linear-gradient(45deg, #0fb3c2, #15cfe0);
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .btn-gallery-link {
+        width: 80%;
+        padding: 12px 20px;
+    }
+}
+
+/* עיצוב כפתור הקישור בדף הבית */
+.btn-gallery-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 35px;
+    background: #15cfe0;
+    color: #000 !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-gallery-link:hover {
+    transform: scale(1.05);
+    background: #0fb3c2;
+}
+
+/* עיצוב דף הגלריה */
+.back-home {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 1.1em;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+.gallery-full-container {
+    padding: 40px 5%;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.4s;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02) rotate(1deg);
+    filter: grayscale(0%);
+}
+
+
+/* 1. תיקון השכבה הכהה - הוספת pointer-events: none כדי שלא תחסום את העכבר */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.32);
+    z-index: -1; /* חייב להיות מינוס 1 */
+    pointer-events: none; /* מאפשר לעכבר "לעבור דרך" השכבה */
+}
+
+/* 2. הגבלת האנימציה - אל תפעיל אותה על כל ה-section, זה משגע את הגלילה */
+header, section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    /* הסרנו מכאן את ה-animation: floatUpDown */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* הפעל אנימציה רק על אלמנטים ספציפיים שלא מפריעים לגלילה, כמו הלוגו */
+.logo, #whatsapp-chat {
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+/* 3. תיקון הגלריה והקישור */
+.gallery-wrapper {
+    position: relative;
+    z-index: 1; /* מוודא שהיא מעל הרקע */
+    background-color: rgba(255, 255, 255, 0.9); /* מעט שקיפות במקום לבן אטום */
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.gallery-navigation {
+    position: relative;
+    z-index: 10;
+    margin-top: 30px;
+    pointer-events: auto; /* מוודא שהכפתור לחיץ */
+}
+
+/* מניעת בחירה וגרירה של תמונות בכל האתר */
+img {
+    -webkit-user-drag: none;    /* כרום וספארי */
+    -khtml-user-drag: none;
+    -moz-user-select: none;     /* פיירפוקס */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: auto;       /* מוודא שהן עדיין לחיצות אם תרצה להוסיף הגדלה */
+}
+
+.gallery-grid div {
+    position: relative;
+}
+
+/* יצירת שכבה שקופה מעל כל תמונה בגלריה */
+.gallery-grid div::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* הגנת גלריה - שכבה בלתי נראית מעל התמונות */
+.gallery-grid-protected {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img-container img {
+    width: 20%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* השכבה המגינה */
+.img-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,0); /* שקוף לחלוטין */
+    cursor: default;
+}
+
+.img-container:hover img {
+    transform: scale(1.05);
+}
+
+/* הגדרות המיכל */
+.img-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #000; /* רקע שחור למקרה שהתמונה נטענת לאט */
+}
+
+/* התמונה הראשית */
+.img-container img:not(.watermark) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* שכבה תחתונה */
+}
+
+/* הלוגו הצף (Watermark) */
+.watermark {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 60px; /* הגדלתי מעט כדי שתראה את זה בבירור */
+    height: auto;
+    opacity: 0.7; /* שקיפות חלקית */
+    z-index: 5;   /* שכבה עליונה מעל התמונה */
+    pointer-events: none; /* שלא יפריע לעכבר */
+    border-radius: 99px;
+}
+
+/* שכבת ההגנה השקופה - מעל הכל */
+.img-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* השכבה הכי גבוהה שחוסמת קליק ימני */
+    background: rgba(0,0,0,0);
+}
+
+/* עיצוב מודאל התמונה הגדולה */
+.image-viewer-modal {
+    display: none; /* מוסתר כברירת מחדל */
+    position: fixed;
+    z-index: 9999; /* מעל הכל, כולל שכבות ההגנה */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+}
+
+.modal-content-full {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: zoomIn 0.3s ease;
+}
+
+.close-viewer {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+@keyframes zoomIn {
+    from { transform: translateY(-50%) scale(0.8); opacity: 0; }
+    to { transform: translateY(-50%) scale(1); opacity: 1; }
+}
+
+/* עיצוב ה-Footer */
+.site-footer {
+    background: rgba(0, 0, 0, 0.85); /* רקע כהה חצי שקוף */
+    color: #ffffff;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 3px solid #15cfe0; /* פס תכלת דק למעלה */
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-slogan {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #15cfe0;
+    margin-bottom: 10px;
+}
+
+.footer-inspiration {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    margin: 20px auto;
+    width: 60%;
+}
+
+.footer-copy {
+    font-size: 0.9em;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .footer-slogan {
+        font-size: 1.2em;
+    }
+    .footer-inspiration {
+        font-size: 1em;
+    }
+}
+
+/* כפתור הנגישות */
+#accessibility-btn {
+    position: fixed;
+    bottom: 150px; /* מעל הוואטסאפ */
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background: #008793;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+#accessibility-btn:hover { transform: scale(1.1); }
+
+/* תפריט הנגישות */
+.a11y-menu {
+    display: none;
+    position: fixed;
+    bottom: 215px;
+    right: 20px;
+    width: 250px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid #15cfe0;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 2000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.a11y-menu h3 {
+    color: #15cfe0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.a11y-menu button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Varela Round', sans-serif;
+    transition: 0.3s;
+}
+
+.a11y-menu button:hover {
+    background: #15cfe0;
+    color: #000;
+}
+
+/* מחלקות פונקציונליות לנגישות */
+/* שנה את זה */
+html.grayscale { 
+    filter: grayscale(100%) !important; 
+}
+
+/* וודא שהכפתורים נשארים מעל הפילטר אם צריך */
+#accessibility-btn, #accessibility-menu, #whatsapp-chat, #backToTop {
+    z-index: 99999;
+}
+.high-contrast { background: #000 !important; color: #ffff00 !important; }
+.high-contrast * { color: #ffff00 !important; border-color: #ffff00 !important; }

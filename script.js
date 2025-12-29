@@ -1,25 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // אתחול EmailJS
+    /* ================= 1. אתחול EmailJS ================= */
     if (typeof emailjs !== 'undefined') {
         emailjs.init("u9MRRRVgErghPjkuE");
     }
 
-    /* ================= הגנות תמונות והורדה (מעודכן) ================= */
+    /* ================= 2. פתיחת שירותים בקליק ================= */
+    const toggleBtn = document.getElementById('toggleServicesBtn');
+    const servicesGrid = document.getElementById('servicesGrid');
+
+    if (toggleBtn && servicesGrid) {
+        toggleBtn.onclick = () => {
+            // בדיקה האם הגריד מוצג כרגע
+            const isVisible = window.getComputedStyle(servicesGrid).display !== 'none';
+            
+            if (isVisible) {
+                servicesGrid.style.display = 'none';
+                toggleBtn.textContent = '🔍 לצפייה במגוון השירותים';
+            } else {
+                servicesGrid.style.display = 'grid';
+                toggleBtn.textContent = '✖️ סגור שירותים';
+                
+                setTimeout(() => {
+                    servicesGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        };
+    }
+
+    /* ================= 3. הגנות תמונות והורדה ================= */
     const applyImageProtection = () => {
         const allImages = document.querySelectorAll('img');
         allImages.forEach(img => {
-            // חסימת קליק ימני
             img.addEventListener('contextmenu', e => e.preventDefault());
-            // חסימת גרירה
             img.addEventListener('dragstart', e => e.preventDefault());
         });
     };
-    
-    // הרצה מידית
     applyImageProtection();
 
-    // חסימת העתקה כללית (למעט שדות קלט)
     document.body.oncopy = e => {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
             e.preventDefault();
@@ -27,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    /* ================= סליידר תמונות (רק אם קיים) ================= */
+    /* ================= 4. סליידר תמונות ================= */
     const imagesArray = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg'];
     let index = 0;
     const slider = document.getElementById('image-slider');
@@ -42,17 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 8000);
     }
 
-    /* ================= מצב כהה ================= */
+    /* ================= 5. מצב כהה ================= */
     const toggle = document.getElementById('modeToggle');
     const setMode = dark => {
         document.body.classList.toggle('dark-mode', dark);
         if (toggle) toggle.textContent = dark ? '☀️ מצב יום' : '🌙 מצב לילה';
         localStorage.setItem('darkMode', dark);
     };
-    setMode(localStorage.getItem('darkMode') === 'true');
+    if (localStorage.getItem('darkMode') === 'true') setMode(true);
     if (toggle) toggle.onclick = () => setMode(!document.body.classList.contains('dark-mode'));
 
-    /* ================= חזרה למעלה ווואטסאפ ================= */
+    /* ================= 6. חזרה למעלה ווואטסאפ ================= */
     const topBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (topBtn) topBtn.classList.toggle('show', window.scrollY > 300);
@@ -62,14 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappBtn = document.getElementById('whatsapp-chat');
     if (whatsappBtn) whatsappBtn.onclick = () => window.open('https://wa.me/972505437050');
 
-    /* ================= מודאל צור קשר (רק אם קיים) ================= */
+    /* ================= 7. מודאל צור קשר ================= */
     const modal = document.getElementById('contactModal');
     const openBtn = document.getElementById('openContactModal');
     const closeBtn = document.querySelector('.close');
 
-    if (openBtn) openBtn.onclick = () => modal.style.display = 'block';
-    if (closeBtn) closeBtn.onclick = () => modal.style.display = 'none';
-    window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+    if (openBtn && modal) openBtn.onclick = () => modal.style.display = 'block';
+    if (closeBtn && modal) closeBtn.onclick = () => modal.style.display = 'none';
 
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -94,60 +111,58 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
     }
-});
 
-/* ================= תצוגת תמונה בגדול ================= */
-const imageModal = document.getElementById('imageModal');
-const fullImg = document.getElementById('fullImage');
-const closeViewer = document.querySelector('.close-viewer');
+    /* ================= 8. תצוגת תמונה בגדול (LightBox) ================= */
+    const imageModal = document.getElementById('imageModal');
+    const fullImg = document.getElementById('fullImage');
+    const closeViewer = document.querySelector('.close-viewer');
 
-// פתיחת התמונה בלחיצה
-document.querySelectorAll('.img-container').forEach(container => {
-    container.addEventListener('click', () => {
-        const img = container.querySelector('img:not(.watermark)');
-        imageModal.style.display = "block";
-        fullImg.src = img.src;
-        // מונע גלילה של הדף כשהתמונה פתוחה
-        document.body.style.overflow = 'hidden';
+    document.querySelectorAll('.img-container').forEach(container => {
+        container.addEventListener('click', () => {
+            const img = container.querySelector('img:not(.watermark)');
+            if (imageModal && fullImg && img) {
+                imageModal.style.display = "block";
+                fullImg.src = img.src;
+                document.body.style.overflow = 'hidden';
+            }
+        });
     });
-});
 
-// סגירה בלחיצה על ה-X או על הרקע
-const closeModal = () => {
-    imageModal.style.display = "none";
-    document.body.style.overflow = 'auto';
-};
-
-if (closeViewer) closeViewer.onclick = closeModal;
-if (imageModal) imageModal.onclick = (e) => {
-    if (e.target === imageModal) closeModal();
-};
-
-
-/* ================= תפריט נגישות ================= */
-const a11yBtn = document.getElementById('accessibility-btn');
-const a11yMenu = document.getElementById('accessibility-menu');
-
-// פתיחה וסגירה של התפריט
-if (a11yBtn) {
-    a11yBtn.onclick = (e) => {
-        e.stopPropagation();
-        a11yMenu.style.display = a11yMenu.style.display === 'block' ? 'none' : 'block';
+    const closeModal = () => {
+        if (imageModal) {
+            imageModal.style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
     };
-}
 
-// סגירה בלחיצה בחוץ
-document.addEventListener('click', () => {
-    if (a11yMenu) a11yMenu.style.display = 'none';
+    if (closeViewer) closeViewer.onclick = closeModal;
+    
+    /* סגירת מודאלים בלחיצה בחוץ - מאוחד */
+    window.addEventListener('click', e => {
+        if (e.target === modal) modal.style.display = 'none';
+        if (e.target === imageModal) closeModal();
+    });
+
+    /* ================= 9. תפריט נגישות ================= */
+    const a11yBtn = document.getElementById('accessibility-btn');
+    const a11yMenu = document.getElementById('accessibility-menu');
+
+    if (a11yBtn && a11yMenu) {
+        a11yBtn.onclick = (e) => {
+            e.stopPropagation();
+            a11yMenu.style.display = a11yMenu.style.display === 'block' ? 'none' : 'block';
+        };
+
+        document.addEventListener('click', () => {
+            a11yMenu.style.display = 'none';
+        });
+
+        a11yMenu.onclick = (e) => e.stopPropagation();
+    }
 });
 
-if (a11yMenu) {
-    a11yMenu.onclick = (e) => e.stopPropagation();
-}
-
-// פונקציות הנגישות
+/* ================= 10. פונקציות נגישות גלובליות ================= */
 function toggleGrayscale() {
-    // משתמשים ב-documentElement כדי למנוע את קפיצת ה-fixed
     document.documentElement.classList.toggle('grayscale');
 }
 

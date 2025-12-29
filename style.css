@@ -304,15 +304,18 @@ body.dark-mode .gallery img:hover {
 
 
 #openContactModal{
-  background-color: rgba(207, 200, 200, 0.279);
-  width: 200px;
+  background-color: rgb(6 103 64 / 82%);
+  width: 350px;
   height: 50px;
   border: 1px solid gray;
-  border-radius:8px;
-}
+  border-radius:24px;
+  font-size: larger;
+  color: #ffd700;
+  font-weight: 500;
+  }
 
 #openContactModal:hover{
-  background-color: rgba(125, 119, 119, 0.279);
+  background-color: rgba(26, 68, 31, 0.507);
 
 }
 
@@ -860,4 +863,85 @@ html.grayscale {
   .gallery img {
     height: auto;
   }
+}
+
+
+/* עיצוב מיכל השירותים */
+.services-section {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.05); /* רקע שקוף עדין */
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 1100px;
+}
+
+/* הכפתור הראשי */
+.btn-primary {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background: #15cfe0;
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background: #0fb3c2;
+}
+
+/* מיכל הקוביות - מוסתר וסגור */
+.services-expandable {
+    display: none; /* מוסתר בהתחלה */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    animation: fadeInDown 0.5s ease forwards;
+}
+
+/* עיצוב כל קוביית שירות */
+.service-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    border-bottom: 4px solid #15cfe0;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background: #fff;
+}
+
+.service-card .icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    color: #008793;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #333;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* אנימציה לפתיחה */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* התאמה למובייל - קוביות אחת מתחת לשנייה */
+@media (max-width: 600px) {
+    .services-expandable {
+        grid-template-columns: 1fr;
+    }
 }

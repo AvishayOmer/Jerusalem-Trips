@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (topBtn) topBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const whatsappBtn = document.getElementById('whatsapp-chat');
-    if (whatsappBtn) whatsappBtn.onclick = () => window.open('https://wa.me/972505437050');
+    if (whatsappBtn) whatsappBtn.onclick = () => window.open('https://wa.me/972503251251');
 
     /* ================= 7. מודאל צור קשר ================= */
     const modal = document.getElementById('contactModal');
@@ -180,4 +180,4 @@ function resetA11y() {
     document.documentElement.classList.remove('grayscale', 'high-contrast');
     document.body.style.fontSize = "100%";
     fontSizeLabel = 100;
-}
+}emailjs.init("YOUR_PUBLIC_KEY");

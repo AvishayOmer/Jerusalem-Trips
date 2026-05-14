@@ -1,130 +1,133 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>טיולי ירושלים - דף הבית</title>
+ <!DOCTYPE html>
+ <html lang="he" dir="rtl"></html>
+ </head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>טיולי ירושלים - דף הבית</title>
   <link rel="icon" href="./images/favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    
+  </script>
+  <link rel="stylesheet" href="style.css?v=5">
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+  <script src="script.js?v=5" defer></script>
 </head>
 <body>
-
-<header>
+ <header>
   <div id="logo">שלום</div>
   <div id="logo">wellcome</div>
   <div id="logo">ליווי ותכנון טיולים מקצועי</div>
+  <div class="logo-text">welcome</div>
+ 
   <div class="logo-img-container">
     <img src="./images/logo.jpg" alt="לוגו טיולי ירושלים" class="logo">
   </div>
+<section class="gallery-wrapper slider-top"></section>
+<div class="gallery">
+    <img id="image-slider" src="images/1.jpg" alt="טיולי ירושלים">
 
-  <section class="gallery-wrapper slider-top">
-    <div class="gallery">
-      <img id="image-slider" src="images/1.jpg" alt="טיולי ירושלים">
-    </div>
-  </section>
-</header>
 
-<section class="text-container">
-  <h2>ברוכים הבאים לטיולי ירושלים</h2>
-  <p>שירות אישי ומקצועי מותאם אישית לכל לקוח 24/6</p>
-  <p>ניסיון רב של מספר שנים בתחום</p>
-  <p>לקוחות רבים ומרוצים</p>
-  <p>גמישות בזמנים בעת הזמנות חדשות</p>
+    <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>טיולי ירושלים - דף הבית</title>
+
+  <meta name="description" content="טיולי ירושלים - ליווי ותכנון טיולים מקצועי">
+  <meta name="keywords" content="טיולים בירושלים, אבטחה רפואית, מדריכי טיולים">
+
+  <link rel="icon" href="./images/favicon.ico">
+
+  <link rel="stylesheet" href="style.css?v=5">
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+  <script src="script.js?v=5" defer></script>
+</head>
+ 
+ 
+ 
+ 
+
+
+
 </section>
 
 <section class="services-section">
   <h2>השירותים שלנו</h2>
   <p>אנחנו מעניקים מעטפת מקצועית לכל טיול ואירוע</p>
+  <h2>המקצועיות שלנו</h2>
+  <p>אנחנו מעניקים שירותיות של מעטפת מקצועית לכל טיול ואירוע</p>
   
   <button id="toggleServicesBtn" class="btn-primary">🔍 לצפייה במגוון השירותים</button>
 
-  <div id="servicesGrid" class="services-expandable">
-    <div class="service-card">
-      <div class="icon">🚑</div>
-      <h3>אבטחה רפואית</h3>
-      <p>חובשים ופאראמדיקים  ומערים מוסמכים לכל טיול ופעילות.</p>
-    </div>
+
 
     <div class="service-card">
       <div class="icon">🛡️</div>
       <h3>שמירה ואבטחה</h3>
       <p>צוותי אבטחה חמושים ומיומנים ברמה הגבוהה ביותר.</p>
+      <p>צוותי אבטחה ברמה הגבוהה ביותר חמושים ומיומנים.</p>
     </div>
 
     <div class="service-card">
       <div class="icon">🗺️</div>
       <h3>הדרכת טיולים</h3>
       <p>מדריכים מקצועיים המכירים כל פינה בירושלים ובכלל.</p>
+      <p>מדריכים מקצועיים המכירים כל פינה בארץ עם תעודה מקצועית.</p>
     </div>
 
     <div class="service-card">
-      <div class="icon">⚡</div>
-      <h3>לוגיסטיקה ושטח</h3>
-      <p>פתרונות חשמל, הגברה ותאורה לטיולי שטח.</p>
-    </div>
-  </div>
-</section>
+
 
 <section class="contacts">
   <h2>צרו קשר</h2>
   <p>להזמנה והצעת מחיר</p>
   <button id="openContactModal">📩 יצירת קשר מהירה</button>
+  <button id="openContactModal" aria-label="פתיחת טופס יצירת קשר">
 </section>
 
 <div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>השארת פרטים</h2>
-    <form id="contactForm">
-      <input id="firstName" placeholder="שם פרטי" required>
-      <input id="lastName" placeholder="שם משפחה" required>
-      <input id="phone" placeholder="טלפון" required>
-      <input id="email" type="email" placeholder="מייל" required>
-      <button type="submit">שליחה</button>
-    </form>
-  </div>
-</div>
 
-<section class="gallery-wrapper">
-  <h2>גלריית התמונות שלנו</h2>
-  <div class="gallery">
-    <img src="images/11.jpg" alt="תמונה 1">
-    <img src="images/12.jpg" alt="תמונה 2">
-  </div>
-  
-  <div class="gallery-navigation">
-    <a href="gallery.html" class="btn-gallery-link">📸 לצפייה בגלריה המלאה</a>
+    <section class="gallery-wrapper"> 
+        <h2>גלריית התמונות שלנו</h2> <div class="gallery"> 
+            <img src="images/11.jpg" alt="תמונה 1">
+         <img src="images/12.jpg" alt="תמונה 2"> </div>
+<div class="gallery-navigation"> 
+    <a href="gallery.html" 
+
+    class="btn-gallery-link">📸 לצפייה בגלריה המלאה</a>
+ </div> </section>
+
   </div>
 </section>
 
 <div id="modeToggle">🌙 מצב לילה</div>
+<button id="modeToggle">
 <div id="whatsapp-chat">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</div>
-<div id="backToTop">↑</div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+  alt="WhatsApp">
+</div><div id="accessibility-btn" title="תפריט נגישות"> 
+    <img src="https://cdn-icons-png.flaticon.com/512/75/75154.png" 
+    alt="נגישות" 
+    style="width: 30px; filter: invert(1);"> </div>
 
-<div id="accessibility-btn" title="תפריט נגישות">
-    <img src="https://cdn-icons-png.flaticon.com/512/75/75154.png" alt="נגישות" style="width: 30px; filter: invert(1);">
-</div>
-
-<div id="accessibility-menu" class="a11y-menu">
-    <h3>תפריט נגישות</h3>
-    <button onclick="toggleGrayscale()">🌑 גווני אפור</button>
-    <button onclick="toggleHighContrast()">🌓 ניגודיות גבוהה</button>
-    <button onclick="changeFontSize(1)">➕ הגדלת טקסט</button>
-    <button onclick="changeFontSize(-1)">➖ הקטנת טקסט</button>
-    <button onclick="resetA11y()">🔄 איפוס הגדרות</button>
-    <p style="font-size: 12px; margin-top: 10px; color: #bbb;">טיולי ירושלים לכולם</p>
-</div>
+<div id="accessibility-menu" class="a11y-menu"> 
+    <h3>תפריט נגישות</h3> <button onclick="toggleGrayscale()"
+    >🌑 גווני אפור</button> <button onclick="toggleHighContrast()">
+        🌓 ניגודיות גבוהה</button> <button onclick="changeFontSize(1)">
+            ➕ הגדלת טקסט</button> <button onclick="changeFontSize(-1)">
+                ➖ הקטנת טקסט</button> <button onclick="resetA11y()">
+                    🔄 איפוס הגדרות</button> <p style="font-size: 12px; margin-top: 10px; color: #bbb;">
+                        
+                    טיולי ירושלים לכולם</p> </div>
 
 
-<footer class="site-footer">
-    <div class="footer-content">
         <p class="footer-slogan">שירותיות ומקצועיות באהבה ❤️</p>
         <p class="footer-inspiration">מחפשים השראה למסלול הבא? קבלו כתבות ורעיונות!</p>
         <div class="footer-divider"></div>
-        <p class="footer-copy">&copy; 2024 טיולי ירושלים - כל הזכויות שמורות</p>
+       
+        <p class="footer-copy">&copy; 2015 טיולי ירושלים - כל הזכויות שמורות</p>
     </div>
 </footer>
 <script src="script.js"></script>

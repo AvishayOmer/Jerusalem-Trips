@@ -180,4 +180,149 @@ function resetA11y() {
     document.documentElement.classList.remove('grayscale', 'high-contrast');
     document.body.style.fontSize = "100%";
     fontSizeLabel = 100;
-}emailjs.init("YOUR_PUBLIC_KEY");
+}
+
+/* ================= FIX: WhatsApp Safe Open ================= */
+const whatsappBtn = document.getElementById('whatsapp-chat');
+
+if (whatsappBtn) {
+    whatsappBtn.style.cursor = 'pointer';
+    whatsappBtn.style.zIndex = '999999';
+
+    whatsappBtn.onclick = (e) => {
+        e.preventDefault();
+        window.open('https://wa.me/972503251251', '_blank');
+    };
+}
+/* ===================== INTRO AUTO CLOSE ===================== */
+window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
+    if (intro) {
+        setTimeout(() => {
+            intro.style.display = "none";
+        }, 2200);
+    }
+});
+
+/* ===================== SCROLL REVEAL ===================== */
+const revealElements = document.querySelectorAll("section, .gallery-wrapper, .service-card");
+
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+
+    revealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - 100) {
+            el.classList.add("reveal", "active");
+        } else {
+            el.classList.add("reveal");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+/* ===================== PARALLAX MOUSE EFFECT ===================== */
+document.addEventListener("mousemove", (e) => {
+    const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+    const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
+
+    document.body.style.backgroundPosition = `
+        calc(50% + ${moveX}px) calc(50% + ${moveY}px)
+    `;
+});
+/* ===================== GLOBAL SHINE INIT ===================== */
+window.addEventListener("load", () => {
+    document.querySelectorAll(".gallery-wrapper, .service-card").forEach(el => {
+        el.classList.add("shine");
+    });
+});
+
+/* ===================== SMOOTH APP SCROLL ===================== */
+document.querySelectorAll("a[href^='#']").forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+});
+
+/* ===================== MICRO INTERACTIONS ===================== */
+document.querySelectorAll("button, .btn-primary").forEach(btn => {
+    btn.addEventListener("mousedown", () => {
+        btn.style.transform = "scale(0.95)";
+    });
+
+    btn.addEventListener("mouseup", () => {
+        btn.style.transform = "scale(1)";
+    });
+
+    btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "scale(1)";
+    });
+});
+
+/* ===================== SPA ENGINE ===================== */
+function showPage(pageId) {
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(p => {
+        p.classList.remove("active");
+    });
+
+    const target = document.getElementById(pageId);
+    if (target) {
+        target.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    document.body.classList.toggle('dark-mode')
+}
+// למעלה
+const topBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    topBtn.classList.add('show');
+  } else {
+    topBtn.classList.remove('show');
+  }
+});
+
+topBtn.onclick = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};const mainFab = document.querySelector('.main-fab');
+const floatingBar = document.querySelector('.floating-bar');
+
+let open = false;
+
+mainFab.onclick = () => {
+  open = !open;
+
+  document.querySelectorAll('.floating-bar .fab:not(.main-fab)').forEach((btn, i) => {
+    if (open) {
+      btn.style.transform = `translateY(-${(i + 1) * 65}px) scale(1)`;
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    } else {
+      btn.style.transform = "translateY(0) scale(0.8)";
+      btn.style.opacity = "0";
+      btn.style.pointerEvents = "none";
+    }
+  });
+};
+/* ברירת מחדל */
+window.addEventListener("load", () => {
+    showPage("home");
+    document.body.classList.add("modal-open");
+document.querySelector(".modal").classList.add("open");
+document.body.classList.remove("modal-open");
+document.querySelector(".modal").classList.remove("open");
+});

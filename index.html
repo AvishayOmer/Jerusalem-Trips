@@ -1,314 +1,283 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>טיולי ירושלים - דף הבית</title>
+<title>טיולי ירושלים | חוויית טיולים בישראל ברמה הגבוהה ביותר</title>
 
-  <link rel="icon" href="./images/favicon.ico">
+<meta name="description" content="טיולי ירושלים - סיורים בעיר העתיקה, הכותל המערבי, תל אביב, אילת, מצדה, ים המלח, חברון ומערת המכפלה. חוויה מקצועית עם הדרכה ואבטחה ברמה גבוהה.">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=5">
+<meta name="keywords" content="טיולים בירושלים, העיר העתיקה, הכותל, שער יפו, תל אביב, אילת, מצדה, ים המלח, מערת המכפלה, קריית ארבע, סיורים בישראל, הדרכת טיולים">
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+<style>
 
-  <!-- JS -->
-  <script src="script.js?v=5" defer></script>
+/* ================= BASE ================= */
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0b0b0b;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+section{
+  padding:40px 20px;
+}
+
+/* ================= HERO ================= */
+
+.hero img{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+}
+
+/* ================= CINEMATIC ================= */
+
+.cinematic{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.cinematic.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= BUTTONS ================= */
+
+button{
+  padding:10px 16px;
+  border:none;
+  cursor:pointer;
+  border-radius:10px;
+}
+
+/* ================= REGION CARDS ================= */
+
+.region-rooms{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+
+.region{
+  padding:10px 18px;
+  background:rgba(255,255,255,0.12);
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.region:hover{
+  background:#15cfe0;
+  color:#000;
+  transform:scale(1.05);
+}
+
+/* ================= OVERLAY ROOM SYSTEM ================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.92);
+  display:none;
+  flex-direction:column;
+  z-index:99999;
+  animation:fadeIn 0.4s ease;
+}
+
+.overlay.open{
+  display:flex;
+}
+
+.overlay-content{
+  padding:30px;
+  overflow-y:auto;
+  max-height:100vh;
+}
+
+.close-btn{
+  position:absolute;
+  top:15px;
+  left:15px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999999;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:80%;
+}
+
+.lightbox.open{
+  display:flex;
+}
+
+/* ================= WHATSAPP ================= */
+
+#whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+}
+
+#whatsapp img{
+  width:100%;
+}
+
+</style>
 </head>
 
 <body>
-<div class="intro-overlay" id="intro">
-  <div class="intro-logo">✦ טיולי ירושלים ✦</div>
-  <nav class="app-nav">
-  <button onclick="showPage('home')">בית</button>
-  <button onclick="showPage('gallery')">גלריה</button>
-  <button onclick="showPage('services')">שירותים</button>
-  <button onclick="showPage('contact')">צור קשר</button>
-</nav>
 
-<div id="app">
+<header class="cinematic show">
+<h1>טיולי ירושלים</h1>
+<p>סיורים • אבטחה • הדרכת טיולים בכל ישראל</p>
+</header>
 
-  <section id="home" class="page active">
-    <h1>ברוכים הבאים</h1>
-  </section>
+<!-- ================= HERO ================= -->
+<div class="hero cinematic show">
+<img id="slider" src="./images/1.webp">
+</div>
 
-  <section id="gallery" class="page">
-    <h1>גלריה</h1>
-  </section>
+<!-- ================= REGIONS ================= -->
+<section class="cinematic show">
 
-  <section id="services" class="page">
-    <h1>שירותים</h1>
-  </section>
+<h2>אזורים לטיולים בישראל</h2>
 
-  <section id="contact" class="page">
-    <h1>צור קשר</h1>
-  </section>
+<div class="region-rooms">
+  <div class="region" onclick="openRoom('jerusalem')">ירושלים</div>
+  <div class="region" onclick="openRoom('telaviv')">תל אביב</div>
+  <div class="region" onclick="openRoom('eilat')">אילת</div>
+  <div class="region" onclick="openRoom('deadsea')">ים המלח</div>
+  <div class="region" onclick="openRoom('hebron')">חברון ומערת המכפלה</div>
+</div>
+
+</section>
+
+<!-- ================= OVERLAY ROOM ================= -->
+<div id="overlay" class="overlay">
+
+<div class="close-btn" onclick="closeRoom()">✖</div>
+
+<div class="overlay-content" id="roomContent"></div>
 
 </div>
 
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox" class="lightbox" onclick="this.classList.remove('open')">
+<img id="lightboxImg">
 </div>
-  <header>
 
-<div id="logo">שלום</div>
-<div id="logo">welcome</div>
-<div id="logo">ליווי ותכנון טיולים מקצועי</div>
+<!-- ================= WHATSAPP ================= -->
+<div id="whatsapp">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</div>
 
-    <div class="logo-img-container">
-      <img
-        src="./images/logo.jpg"
-        alt="לוגו טיולי ירושלים"
-        class="logo"
-      >
-    </div>
+<!-- ================= SCRIPT ================= -->
+<script>
 
-    <section class="gallery-wrapper slider-top">
-      <div class="gallery">
-        <img
-          id="image-slider"
-          src="./images/1.jpg"
-          alt="טיולי ירושלים"
-        >
-      </div>
-    </section>
+/* ================= SLIDER ================= */
 
-  </header>
+let imgs=["./images/1.webp","./images/2.webp","./images/3.webp"];
+let i=0;
 
-  <section class="text-container">
-    <h2>ברוכים הבאים לטיולי ירושלים</h2>
-    <p>welcome</p>
-    <p>טיולים בארץ ישראל</p>
-    <p>שירות אישי ומקצועי מותאם אישית לכל לקוח 24/6</p>
-    <p>ניסיון רב של מספר שנים בתחום</p>
-    <p>לקוחות רבים ומרוצים</p>
-    <p>גמישות בזמנים בעת הזמנות חדשות</p>
-  </section>
+setInterval(()=>{
+  i=(i+1)%imgs.length;
+  document.getElementById("slider").src=imgs[i];
+},4000);
 
-  <section class="services-section">
+/* ================= ROOMS DATA (SEO HEAVY) ================= */
 
-    <h2>המקצועיות שלנו</h2>
+const rooms = {
 
-    <p>אנחנו מעניקים מעטפת מקצועית לכל טיול ואירוע</p>
+jerusalem:`
+<h1>ירושלים – העיר העתיקה והקדושה בעולם</h1>
+<p>
+ירושלים היא עיר בעלת חשיבות היסטורית, דתית ותרבותית מהגדולות בעולם. העיר העתיקה כוללת את הכותל המערבי, שער יפו, הרובע היהודי, הרובע המוסלמי והרובע הנוצרי. סיורים בעיר משלבים היסטוריה יהודית עמוקה, אתרי מורשת עולמית, שווקים צבעוניים וחוויית מסעדות כשרות ברמה גבוהה. המבקרים נהנים משילוב של מסורת, קדושה, תרבות ותצפיות מרהיבות מהר הזיתים.
+</p>`,
 
-    <button id="toggleServicesBtn" class="btn-primary">
-      🔍 לצפייה במגוון השירותים
-    </button>
+telaviv:`
+<h1>תל אביב – עיר ללא הפסקה</h1>
+<p>
+תל אביב היא מרכז התרבות והעסקים של ישראל. העיר מציעה טיילת יפו, נמל תל אביב, שוק הכרמל, נווה צדק וחיי לילה מהמתקדמים בעולם. סיורים בעיר משלבים קולינריה, היסטוריה מודרנית וארכיטקטורה באוהאוס ייחודית. זהו יעד חובה לכל מבקר בישראל.
+</p>`,
 
-    <div id="servicesGrid" class="services-expandable">
+eilat:`
+<h1>אילת – חוויית ים סוף</h1>
+<p>
+אילת היא עיר נופש דרומית המציעה חופים מרהיבים, צלילות בים סוף, הרי אילת ושמורת תמנע. זהו יעד מושלם למשפחות וקבוצות המחפשות טבע, רוגע ואטרקציות ימיות.
+</p>`,
 
-      <div class="service-card">
-        <div class="icon">🚑</div>
+deadsea:`
+<h1>ים המלח – פלא טבע עולמי</h1>
+<p>
+ים המלח הוא המקום הנמוך בעולם ומציע חוויית בריאות ייחודית. הבוץ המינרלי, המים המלוחים והנוף המדברי יוצרים חוויה שאין בשום מקום אחר בעולם.
+</p>`,
 
-        <h3>אבטחה רפואית</h3>
+hebron:`
+<h1>חברון ומערת המכפלה</h1>
+<p>
+חברון היא עיר בעלת חשיבות היסטורית עמוקה לעם היהודי. מערת המכפלה מהווה אתר קדוש ובעל משמעות דתית והיסטורית. סיורים באזור משלבים מורשת, היסטוריה ותרבות עתיקה.
+</p>
 
-        <p>
-          חובשים ופאראמדיקים ומערים מוסמכים לכל טיול ופעילות.
-        </p>
-      </div>
+`
 
-      <div class="service-card">
-        <div class="icon">🛡️</div>
+};
 
-        <h3>שמירה ואבטחה</h3>
+/* ================= OPEN / CLOSE ROOM ================= */
 
-        <p>
-          צוותי אבטחה ברמה הגבוהה ביותר חמושים ומיומנים.
-        </p>
-      </div>
+function openRoom(id){
+  document.getElementById("overlay").classList.add("open");
+  document.getElementById("roomContent").innerHTML = rooms[id];
+}
 
-      <div class="service-card">
-        <div class="icon">🗺️</div>
+function closeRoom(){
+  document.getElementById("overlay").classList.remove("open");
+}
 
-        <h3>הדרכת טיולים</h3>
+/* ================= WHATSAPP ================= */
 
-        <p>
-          מדריכים מקצועיים המכירים כל פינה בירושלים ובכלל.
-        </p>
-      </div>
+document.getElementById("whatsapp").onclick=()=>{
+  window.open("https://wa.me/972503251251");
+};
 
-      <div class="service-card">
-        <div class="icon">⚡</div>
+/* ================= CINEMATIC SCROLL ================= */
 
-        <h3>לוגיסטיקה ושטח</h3>
+const els=document.querySelectorAll(".cinematic");
 
-        <p>
-          פתרונות חשמל, הגברה ותאורה לטיולי שטח.
-        </p>
-      </div>
+window.addEventListener("scroll",()=>{
+  els.forEach(e=>{
+    if(e.getBoundingClientRect().top<window.innerHeight-100){
+      e.classList.add("show");
+    }
+  });
+});
 
-    </div>
-
-  </section>
-
-  <section class="contacts">
-
-    <h2>צרו קשר</h2>
-
-    <p>להזמנה והצעת מחיר</p>
-
-    <button id="openContactModal">
-      📩 יצירת קשר מהירה
-    </button>
-
-  </section>
-
-  <div id="contactModal" class="modal">
-
-    <div class="modal-content">
-
-      <span class="close">&times;</span>
-
-      <h2>השארת פרטים</h2>
-
-      <form id="contactForm">
-
-        <input
-          id="firstName"
-          placeholder="שם פרטי"
-          required
-        >
-
-        <input
-          id="lastName"
-          placeholder="שם משפחה"
-          required
-        >
-
-        <input
-          id="phone"
-          placeholder="טלפון"
-          required
-        >
-
-        <input
-          id="email"
-          type="email"
-          placeholder="מייל"
-          required
-        >
-
-        <button type="submit">
-          שליחה
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-  <section class="gallery-wrapper">
-
-    <h2>גלריית התמונות שלנו</h2>
-
-    <div class="gallery">
-
-      <img
-        src="./images/11.jpg"
-        alt="תמונה 1"
-      >
-
-      <img
-        src="./images/12.jpg"
-        alt="תמונה 2"
-      >
-
-    </div>
-
-    <div class="gallery-navigation">
-
-      <a
-        href="gallery.html"
-        class="btn-gallery-link"
-      >
-        📸 :לצפייה בגלריה המלאה
-      </a>
-
-    </div>
-
-  </section>
-
-  <button id="modeToggle">
-    🌙 מצב לילה
-  </button>
-
-  <div id="whatsapp-chat">
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-      alt="WhatsApp"
-    >
-
-  </div>
-
-  <div id="backToTop">
-    ↑
-  </div>
-
-  <div id="accessibility-btn" title="תפריט נגישות">
-
-    <img
-      src="https://cdn-icons-png.flaticon.com/512/75/75154.png"
-      alt="נגישות"
-      style="width: 30px; filter: invert(1);"
-    >
-
-  </div>
-
-  <div id="accessibility-menu" class="a11y-menu">
-
-    <h3>תפריט נגישות</h3>
-
-    <button onclick="toggleGrayscale()">
-      🌑 גווני אפור
-    </button>
-
-    <button onclick="toggleHighContrast()">
-      🌓 ניגודיות גבוהה
-    </button>
-
-    <button onclick="changeFontSize(1)">
-      ➕ הגדלת טקסט
-    </button>
-
-    <button onclick="changeFontSize(-1)">
-      ➖ הקטנת טקסט
-    </button>
-
-    <button onclick="resetA11y()">
-      🔄 איפוס הגדרות
-    </button>
-
-    <p style="font-size: 12px; margin-top: 10px; color: #bbb;">
-      טיולי ירושלים לכולם
-    </p>
-
-  </div>
-
-  <footer class="site-footer">
-
-    <div class="footer-content">
-
-      <p class="footer-slogan">
-        שירותיות ומקצועיות באהבה ❤️
-      </p>
-
-      <p class="footer-inspiration">
-        מחפשים השראה למסלול הבא צרו קשר וקבלו רעיונות!
-      </p>
-
-      <div class="footer-divider"></div>
-
-      <p class="footer-copy">
-        &copy; 2015 טיולי ירושלים - כל הזכויות שמורות
-      </p>
-
-    </div>
-
-  </footer>
+</script>
 
 </body>
-
 </html>

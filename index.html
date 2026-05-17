@@ -4,278 +4,502 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>טיולי ירושלים | חוויית טיולים בישראל ברמה הגבוהה ביותר</title>
+<title>טיולי ירושלים | פרימיום סיורים בישראל</title>
 
-<meta name="description" content="טיולי ירושלים - סיורים בעיר העתיקה, הכותל המערבי, תל אביב, אילת, מצדה, ים המלח, חברון ומערת המכפלה. חוויה מקצועית עם הדרכה ואבטחה ברמה גבוהה.">
-
-<meta name="keywords" content="טיולים בירושלים, העיר העתיקה, הכותל, שער יפו, תל אביב, אילת, מצדה, ים המלח, מערת המכפלה, קריית ארבע, סיורים בישראל, הדרכת טיולים">
+<meta name="description" content="טיולי ירושלים - סיורים, הדרכה, אבטחה, גלריות, מסעדות כשרות וחוויות בכל רחבי ישראל: ירושלים, תל אביב, אילת, מצדה, ים המלח, חברון ועוד.">
+<meta name="keywords" content="ירושלים, העיר העתיקה, כותל, תל אביב, אילת, מצדה, ים המלח, מערת המכפלה, סיורים בישראל, הדרכת טיולים">
 
 <style>
 
-/* ================= BASE ================= */
-
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial;
-  background:#0b0b0b;
-  color:#fff;
-  overflow-x:hidden;
+  
+font-family:Arial;
+background:#0b0b0b;
+color:#fff;
+overflow-x:hidden;
 }
 
-section{
-  padding:40px 20px;
+/* ================= HEADER ================= */
+header{
+text-align:center;
+padding:30px;
 }
 
 /* ================= HERO ================= */
-
 .hero img{
-  width:100%;
-  height:520px;
-  object-fit:cover;
+width:100%;
+height:420px;
+object-fit:cover;
 }
 
-/* ================= CINEMATIC ================= */
-
-.cinematic{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
-}
-
-.cinematic.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* ================= BUTTONS ================= */
-
-button{
-  padding:10px 16px;
-  border:none;
-  cursor:pointer;
-  border-radius:10px;
-}
-
-/* ================= REGION CARDS ================= */
-
+/* ================= REGION ================= */
 .region-rooms{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+padding:20px;
 }
 
 .region{
-  padding:10px 18px;
-  background:rgba(255,255,255,0.12);
-  border-radius:20px;
-  cursor:pointer;
-  transition:0.3s;
+padding:10px 18px;
+background:rgba(255,255,255,0.1);
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
 }
 
 .region:hover{
-  background:#15cfe0;
-  color:#000;
-  transform:scale(1.05);
+background:#15cfe0;
+color:#000;
+transform:scale(1.05);
 }
 
-/* ================= OVERLAY ROOM SYSTEM ================= */
-
+/* ================= OVERLAY (NETFLIX ROOM) ================= */
 .overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.92);
-  display:none;
-  flex-direction:column;
-  z-index:99999;
-  animation:fadeIn 0.4s ease;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.92);
+display:none;
+z-index:9999;
 }
 
-.overlay.open{
-  display:flex;
-}
+.overlay.open{display:block}
 
 .overlay-content{
-  padding:30px;
-  overflow-y:auto;
-  max-height:100vh;
+padding:25px;
+max-height:100vh;
+overflow-y:auto;
+animation:fade 0.4s ease;
 }
 
-.close-btn{
-  position:absolute;
-  top:15px;
-  left:15px;
-  font-size:30px;
-  cursor:pointer;
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
 }
 
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+.close{
+position:absolute;
+top:15px;
+left:15px;
+font-size:28px;
+cursor:pointer;
+}
+
+/* ================= GALLERY ================= */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:10px;
+padding:20px;
+}
+
+.gallery img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:10px;
+cursor:pointer;
 }
 
 /* ================= LIGHTBOX ================= */
-
 .lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999999;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.95);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99999;
 }
 
 .lightbox img{
-  max-width:90%;
-  max-height:80%;
-}
-
-.lightbox.open{
-  display:flex;
+max-width:90%;
+max-height:80%;
 }
 
 /* ================= WHATSAPP ================= */
-
 #whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:60px;
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+cursor:pointer;
 }
 
-#whatsapp img{
-  width:100%;
+/* ================= ACCESSIBILITY ================= */
+#a11y{
+position:fixed;
+bottom:90px;
+right:20px;
+background:#ffb300;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
+z-index:99999;
+}
+
+.menu{
+position:fixed;
+bottom:150px;
+right:20px;
+background:#111;
+padding:10px;
+display:none;
+border-radius:10px;
+}
+
+.menu button{
+display:block;
+margin:5px 0;
+width:100%;
 }
 
 </style>
 </head>
 
 <body>
+<!-- ================= PREMIUM FLOATING BUTTONS ================= -->
 
-<header class="cinematic show">
-<h1>טיולי ירושלים</h1>
-<p>סיורים • אבטחה • הדרכת טיולים בכל ישראל</p>
-</header>
+<button id="modeToggle">🌙 מצב לילה</button>
 
-<!-- ================= HERO ================= -->
-<div class="hero cinematic show">
-<img id="slider" src="./images/1.webp">
+<div id="backToTop">↑</div>
+
+<div id="whatsapp-chat">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </div>
 
-<!-- ================= REGIONS ================= -->
-<section class="cinematic show">
+<div id="accessibility-btn">
+ ♿
+</div>
 
-<h2>אזורים לטיולים בישראל</h2>
+<div id="accessibility-menu" class="a11y-menu">
 
-<div class="region-rooms">
-  <div class="region" onclick="openRoom('jerusalem')">ירושלים</div>
-  <div class="region" onclick="openRoom('telaviv')">תל אביב</div>
-  <div class="region" onclick="openRoom('eilat')">אילת</div>
-  <div class="region" onclick="openRoom('deadsea')">ים המלח</div>
-  <div class="region" onclick="openRoom('hebron')">חברון ומערת המכפלה</div>
+<h3>נגישות</h3>
+
+<button onclick="toggleGrayscale()">גווני אפור</button>
+<button onclick="toggleContrast()">ניגודיות גבוהה</button>
+<button onclick="increaseText()">הגדלת טקסט</button>
+<button onclick="resetAccessibility()">איפוס</button>
+
+</div>
+
+<!-- ================= SERVICES SECTION ================= -->
+
+<section class="services-section">
+
+<h2>המקצועיות שלנו</h2>
+
+<p>
+אבטחה • ליווי קבוצות • הדרכת טיולים • אבטחה רפואית • לוגיסטיקה • טיולי VIP
+</p>
+
+<button id="toggleServicesBtn" class="premium-btn">
+🔍 לצפייה במגוון השירותים
+</button>
+
+<div id="servicesGrid" class="services-grid">
+
+<div class="service-card">
+<h3>אבטחה רפואית</h3>
+<p>חובשים ופאראמדיקים לטיולים ואירועים בכל הארץ.</p>
+</div>
+
+<div class="service-card">
+<h3>שמירה ואבטחה</h3>
+<p>אבטחה מקצועית לטיולים, קבוצות, מסעות ואירועים.</p>
+</div>
+
+<div class="service-card">
+<h3>הדרכת טיולים</h3>
+<p>מדריכים מקצועיים בירושלים, תל אביב, אילת, מצדה ועוד.</p>
+</div>
+
+<div class="service-card">
+<h3>לוגיסטיקה</h3>
+<p>ציוד שטח, תאורה, הפקות ואירועים ברמה גבוהה.</p>
+</div>
+
 </div>
 
 </section>
 
-<!-- ================= OVERLAY ROOM ================= -->
-<div id="overlay" class="overlay">
+<!-- ================= CONTACT ================= -->
 
-<div class="close-btn" onclick="closeRoom()">✖</div>
+<section class="contacts">
 
-<div class="overlay-content" id="roomContent"></div>
+<h2>צרו קשר</h2>
+
+<p>להזמנות והצעות מחיר</p>
+
+<button id="openContactModal" class="premium-btn">
+📩 יצירת קשר מהירה
+</button>
+
+</section>
+
+<div id="contactModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-modal">✖</span>
+
+<h2>השארת פרטים</h2>
+
+<form id="contactForm">
+
+<input type="text" placeholder="שם פרטי" required>
+<input type="text" placeholder="שם משפחה" required>
+<input type="tel" placeholder="טלפון" required>
+<input type="email" placeholder="מייל" required>
+
+<button type="submit">שליחה</button>
+
+</form>
 
 </div>
 
-<!-- ================= LIGHTBOX ================= -->
-<div id="lightbox" class="lightbox" onclick="this.classList.remove('open')">
-<img id="lightboxImg">
 </div>
 
-<!-- ================= WHATSAPP ================= -->
-<div id="whatsapp">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-</div>
-
-<!-- ================= SCRIPT ================= -->
 <script>
 
-/* ================= SLIDER ================= */
+/* ================= SERVICES TOGGLE ================= */
 
-let imgs=["./images/1.webp","./images/2.webp","./images/3.webp"];
-let i=0;
+const toggleBtn=document.getElementById("toggleServicesBtn");
+const services=document.getElementById("servicesGrid");
 
-setInterval(()=>{
-  i=(i+1)%imgs.length;
-  document.getElementById("slider").src=imgs[i];
-},4000);
+toggleBtn.onclick=()=>{
+services.classList.toggle("open");
+};
 
-/* ================= ROOMS DATA (SEO HEAVY) ================= */
+/* ================= BACK TO TOP ================= */
 
-const rooms = {
+const topBtn=document.getElementById("backToTop");
 
-jerusalem:`
-<h1>ירושלים – העיר העתיקה והקדושה בעולם</h1>
-<p>
-ירושלים היא עיר בעלת חשיבות היסטורית, דתית ותרבותית מהגדולות בעולם. העיר העתיקה כוללת את הכותל המערבי, שער יפו, הרובע היהודי, הרובע המוסלמי והרובע הנוצרי. סיורים בעיר משלבים היסטוריה יהודית עמוקה, אתרי מורשת עולמית, שווקים צבעוניים וחוויית מסעדות כשרות ברמה גבוהה. המבקרים נהנים משילוב של מסורת, קדושה, תרבות ותצפיות מרהיבות מהר הזיתים.
-</p>`,
+window.addEventListener("scroll",()=>{
 
-telaviv:`
-<h1>תל אביב – עיר ללא הפסקה</h1>
-<p>
-תל אביב היא מרכז התרבות והעסקים של ישראל. העיר מציעה טיילת יפו, נמל תל אביב, שוק הכרמל, נווה צדק וחיי לילה מהמתקדמים בעולם. סיורים בעיר משלבים קולינריה, היסטוריה מודרנית וארכיטקטורה באוהאוס ייחודית. זהו יעד חובה לכל מבקר בישראל.
-</p>`,
+if(window.scrollY>300){
+topBtn.classList.add("show");
+}else{
+topBtn.classList.remove("show");
+}
 
-eilat:`
-<h1>אילת – חוויית ים סוף</h1>
-<p>
-אילת היא עיר נופש דרומית המציעה חופים מרהיבים, צלילות בים סוף, הרי אילת ושמורת תמנע. זהו יעד מושלם למשפחות וקבוצות המחפשות טבע, רוגע ואטרקציות ימיות.
-</p>`,
+});
 
-deadsea:`
-<h1>ים המלח – פלא טבע עולמי</h1>
-<p>
-ים המלח הוא המקום הנמוך בעולם ומציע חוויית בריאות ייחודית. הבוץ המינרלי, המים המלוחים והנוף המדברי יוצרים חוויה שאין בשום מקום אחר בעולם.
-</p>`,
+topBtn.onclick=()=>{
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+};
 
-hebron:`
-<h1>חברון ומערת המכפלה</h1>
-<p>
-חברון היא עיר בעלת חשיבות היסטורית עמוקה לעם היהודי. מערת המכפלה מהווה אתר קדוש ובעל משמעות דתית והיסטורית. סיורים באזור משלבים מורשת, היסטוריה ותרבות עתיקה.
-</p>
+/* ================= DARK MODE ================= */
 
-`
+const modeToggle=document.getElementById("modeToggle");
+
+modeToggle.onclick=()=>{
+document.body.classList.toggle("dark-mode");
+};
+
+/* ================= ACCESSIBILITY ================= */
+
+document.getElementById("accessibility-btn").onclick=()=>{
+
+const menu=document.getElementById("accessibility-menu");
+
+menu.style.display=
+menu.style.display==="block"
+? "none"
+: "block";
 
 };
 
-/* ================= OPEN / CLOSE ROOM ================= */
-
-function openRoom(id){
-  document.getElementById("overlay").classList.add("open");
-  document.getElementById("roomContent").innerHTML = rooms[id];
+function toggleGrayscale(){
+document.body.classList.toggle("grayscale");
 }
 
-function closeRoom(){
-  document.getElementById("overlay").classList.remove("open");
+function toggleContrast(){
+document.body.classList.toggle("contrast");
 }
+
+function increaseText(){
+document.body.style.fontSize="120%";
+}
+
+function resetAccessibility(){
+document.body.classList.remove("grayscale");
+document.body.classList.remove("contrast");
+document.body.style.fontSize="100%";
+}
+
+/* ================= CONTACT MODAL ================= */
+
+const modal=document.getElementById("contactModal");
+
+document.getElementById("openContactModal").onclick=()=>{
+modal.style.display="flex";
+};
+
+document.querySelector(".close-modal").onclick=()=>{
+modal.style.display="none";
+};
+
+window.onclick=(e)=>{
+if(e.target===modal){
+modal.style.display="none";
+}
+};
 
 /* ================= WHATSAPP ================= */
 
-document.getElementById("whatsapp").onclick=()=>{
-  window.open("https://wa.me/972503251251");
+document.getElementById("whatsapp-chat").onclick=()=>{
+window.open("https://wa.me/972503251251");
 };
 
-/* ================= CINEMATIC SCROLL ================= */
+</script>
+<header>
+<h1>טיולי ירושלים</h1>
+<p>סיורים • הדרכה • אבטחה • חוויות בישראל</p>
+</header>
 
-const els=document.querySelectorAll(".cinematic");
+<!-- HERO -->
+<div class="hero">
+<img id="slider" src="./images/1.webp">
+</div>
 
-window.addEventListener("scroll",()=>{
-  els.forEach(e=>{
-    if(e.getBoundingClientRect().top<window.innerHeight-100){
-      e.classList.add("show");
-    }
-  });
-});
+<!-- REGIONS -->
+<div class="region-rooms">
+<div class="region" onclick="openRoom('jerusalem')">ירושלים</div>
+<div class="region" onclick="openRoom('telaviv')">תל אביב</div>
+<div class="region" onclick="openRoom('eilat')">אילת</div>
+<div class="region" onclick="openRoom('deadsea')">ים המלח</div>
+<div class="region" onclick="openRoom('hebron')">חברון</div>
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+<div class="close" onclick="closeRoom()">✖</div>
+<div class="overlay-content" id="content"></div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery">
+<img src="./images/1.webp" onclick="openImg(this.src)">
+<img src="./images/2.webp" onclick="openImg(this.src)">
+<img src="./images/3.webp" onclick="openImg(this.src)">
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+<img id="bigImg">
+</div>
+
+<!-- WHATSAPP -->
+<img id="whatsapp" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+onclick="window.open('https://wa.me/972503251251')">
+
+<!-- ACCESSIBILITY -->
+ <div id="accessibility-btn"></div>
+<div id="accessibility-menu"></div>
+
+<div id="contactModal"></div>
+
+<div id="whatsapp-chat"></div>
+
+<div id="backToTop"></div>
+
+<button id="modeToggle"></button>
+
+<div id="a11y">♿</div>
+<div class="menu" id="menu">
+<button onclick="document.body.style.filter='grayscale(1)'">אפור</button>
+<button onclick="document.body.style.filter='contrast(1.5)'">ניגודיות</button>
+<button onclick="document.body.style.fontSize='120%'">גדול</button>
+<button onclick="document.body.style.fontSize='100%'">איפוס</button>
+</div>
+<div class="region-rooms"></div>
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contacts">
+  <h2>צרו קשר</h2>
+  <p>להזמנה והצעת מחיר מהירה</p>
+
+  <button id="openContactModal" class="btn-primary">
+    📩 יצירת קשר מהירה
+  </button>
+</section>
+
+<!-- ================= CONTACT MODAL ================= -->
+<div id="contactModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close">&times;</span>
+
+    <h2>השארת פרטים</h2>
+
+    <form id="contactForm">
+
+      <input id="firstName" type="text" placeholder="שם פרטי" required>
+      <input id="lastName" type="text" placeholder="שם משפחה" required>
+      <input id="phone" type="tel" placeholder="טלפון" required>
+      <input id="email" type="email" placeholder="מייל" required>
+
+      <p style="margin-top:10px;">
+        נחזור אליך תוך זמן קצר עם הצעת מחיר מותאמת אישית
+      </p>
+
+      <button type="submit">שליחה</button>
+
+    </form>
+
+  </div>
+</div>
+<script>
+
+/* ================= SLIDER ================= */
+let imgs=["./images/1.webp","./images/2.webp","./images/3.webp"];
+let i=0;
+setInterval(()=>{
+i=(i+1)%imgs.length;
+document.getElementById("slider").src=imgs[i];
+},4000);
+
+/* ================= ROOMS (SEO + TEXT) ================= */
+const rooms = {
+jerusalem:"<h2>ירושלים</h2><p>עיר עתיקה, כותל, שווקים, מסעדות כשרות, היסטוריה עמוקה וחוויות תרבות.</p>",
+telaviv:"<h2>תל אביב</h2><p>עיר ללא הפסקה, חופים, נמל, חיי לילה ותרבות מודרנית.</p>",
+eilat:"<h2>אילת</h2><p>חופים, צלילות, ים סוף ונופש מושלם בדרום ישראל.</p>",
+deadsea:"<h2>ים המלח</h2><p>מקום ייחודי בעולם עם מים מלוחים ובוץ בריאותי.</p>",
+hebron:"<h2>חברון</h2><p>מערת המכפלה ואתרים היסטוריים בעלי משמעות עמוקה.</p>"
+};
+
+function openRoom(id){
+document.getElementById("overlay").classList.add("open");
+document.getElementById("content").innerHTML=rooms[id];
+}
+
+function closeRoom(){
+document.getElementById("overlay").classList.remove("open");
+}
+
+/* ================= LIGHTBOX ================= */
+function openImg(src){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("bigImg").src=src;
+}
+
+/* ================= WHATSAPP ================= */
+document.getElementById("whatsapp").onclick=()=>{
+window.open("https://wa.me/972503251251");
+};
+
+/* ================= ACCESSIBILITY ================= */
+document.getElementById("a11y").onclick=()=>{
+let m=document.getElementById("menu");
+m.style.display=m.style.display==="block"?"none":"block";
+};
 
 </script>
 

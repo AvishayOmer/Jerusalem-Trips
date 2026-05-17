@@ -1,15 +1,25 @@
 /* =========================================================
-   JERUSALEM TOURS — NETFLIX ULTRA PRO MAX (CLEAN MERGED v2)
+   JERUSALEM TOURS — ULTRA PREMIUM FINAL
+   NETFLIX • SEO • ACCESSIBILITY • LIGHTBOX
 ========================================================= */
+
+/* ================= ROOT ================= */
 
 :root{
   --primary:#15cfe0;
   --secondary:#008793;
   --dark:#0f1720;
+  --light:#ffffff;
+
   --glass:rgba(255,255,255,0.08);
-  --glass-strong:rgba(255,255,255,0.15);
-  --shadow:0 15px 45px rgba(0,0,0,0.45);
+  --glass-strong:rgba(255,255,255,0.14);
+
+  --shadow:
+  0 15px 45px rgba(0,0,0,0.45);
+
   --radius:22px;
+
+  --transition:0.35s ease;
 }
 
 /* ================= RESET ================= */
@@ -26,123 +36,559 @@ html{
 }
 
 body{
-  direction:rtl;
   font-family:'Varela Round',sans-serif;
+  background:#050505;
   color:#fff;
   overflow-x:hidden;
-
-  background:url("images/3.jpg") center center / cover no-repeat;
+  line-height:1.8;
   min-height:100vh;
   position:relative;
-
-  font-size:18px;
-  line-height:1.8;
 }
 
-/* ================= CINEMA OVERLAY ================= */
+/* ================= BACKGROUND ================= */
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at top, rgba(0,0,0,0.18), rgba(0,0,0,0.86));
+
+  background:
+  linear-gradient(
+  rgba(0,0,0,0.65),
+  rgba(0,0,0,0.9));
+
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+  radial-gradient(
+  circle at top,
+  rgba(21,207,224,0.08),
+  transparent 50%);
+
   z-index:-1;
+  pointer-events:none;
 }
 
-/* ================= TYPO ================= */
+/* ================= TYPOGRAPHY ================= */
 
-h1,h2,h3,p{margin-bottom:15px;}
-h1{font-size:clamp(2.4rem,5vw,4.2rem);}
-h2{font-size:clamp(1.8rem,4vw,2.8rem);}
-h3{font-size:1.4rem;}
-p{font-size:1.08rem;}
+h1,h2,h3,h4,p{
+  margin-bottom:16px;
+}
 
-a{color:var(--primary);text-decoration:none;}
+h1{
+  font-size:clamp(2.4rem,5vw,4.8rem);
+}
 
-/* ================= LAYOUT ================= */
+h2{
+  font-size:clamp(1.8rem,4vw,3rem);
+}
 
-header,section{
-  width:100%;
-  padding:40px 20px;
+h3{
+  font-size:1.5rem;
+}
+
+p{
+  font-size:1.05rem;
+  color:#f1f1f1;
+}
+
+/* ================= LINKS ================= */
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  padding:60px 20px 30px;
   text-align:center;
-  animation:fadeUp 0.9s ease;
+  position:relative;
 }
 
-/* ===== unified animation (dedupe FIX) ===== */
+#logo{
+  font-size:4rem;
+  font-weight:bold;
+  color:var(--primary);
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(25px);}
-  to{opacity:1;transform:translateY(0);}
-}
+  text-shadow:
+  0 0 25px rgba(21,207,224,0.45);
 
-/* ================= GLASS EFFECT ================= */
-
-.gallery-wrapper,
-.service-card,
-.modal-content,
-.full-gallery-content,
-.region-box{
-  background:var(--glass);
-  backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-
-/* ================= LOGO ================= */
-
-.logo{
-  width:88px;
-  border-radius:18px;
   animation:logoFloat 4s ease-in-out infinite;
 }
 
 @keyframes logoFloat{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-8px);}
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+}
+
+/* ================= HERO ================= */
+
+.hero,
+.slider-top{
+  width:100%;
+  overflow:hidden;
+  position:relative;
+}
+
+.hero img,
+.slider-top img,
+#image-slider{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+  display:block;
+
+  transition:
+  opacity 0.6s ease,
+  transform 6s ease;
+}
+
+.hero:hover img{
+  transform:scale(1.04);
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+  padding:60px 20px;
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+/* ================= GLASS ================= */
+
+.gallery-wrapper,
+.service-card,
+.modal-content,
+.region-box,
+.overlay-content,
+.contacts,
+.services-section{
+  background:var(--glass);
+
+  backdrop-filter:blur(14px);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+}
+
+/* ================= BUTTONS ================= */
+
+button,
+.btn-primary,
+.btn-gallery-link{
+
+  border:none;
+
+  cursor:pointer;
+
+  padding:14px 26px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+  45deg,
+  var(--primary),
+  var(--secondary));
+
+  color:#fff;
+
+  font-weight:bold;
+
+  transition:var(--transition);
+
+  box-shadow:
+  0 12px 30px rgba(0,0,0,0.35);
+}
+
+button:hover,
+.btn-primary:hover,
+.btn-gallery-link:hover{
+
+  transform:
+  translateY(-4px)
+  scale(1.04);
 }
 
 /* ================= SERVICES ================= */
 
 .services-expandable{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(240px,1fr));
+
   gap:20px;
+
+  margin-top:25px;
 }
 
-/* ================= REGION ROOMS (NETFLIX MODE) ================= */
+.service-card{
+  padding:24px;
+  transition:var(--transition);
+}
+
+.service-card:hover{
+  transform:translateY(-10px);
+  background:var(--glass-strong);
+}
+
+.service-card .icon{
+  font-size:2.7rem;
+  margin-bottom:10px;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery-wrapper{
+  max-width:1300px;
+  margin:40px auto;
+  padding:25px;
+}
+
+.gallery,
+.gallery-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:18px;
+}
+
+.gallery img,
+.gallery-grid img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+
+  border-radius:18px;
+
+  transition:0.45s ease;
+
+  cursor:pointer;
+}
+
+.gallery img:hover,
+.gallery-grid img:hover{
+  transform:scale(1.05);
+  filter:brightness(1.08);
+}
+
+/* ================= LIGHTBOX ================= */
+
+#imageModal,
+.lightbox{
+  position:fixed;
+  inset:0;
+
+  background:
+  rgba(0,0,0,0.94);
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+
+  z-index:2147483647;
+
+  padding:20px;
+}
+
+#imageModal.open,
+.lightbox.open{
+  display:flex;
+}
+
+#fullImage,
+#lightboxImg{
+  max-width:92%;
+  max-height:85vh;
+
+  border-radius:18px;
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,0.6);
+}
+
+.close-viewer{
+  position:fixed;
+
+  top:20px;
+  left:20px;
+
+  width:50px;
+  height:50px;
+
+  border-radius:50%;
+
+  background:#fff;
+  color:#000;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:26px;
+
+  cursor:pointer;
+
+  z-index:2147483647;
+}
+
+/* ================= CONTACT MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+
+  background:
+  rgba(0,0,0,0.8);
+
+  z-index:2147483647;
+
+  padding:20px;
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modal-content{
+  width:100%;
+  max-width:500px;
+
+  padding:28px;
+
+  position:relative;
+}
+
+.modal-content input,
+.modal-content textarea{
+  width:100%;
+
+  padding:14px;
+
+  margin-top:12px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#fff;
+  color:#000;
+}
+
+.modal-content button{
+  width:100%;
+  margin-top:15px;
+}
+
+.close{
+  position:absolute;
+  top:14px;
+  left:18px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* ================= WHATSAPP ================= */
+
+#whatsapp-chat{
+  position:fixed !important;
+
+  right:20px;
+  bottom:20px;
+
+  width:60px;
+  height:60px;
+
+  border-radius:50%;
+
+  background:#25d366;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:2147483647;
+
+  cursor:pointer;
+
+  box-shadow:
+  0 12px 30px rgba(0,0,0,0.35);
+
+  animation:whatsappPulse 2s infinite;
+}
+
+#whatsapp-chat img{
+  width:34px;
+}
+
+@keyframes whatsappPulse{
+  0%{
+    box-shadow:0 0 0 0 rgba(37,211,102,0.45);
+  }
+
+  70%{
+    box-shadow:0 0 0 16px rgba(37,211,102,0);
+  }
+
+  100%{
+    box-shadow:0 0 0 0 rgba(37,211,102,0);
+  }
+}
+
+/* ================= BACK TO TOP ================= */
+
+#backToTop{
+  position:fixed;
+
+  left:20px;
+  bottom:20px;
+
+  width:56px;
+  height:56px;
+
+  border-radius:50%;
+
+  background:#111;
+
+  color:#fff;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  z-index:2147483647;
+}
+
+#backToTop.show{
+  display:flex;
+}
+
+/* ================= DARK MODE ================= */
+
+#modeToggle{
+  position:fixed;
+
+  top:18px;
+  left:18px;
+
+  z-index:2147483647;
+}
+
+body.dark-mode{
+  background:#020202;
+  color:#fff;
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+#accessibility-btn{
+  position:fixed;
+
+  right:20px;
+  bottom:95px;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  background:#ffb300;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:2147483647;
+
+  cursor:pointer;
+}
+
+.a11y-menu{
+  position:fixed;
+
+  right:20px;
+  bottom:170px;
+
+  width:240px;
+
+  background:#111;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  display:none;
+
+  z-index:2147483647;
+}
+
+.a11y-menu button{
+  width:100%;
+  margin-top:8px;
+}
+
+/* ================= REGIONS ================= */
 
 .region-rooms{
   display:flex;
   flex-wrap:wrap;
-  gap:12px;
   justify-content:center;
-  margin:25px 0;
+  gap:12px;
+  margin-top:20px;
 }
 
 .region{
-  padding:12px 20px;
+  padding:12px 22px;
+
   border-radius:999px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.15);
+
+  background:
+  rgba(255,255,255,0.08);
+
   cursor:pointer;
-  transition:0.3s;
-  backdrop-filter:blur(10px);
+
+  transition:var(--transition);
 }
 
 .region:hover{
   background:var(--primary);
   color:#000;
-  transform:scale(1.05);
+  transform:translateY(-4px);
 }
 
-.region.active{
-  background:linear-gradient(45deg,var(--primary),var(--secondary));
-  color:#000;
-  font-weight:bold;
-}
-
-/* ================= REGION BOX ================= */
+/* ================= REGION VIEWER ================= */
 
 .region-box{
   margin-top:25px;
@@ -150,61 +596,313 @@ header,section{
   animation:fadeUp 0.4s ease;
 }
 
-/* ================= NETFLIX OVERLAY ROOM ================= */
+/* ================= OVERLAY NETFLIX ================= */
 
-#room-overlay{
+.overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.85);
-  backdrop-filter:blur(12px);
+
+  background:
+  rgba(0,0,0,0.92);
+
   display:none;
-  justify-content:center;
-  align-items:center;
+
   z-index:999999;
 }
 
-#room-overlay.show{opacity:1;}
+.overlay.open{
+  display:block;
+}
 
-.room-overlay-content{
-  width:90%;
-  height:90%;
-  background:#0f1720;
-  border-radius:20px;
+.overlay-content{
+  width:100%;
+  height:100%;
+
   overflow-y:auto;
-  padding:20px;
-  animation:zoomIn 0.4s ease;
+
+  padding:35px;
+
+  animation:fadeUp 0.45s ease;
 }
 
-@keyframes zoomIn{
-  from{transform:scale(0.9);opacity:0;}
-  to{transform:scale(1);opacity:1;}
-}
+/* ================= INTRO ================= */
 
-/* ================= BUTTONS ================= */
-
-.btn-primary{
-  background:linear-gradient(45deg,var(--primary),var(--secondary));
-  padding:14px 34px;
-  border-radius:999px;
-  color:#fff;
-  font-weight:bold;
-}
-
-/* ================= FLOATING FIX ================= */
-
-#whatsapp-chat,
-#backToTop,
-#accessibility-btn{
+.intro-overlay{
   position:fixed;
-  z-index:999999;
-  width:58px;
-  height:58px;
+  inset:0;
+
+  background:#000;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:99999999;
+
+  flex-direction:column;
 }
 
-/* ================= FINAL MOBILE ================= */
+.intro-logo{
+  font-size:3rem;
+  color:var(--primary);
+}
+
+/* ================= FOOTER ================= */
+
+.site-footer{
+  margin-top:60px;
+  padding:40px 20px;
+
+  background:
+  rgba(0,0,0,0.7);
+
+  border-top:
+  1px solid rgba(255,255,255,0.1);
+
+  text-align:center;
+}
+
+/* ================= ANIMATIONS ================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:768px){
-  body{font-size:16px;}
-  h1{font-size:2.2rem;}
-  h2{font-size:1.8rem;}
+
+  h1{
+    font-size:2.3rem;
+  }
+
+  h2{
+    font-size:1.8rem;
+  }
+
+  #logo{
+    font-size:2rem;
+  }
+
+  .hero img,
+  .slider-top img,
+  #image-slider{
+    height:280px;
+  }
+
+  .gallery,
+  .gallery-grid{
+    grid-template-columns:
+    repeat(auto-fit,minmax(150px,1fr));
+  }
+
+  .gallery img,
+  .gallery-grid img{
+    height:170px;
+  }
+
+  .overlay-content{
+    padding:20px;
+  }
+
+  #modeToggle{
+    padding:10px 16px;
+    font-size:13px;
+  }
+
+  #whatsapp-chat{
+    right:15px;
+    bottom:15px;
+  }
+
+  #accessibility-btn{
+    right:15px;
+    bottom:85px;
+  }
+
+  #backToTop{
+    left:15px;
+    bottom:15px;
+  }
+}/* ================= PREMIUM FEATURES ================= */
+
+#modeToggle{
+position:fixed;
+top:20px;
+left:20px;
+z-index:99999;
+padding:12px 20px;
+border:none;
+border-radius:30px;
+background:#15cfe0;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+}
+
+#backToTop{
+position:fixed;
+bottom:20px;
+left:20px;
+width:55px;
+height:55px;
+background:#111;
+color:#fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:99999;
+opacity:0;
+transition:0.3s;
+}
+
+#backToTop.show{
+opacity:1;
+}
+
+#whatsapp-chat{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+background:#25d366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:99999;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+#whatsapp-chat img{
+width:34px;
+}
+
+#a11y-menu{
+display:none;
+position:fixed;
+bottom:140px;
+right:20px;
+background:#111;
+padding:15px;
+border-radius:15px;
+z-index:99999;
+}
+
+#a11y-menu button{
+display:block;
+margin:6px 0;
+width:100%;
+}
+
+.services-grid{
+display:none;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:25px;
+}
+
+.services-grid.open{
+display:grid;
+}
+
+.service-card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:18px;
+transition:0.3s;
+}
+
+.service-card:hover{
+transform:translateY(-8px);
+background:rgba(255,255,255,0.14);
+}
+
+.premium-btn{
+padding:14px 26px;
+border:none;
+border-radius:30px;
+background:#15cfe0;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.85);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999999;
+}
+
+.modal-content{
+background:#111;
+padding:25px;
+border-radius:18px;
+width:90%;
+max-width:400px;
+}
+
+.modal-content input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+}
+
+.modal-content button{
+margin-top:15px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#15cfe0;
+color:#000;
+font-weight:bold;
+}
+
+.close-modal{
+cursor:pointer;
+font-size:28px;
+float:left;
+}
+
+.dark-mode{
+background:#000;
+color:#fff;
+}
+
+.grayscale{
+filter:grayscale(1);
+}
+
+.contrast{
+filter:contrast(1.5);
 }

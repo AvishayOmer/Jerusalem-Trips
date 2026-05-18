@@ -1,25 +1,21 @@
 /* =========================================================
-   JERUSALEM TOURS — ULTRA PREMIUM FINAL
-   NETFLIX • SEO • ACCESSIBILITY • LIGHTBOX
+   ULTRA UI SYSTEM — PART 1 / 3
+   BASE • ROOT • RESET • TYPOGRAPHY
 ========================================================= */
-
-/* ================= ROOT ================= */
 
 :root{
   --primary:#15cfe0;
   --secondary:#008793;
-  --dark:#0f1720;
+  --dark:#0b0b0b;
   --light:#ffffff;
 
   --glass:rgba(255,255,255,0.08);
   --glass-strong:rgba(255,255,255,0.14);
 
-  --shadow:
-  0 15px 45px rgba(0,0,0,0.45);
+  --shadow:0 15px 45px rgba(0,0,0,0.45);
 
-  --radius:22px;
-
-  --transition:0.35s ease;
+  --radius:20px;
+  --transition:0.3s ease;
 }
 
 /* ================= RESET ================= */
@@ -36,27 +32,21 @@ html{
 }
 
 body{
-  font-family:'Varela Round',sans-serif;
+  font-family:'Varela Round', Arial, sans-serif;
   background:#050505;
   color:#fff;
+  line-height:1.7;
   overflow-x:hidden;
-  line-height:1.8;
   min-height:100vh;
-  position:relative;
 }
 
-/* ================= BACKGROUND ================= */
+/* ================= BACKGROUND LAYERS ================= */
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-
-  background:
-  linear-gradient(
-  rgba(0,0,0,0.65),
-  rgba(0,0,0,0.9));
-
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9));
   z-index:-2;
 }
 
@@ -64,15 +54,8 @@ body::after{
   content:"";
   position:fixed;
   inset:0;
-
-  background:
-  radial-gradient(
-  circle at top,
-  rgba(21,207,224,0.08),
-  transparent 50%);
-
+  background:radial-gradient(circle at top, rgba(21,207,224,0.08), transparent 60%);
   z-index:-1;
-  pointer-events:none;
 }
 
 /* ================= TYPOGRAPHY ================= */
@@ -82,592 +65,67 @@ h1,h2,h3,h4,p{
 }
 
 h1{
-  font-size:clamp(2.4rem,5vw,4.8rem);
+  font-size:clamp(2.2rem,5vw,4.5rem);
 }
 
 h2{
-  font-size:clamp(1.8rem,4vw,3rem);
+  font-size:clamp(1.6rem,3vw,2.8rem);
 }
 
 h3{
-  font-size:1.5rem;
+  font-size:1.4rem;
 }
 
 p{
   font-size:1.05rem;
-  color:#f1f1f1;
+  color:#eaeaea;
 }
-
-/* ================= LINKS ================= */
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
+}
+/* =========================================================
+   ULTRA UI SYSTEM — PART 2 ADD-ON
+   ADVANCED FEATURES • ANIMATIONS • UX LAYER • UTILITIES
+========================================================= */
+
+/* ================= UTILITY CLASSES ================= */
+
+.hidden{
+  display:none !important;
 }
 
-/* ================= HEADER ================= */
-
-header{
-  padding:60px 20px 30px;
-  text-align:center;
-  position:relative;
-}
-
-#logo{
-  font-size:4rem;
-  font-weight:bold;
-  color:var(--primary);
-
-  text-shadow:
-  0 0 25px rgba(21,207,224,0.45);
-
-  animation:logoFloat 4s ease-in-out infinite;
-}
-
-@keyframes logoFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-8px);
-  }
-}
-
-/* ================= HERO ================= */
-
-.hero,
-.slider-top{
-  width:100%;
-  overflow:hidden;
-  position:relative;
-}
-
-.hero img,
-.slider-top img,
-#image-slider{
-  width:100%;
-  height:520px;
-  object-fit:cover;
-  display:block;
-
-  transition:
-  opacity 0.6s ease,
-  transform 6s ease;
-}
-
-.hero:hover img{
-  transform:scale(1.04);
-}
-
-/* ================= SECTIONS ================= */
-
-section{
-  padding:60px 20px;
-  position:relative;
-  z-index:2;
-  text-align:center;
-}
-
-/* ================= GLASS ================= */
-
-.gallery-wrapper,
-.service-card,
-.modal-content,
-.region-box,
-.overlay-content,
-.contacts,
-.services-section{
-  background:var(--glass);
-
-  backdrop-filter:blur(14px);
-
-  border:
-  1px solid rgba(255,255,255,0.08);
-
-  border-radius:var(--radius);
-
-  box-shadow:var(--shadow);
-}
-
-/* ================= BUTTONS ================= */
-
-button,
-.btn-primary,
-.btn-gallery-link{
-
-  border:none;
-
-  cursor:pointer;
-
-  padding:14px 26px;
-
-  border-radius:999px;
-
-  background:
-  linear-gradient(
-  45deg,
-  var(--primary),
-  var(--secondary));
-
-  color:#fff;
-
-  font-weight:bold;
-
-  transition:var(--transition);
-
-  box-shadow:
-  0 12px 30px rgba(0,0,0,0.35);
-}
-
-button:hover,
-.btn-primary:hover,
-.btn-gallery-link:hover{
-
-  transform:
-  translateY(-4px)
-  scale(1.04);
-}
-
-/* ================= SERVICES ================= */
-
-.services-expandable{
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(240px,1fr));
-
-  gap:20px;
-
-  margin-top:25px;
-}
-
-.service-card{
-  padding:24px;
-  transition:var(--transition);
-}
-
-.service-card:hover{
-  transform:translateY(-10px);
-  background:var(--glass-strong);
-}
-
-.service-card .icon{
-  font-size:2.7rem;
-  margin-bottom:10px;
-}
-
-/* ================= GALLERY ================= */
-
-.gallery-wrapper{
-  max-width:1300px;
-  margin:40px auto;
-  padding:25px;
-}
-
-.gallery,
-.gallery-grid{
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
-
-  gap:18px;
-}
-
-.gallery img,
-.gallery-grid img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-
-  border-radius:18px;
-
-  transition:0.45s ease;
-
-  cursor:pointer;
-}
-
-.gallery img:hover,
-.gallery-grid img:hover{
-  transform:scale(1.05);
-  filter:brightness(1.08);
-}
-
-/* ================= LIGHTBOX ================= */
-
-#imageModal,
-.lightbox{
-  position:fixed;
-  inset:0;
-
-  background:
-  rgba(0,0,0,0.94);
-
-  display:none;
-
+.center{
+  display:flex;
   justify-content:center;
   align-items:center;
-
-  z-index:2147483647;
-
-  padding:20px;
 }
 
-#imageModal.open,
-.lightbox.open{
-  display:flex;
+.fade-in{
+  animation:fadeIn 0.5s ease forwards;
 }
 
-#fullImage,
-#lightboxImg{
-  max-width:92%;
-  max-height:85vh;
-
-  border-radius:18px;
-
-  box-shadow:
-  0 20px 60px rgba(0,0,0,0.6);
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
-.close-viewer{
-  position:fixed;
-
-  top:20px;
-  left:20px;
-
-  width:50px;
-  height:50px;
-
-  border-radius:50%;
-
-  background:#fff;
-  color:#000;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:26px;
-
-  cursor:pointer;
-
-  z-index:2147483647;
+.slide-up{
+  animation:slideUp 0.5s ease forwards;
 }
 
-/* ================= CONTACT MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-
-  display:none;
-
-  justify-content:center;
-  align-items:center;
-
-  background:
-  rgba(0,0,0,0.8);
-
-  z-index:2147483647;
-
-  padding:20px;
+@keyframes slideUp{
+  from{transform:translateY(20px);opacity:0}
+  to{transform:translateY(0);opacity:1}
 }
 
-.modal.open{
-  display:flex;
-}
-
-.modal-content{
-  width:100%;
-  max-width:500px;
-
-  padding:28px;
-
-  position:relative;
-}
-
-.modal-content input,
-.modal-content textarea{
-  width:100%;
-
-  padding:14px;
-
-  margin-top:12px;
-
-  border:none;
-
-  border-radius:12px;
-
-  background:#fff;
-  color:#000;
-}
-
-.modal-content button{
-  width:100%;
-  margin-top:15px;
-}
-
-.close{
-  position:absolute;
-  top:14px;
-  left:18px;
-  font-size:28px;
-  cursor:pointer;
-}
-
-/* ================= WHATSAPP ================= */
-
-#whatsapp-chat{
-  position:fixed !important;
-
-  right:20px;
-  bottom:20px;
-
-  width:60px;
-  height:60px;
-
-  border-radius:50%;
-
-  background:#25d366;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  z-index:2147483647;
-
-  cursor:pointer;
-
-  box-shadow:
-  0 12px 30px rgba(0,0,0,0.35);
-
-  animation:whatsappPulse 2s infinite;
-}
-
-#whatsapp-chat img{
-  width:34px;
-}
-
-@keyframes whatsappPulse{
-  0%{
-    box-shadow:0 0 0 0 rgba(37,211,102,0.45);
-  }
-
-  70%{
-    box-shadow:0 0 0 16px rgba(37,211,102,0);
-  }
-
-  100%{
-    box-shadow:0 0 0 0 rgba(37,211,102,0);
-  }
-}
-
-/* ================= BACK TO TOP ================= */
-
-#backToTop{
-  position:fixed;
-
-  left:20px;
-  bottom:20px;
-
-  width:56px;
-  height:56px;
-
-  border-radius:50%;
-
-  background:#111;
-
-  color:#fff;
-
-  display:none;
-  align-items:center;
-  justify-content:center;
-
-  font-size:22px;
-
-  cursor:pointer;
-
-  z-index:2147483647;
-}
-
-#backToTop.show{
-  display:flex;
-}
-
-/* ================= DARK MODE ================= */
-
-#modeToggle{
-  position:fixed;
-
-  top:18px;
-  left:18px;
-
-  z-index:2147483647;
-}
-
-body.dark-mode{
-  background:#020202;
-  color:#fff;
-}
-
-/* ================= ACCESSIBILITY ================= */
-
-#accessibility-btn{
-  position:fixed;
-
-  right:20px;
-  bottom:95px;
-
-  width:58px;
-  height:58px;
-
-  border-radius:50%;
-
-  background:#ffb300;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  z-index:2147483647;
-
-  cursor:pointer;
-}
-
-.a11y-menu{
-  position:fixed;
-
-  right:20px;
-  bottom:170px;
-
-  width:240px;
-
-  background:#111;
-
-  padding:18px;
-
-  border-radius:18px;
-
-  display:none;
-
-  z-index:2147483647;
-}
-
-.a11y-menu button{
-  width:100%;
-  margin-top:8px;
-}
-
-/* ================= REGIONS ================= */
-
-.region-rooms{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:12px;
-  margin-top:20px;
-}
-
-.region{
-  padding:12px 22px;
-
-  border-radius:999px;
-
-  background:
-  rgba(255,255,255,0.08);
-
-  cursor:pointer;
-
-  transition:var(--transition);
-}
-
-.region:hover{
-  background:var(--primary);
-  color:#000;
-  transform:translateY(-4px);
-}
-
-/* ================= REGION VIEWER ================= */
-
-.region-box{
-  margin-top:25px;
-  padding:25px;
-  animation:fadeUp 0.4s ease;
-}
-
-/* ================= OVERLAY NETFLIX ================= */
-
-.overlay{
-  position:fixed;
-  inset:0;
-
-  background:
-  rgba(0,0,0,0.92);
-
-  display:none;
-
-  z-index:999999;
-}
-
-.overlay.open{
-  display:block;
-}
-
-.overlay-content{
-  width:100%;
-  height:100%;
-
-  overflow-y:auto;
-
-  padding:35px;
-
-  animation:fadeUp 0.45s ease;
-}
-
-/* ================= INTRO ================= */
-
-.intro-overlay{
-  position:fixed;
-  inset:0;
-
-  background:#000;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  z-index:99999999;
-
-  flex-direction:column;
-}
-
-.intro-logo{
-  font-size:3rem;
-  color:var(--primary);
-}
-
-/* ================= FOOTER ================= */
-
-.site-footer{
-  margin-top:60px;
-  padding:40px 20px;
-
-  background:
-  rgba(0,0,0,0.7);
-
-  border-top:
-  1px solid rgba(255,255,255,0.1);
-
-  text-align:center;
-}
-
-/* ================= ANIMATIONS ================= */
+/* ================= SCROLL REVEAL SYSTEM ================= */
 
 .reveal{
   opacity:0;
   transform:translateY(30px);
-  transition:1s ease;
+  transition:0.8s ease;
 }
 
 .reveal.active{
@@ -675,234 +133,935 @@ body.dark-mode{
   transform:translateY(0);
 }
 
-@keyframes fadeUp{
+/* ================= PREMIUM SHADOW LAYERS ================= */
+
+.shadow-soft{
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+.shadow-heavy{
+  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+}
+
+/* ================= HOVER MICRO INTERACTIONS ================= */
+
+.hover-lift{
+  transition:0.3s ease;
+}
+
+.hover-lift:hover{
+  transform:translateY(-6px);
+}
+
+.hover-scale{
+  transition:0.3s ease;
+}
+
+.hover-scale:hover{
+  transform:scale(1.05);
+}
+
+/* ================= GLASS VARIANTS ================= */
+
+.glass-light{
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.glass-strong{
+  background:rgba(255,255,255,0.14);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.12);
+}
+
+/* ================= BADGES ================= */
+
+.badge{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  background:var(--primary);
+  color:#000;
+  font-weight:bold;
+}
+
+/* ================= LOADING STATES ================= */
+
+.skeleton{
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.05)
+  );
+  background-size:200% 100%;
+  animation:loading 1.2s infinite;
+}
+
+@keyframes loading{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+
+/* ================= BUTTON VARIANTS ================= */
+
+.btn-outline{
+  background:transparent;
+  border:2px solid var(--primary);
+  color:var(--primary);
+}
+
+.btn-outline:hover{
+  background:var(--primary);
+  color:#000;
+}
+
+/* ================= FORM ENHANCEMENTS ================= */
+
+input,textarea{
+  outline:none;
+  transition:0.3s ease;
+}
+
+input:focus,textarea:focus{
+  transform:scale(1.02);
+  box-shadow:0 0 0 2px rgba(21,207,224,0.4);
+}
+
+/* ================= NAVIGATION EFFECTS ================= */
+
+.nav-link{
+  position:relative;
+}
+
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0%;
+  height:2px;
+  background:var(--primary);
+  transition:0.3s ease;
+}
+
+.nav-link:hover::after{
+  width:100%;
+}
+
+/* ================= IMAGE FILTER SYSTEM ================= */
+
+.img-dark{
+  filter:brightness(0.7);
+}
+
+.img-hover-bright:hover{
+  filter:brightness(1.1);
+}
+
+/* ================= MODAL ANIMATIONS ================= */
+
+.modal.open{
+  animation:modalIn 0.3s ease forwards;
+}
+
+@keyframes modalIn{
   from{
     opacity:0;
-    transform:translateY(30px);
+    transform:scale(0.95);
   }
-
   to{
     opacity:1;
-    transform:translateY(0);
+    transform:scale(1);
   }
 }
 
-/* ================= MOBILE ================= */
+/* ================= LAYOUT HELPERS ================= */
+
+.grid-center{
+  display:grid;
+  place-items:center;
+}
+
+.flex-between{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* ================= SPACING UTILITIES ================= */
+
+.mt-10{margin-top:10px;}
+.mt-20{margin-top:20px;}
+.mt-40{margin-top:40px;}
+
+.mb-10{margin-bottom:10px;}
+.mb-20{margin-bottom:20px;}
+.mb-40{margin-bottom:40px;}
+
+/* ================= Z-INDEX LAYERS ================= */
+
+.z-1{z-index:1;}
+.z-10{z-index:10;}
+.z-100{z-index:100;}
+.z-max{z-index:999999;}
+
+/* ================= MOBILE FIXES EXTENSION ================= */
 
 @media(max-width:768px){
 
-  h1{
-    font-size:2.3rem;
+  .hide-mobile{
+    display:none !important;
   }
 
-  h2{
-    font-size:1.8rem;
+  .text-center-mobile{
+    text-align:center;
   }
 
-  #logo{
-    font-size:2rem;
+  .stack-mobile{
+    flex-direction:column;
   }
 
-  .hero img,
-  .slider-top img,
-  #image-slider{
-    height:280px;
-  }
+}/* =========================================================
+   ULTRA UI SYSTEM — PART 3 / 3
+   ENTERPRISE PRO LAYER • THEME ENGINE • STATES • UX CORE
+========================================================= */
 
-  .gallery,
-  .gallery-grid{
-    grid-template-columns:
-    repeat(auto-fit,minmax(150px,1fr));
-  }
+/* ================= THEME VARIABLES (LIGHT MODE) ================= */
 
-  .gallery img,
-  .gallery-grid img{
-    height:170px;
-  }
+:root{
 
-  .overlay-content{
-    padding:20px;
-  }
+  --bg:#050505;
+  --text:#ffffff;
 
-  #modeToggle{
-    padding:10px 16px;
-    font-size:13px;
-  }
+  --card:rgba(255,255,255,0.08);
+  --card-strong:rgba(255,255,255,0.14);
 
-  #whatsapp-chat{
-    right:15px;
-    bottom:15px;
-  }
+  --primary:#15cfe0;
+  --secondary:#008793;
 
-  #accessibility-btn{
-    right:15px;
-    bottom:85px;
-  }
+  --shadow:0 15px 45px rgba(0,0,0,0.45);
 
-  #backToTop{
-    left:15px;
-    bottom:15px;
-  }
-}/* ================= PREMIUM FEATURES ================= */
-
-#modeToggle{
-position:fixed;
-top:20px;
-left:20px;
-z-index:99999;
-padding:12px 20px;
-border:none;
-border-radius:30px;
-background:#15cfe0;
-color:#000;
-font-weight:bold;
-cursor:pointer;
+  --radius:20px;
 }
 
-#backToTop{
-position:fixed;
-bottom:20px;
-left:20px;
-width:55px;
-height:55px;
-background:#111;
-color:#fff;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:99999;
-opacity:0;
-transition:0.3s;
+/* ================= LIGHT MODE ================= */
+
+body.light-mode{
+
+  --bg:#f5f7fb;
+  --text:#111;
+
+  --card:rgba(0,0,0,0.05);
+  --card-strong:rgba(0,0,0,0.08);
+
+  --shadow:0 15px 35px rgba(0,0,0,0.15);
 }
 
-#backToTop.show{
-opacity:1;
+/* apply theme */
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.4s ease;
 }
 
-#whatsapp-chat{
-position:fixed;
-bottom:20px;
-right:20px;
-width:60px;
-height:60px;
-background:#25d366;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:99999;
-box-shadow:0 0 20px rgba(0,0,0,0.4);
+/* ================= GLOBAL SURFACE SYSTEM ================= */
+
+.surface{
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius);
 }
 
-#whatsapp-chat img{
-width:34px;
+.surface-strong{
+  background:var(--card-strong);
+  backdrop-filter:blur(18px);
 }
 
-#a11y-menu{
-display:none;
-position:fixed;
-bottom:140px;
-right:20px;
-background:#111;
-padding:15px;
-border-radius:15px;
-z-index:99999;
+/* ================= STATE SYSTEM ================= */
+
+.is-hidden{
+  opacity:0 !important;
+  pointer-events:none !important;
+  transform:translateY(10px);
 }
 
-#a11y-menu button{
-display:block;
-margin:6px 0;
-width:100%;
+.is-active{
+  opacity:1 !important;
+  transform:translateY(0);
 }
 
-.services-grid{
-display:none;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-margin-top:25px;
+.is-loading{
+  position:relative;
+  overflow:hidden;
 }
 
-.services-grid.open{
-display:grid;
+.is-loading::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  animation:shimmer 1.2s infinite;
 }
 
-.service-card{
-background:rgba(255,255,255,0.08);
-padding:20px;
-border-radius:18px;
-transition:0.3s;
+@keyframes shimmer{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
 }
 
-.service-card:hover{
-transform:translateY(-8px);
-background:rgba(255,255,255,0.14);
+/* ================= BUTTON SYSTEM PRO ================= */
+
+.btn{
+  padding:14px 24px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s ease;
 }
 
-.premium-btn{
-padding:14px 26px;
-border:none;
-border-radius:30px;
-background:#15cfe0;
-color:#000;
-font-weight:bold;
-cursor:pointer;
+.btn-primary{
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  color:#000;
 }
 
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.85);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999999;
+.btn-primary:hover{
+  transform:translateY(-4px);
 }
 
-.modal-content{
-background:#111;
-padding:25px;
-border-radius:18px;
-width:90%;
-max-width:400px;
+.btn-ghost{
+  background:transparent;
+  border:1px solid var(--primary);
+  color:var(--primary);
 }
 
-.modal-content input{
-width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:10px;
+.btn-ghost:hover{
+  background:var(--primary);
+  color:#000;
 }
 
-.modal-content button{
-margin-top:15px;
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-background:#15cfe0;
-color:#000;
-font-weight:bold;
+/* ================= CARD SYSTEM ================= */
+
+.card{
+  padding:20px;
+  border-radius:var(--radius);
+  background:var(--card);
+  box-shadow:var(--shadow);
+  transition:0.3s ease;
 }
 
-.close-modal{
-cursor:pointer;
-font-size:28px;
-float:left;
+.card:hover{
+  transform:translateY(-6px);
+  background:var(--card-strong);
 }
 
-.dark-mode{
-background:#000;
-color:#fff;
+/* ================= NAVIGATION PRO ================= */
+
+.nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.nav a{
+  position:relative;
+  padding:8px 0;
+}
+
+.nav a::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0%;
+  height:2px;
+  background:var(--primary);
+  transition:0.3s ease;
+}
+
+.nav a:hover::after{
+  width:100%;
+}
+
+/* ================= HERO GRADIENT OVERLAY ================= */
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.85)
+  );
+}
+
+/* ================= SCROLL SNAP SYSTEM ================= */
+
+.snap-container{
+  scroll-snap-type:y mandatory;
+  overflow-y:auto;
+  height:100vh;
+}
+
+.snap-item{
+  scroll-snap-align:start;
+}
+
+/* ================= PERFORMANCE OPTIMIZATION ================= */
+
+.gpu{
+  transform:translateZ(0);
+  will-change:transform,opacity;
+}
+
+/* ================= MICRO INTERACTIONS ================= */
+
+.click-scale:active{
+  transform:scale(0.95);
+}
+
+.hover-glow:hover{
+  box-shadow:0 0 20px rgba(21,207,224,0.4);
+}
+
+/* ================= LOADER SYSTEM ================= */
+
+.loader{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,0.2);
+  border-top-color:var(--primary);
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ================= ACCESSIBILITY PRO ================= */
+
+.high-contrast{
+  filter:contrast(1.6);
 }
 
 .grayscale{
-filter:grayscale(1);
+  filter:grayscale(1);
 }
 
-.contrast{
-filter:contrast(1.5);
+/* ================= RESPONSIVE FINAL LAYER ================= */
+
+@media(max-width:768px){
+
+  .nav{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .card{
+    padding:14px;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+}
+
+/* ================= PRINT MODE ================= */
+
+@media print{
+
+  body{
+    background:#fff !important;
+    color:#000 !important;
+  }
+
+  .no-print{
+    display:none !important;
+  }
+}/* =========================================================
+   ULTRA UI SYSTEM — PART 3 / 3
+   ENTERPRISE PRO LAYER • THEME ENGINE • STATES • UX CORE
+========================================================= */
+
+/* ================= THEME VARIABLES (LIGHT MODE) ================= */
+
+:root{
+
+  --bg:#050505;
+  --text:#ffffff;
+
+  --card:rgba(255,255,255,0.08);
+  --card-strong:rgba(255,255,255,0.14);
+
+  --primary:#15cfe0;
+  --secondary:#008793;
+
+  --shadow:0 15px 45px rgba(0,0,0,0.45);
+
+  --radius:20px;
+}
+
+/* ================= LIGHT MODE ================= */
+
+body.light-mode{
+
+  --bg:#f5f7fb;
+  --text:#111;
+
+  --card:rgba(0,0,0,0.05);
+  --card-strong:rgba(0,0,0,0.08);
+
+  --shadow:0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* apply theme */
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.4s ease;
+}
+
+/* ================= GLOBAL SURFACE SYSTEM ================= */
+
+.surface{
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius);
+}
+
+.surface-strong{
+  background:var(--card-strong);
+  backdrop-filter:blur(18px);
+}
+
+/* ================= STATE SYSTEM ================= */
+
+.is-hidden{
+  opacity:0 !important;
+  pointer-events:none !important;
+  transform:translateY(10px);
+}
+
+.is-active{
+  opacity:1 !important;
+  transform:translateY(0);
+}
+
+.is-loading{
+  position:relative;
+  overflow:hidden;
+}
+
+.is-loading::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  animation:shimmer 1.2s infinite;
+}
+
+@keyframes shimmer{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+/* ================= BUTTON SYSTEM PRO ================= */
+
+.btn{
+  padding:14px 24px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.btn-primary{
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  color:#000;
+}
+
+.btn-primary:hover{
+  transform:translateY(-4px);
+}
+
+.btn-ghost{
+  background:transparent;
+  border:1px solid var(--primary);
+  color:var(--primary);
+}
+
+.btn-ghost:hover{
+  background:var(--primary);
+  color:#000;
+}
+
+/* ================= CARD SYSTEM ================= */
+
+.card{
+  padding:20px;
+  border-radius:var(--radius);
+  background:var(--card);
+  box-shadow:var(--shadow);
+  transition:0.3s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  background:var(--card-strong);
+}
+
+/* ================= NAVIGATION PRO ================= */
+
+.nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.nav a{
+  position:relative;
+  padding:8px 0;
+}
+
+.nav a::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0%;
+  height:2px;
+  background:var(--primary);
+  transition:0.3s ease;
+}
+
+.nav a:hover::after{
+  width:100%;
+}
+
+/* ================= HERO GRADIENT OVERLAY ================= */
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.85)
+  );
+}
+
+/* ================= SCROLL SNAP SYSTEM ================= */
+
+.snap-container{
+  scroll-snap-type:y mandatory;
+  overflow-y:auto;
+  height:100vh;
+}
+
+.snap-item{
+  scroll-snap-align:start;
+}
+
+/* ================= PERFORMANCE OPTIMIZATION ================= */
+
+.gpu{
+  transform:translateZ(0);
+  will-change:transform,opacity;
+}
+
+/* ================= MICRO INTERACTIONS ================= */
+
+.click-scale:active{
+  transform:scale(0.95);
+}
+
+.hover-glow:hover{
+  box-shadow:0 0 20px rgba(21,207,224,0.4);
+}
+
+/* ================= LOADER SYSTEM ================= */
+
+.loader{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,0.2);
+  border-top-color:var(--primary);
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ================= ACCESSIBILITY PRO ================= */
+
+.high-contrast{
+  filter:contrast(1.6);
+}
+
+.grayscale{
+  filter:grayscale(1);
+}
+
+/* ================= RESPONSIVE FINAL LAYER ================= */
+
+@media(max-width:768px){
+
+  .nav{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .card{
+    padding:14px;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+}
+
+/* ================= PRINT MODE ================= */
+
+@media print{
+
+  body{
+    background:#fff !important;
+    color:#000 !important;
+  }
+
+  .no-print{
+    display:none !important;
+  }
+}/* =========================================================
+   BOOKING SYSTEM ADD-ON — SAFE EXTENSION ONLY
+   (DO NOT OVERRIDE EXISTING STYLES)
+========================================================= */
+
+/* ================= BOOKING WRAPPER (SAFE LAYER) ================= */
+
+.booking-wrap{
+  width:100%;
+  max-width:1200px;
+  margin:50px auto;
+  padding:20px;
+}
+
+/* ================= BOOKING GRID LAYOUT ================= */
+
+.booking-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:20px;
+}
+
+/* ================= BOOKING PANEL ================= */
+
+.booking-panel{
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* ================= SAFE INPUT EXTENSION ================= */
+
+.booking-panel input,
+.booking-panel select{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  transition:0.25s ease;
+}
+
+.booking-panel input:focus,
+.booking-panel select:focus{
+  transform:scale(1.02);
+  box-shadow:0 0 0 2px rgba(21,207,224,0.35);
+}
+
+/* ================= MINI CALENDAR UI ================= */
+
+.mini-calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+  margin-top:15px;
+}
+
+.mini-day{
+  padding:10px;
+  text-align:center;
+  border-radius:10px;
+  background:rgba(255,255,255,0.06);
+  cursor:pointer;
+  transition:0.25s ease;
+  font-size:0.9rem;
+}
+
+.mini-day:hover{
+  background:var(--primary);
+  color:#000;
+}
+
+.mini-day.selected{
+  background:var(--secondary);
+  color:#fff;
+  transform:scale(1.05);
+}
+
+/* ================= TIME PICKER ================= */
+
+.time-picker{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+}
+
+.time-chip{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.08);
+  cursor:pointer;
+  transition:0.25s ease;
+  font-size:0.9rem;
+}
+
+.time-chip:hover{
+  background:var(--primary);
+  color:#000;
+}
+
+.time-chip.active{
+  background:var(--primary);
+  color:#000;
+}
+
+/* ================= BOOKING INFO BOX ================= */
+
+.booking-info{
+  padding:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+/* ================= PRICE DISPLAY ================= */
+
+.price-display{
+  font-size:1.4rem;
+  font-weight:bold;
+  color:var(--primary);
+}
+
+/* ================= SAFE BUTTON EXTENSION ================= */
+
+.booking-submit{
+  width:100%;
+  margin-top:15px;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.booking-submit:hover{
+  transform:translateY(-3px);
+}
+
+/* ================= STEP INDICATOR (SAFE) ================= */
+
+.step-indicator{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.step-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.2);
+}
+
+.step-dot.active{
+  background:var(--primary);
+  transform:scale(1.2);
+}
+
+/* ================= LOADING OVERLAY (SAFE EXTENSION) ================= */
+
+.booking-loader{
+  position:absolute;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(6px);
+}
+
+.booking-loader.show{
+  display:flex;
+}
+
+/* ================= STATUS MESSAGES ================= */
+
+.status-success{
+  padding:10px;
+  border-radius:10px;
+  background:rgba(0,255,120,0.12);
+  border:1px solid rgba(0,255,120,0.35);
+}
+
+.status-error{
+  padding:10px;
+  border-radius:10px;
+  background:rgba(255,0,0,0.12);
+  border:1px solid rgba(255,0,0,0.35);
+}
+
+/* ================= MOBILE SAFE EXTENSION ================= */
+
+@media(max-width:768px){
+
+  .booking-grid{
+    grid-template-columns:1fr;
+  }
+
+  .step-indicator{
+    flex-direction:column;
+    gap:6px;
+  }
+
 }

@@ -54,12 +54,12 @@ function changeSliderImage() {
   }, 400);
 }
 
-setInterval(changeSliderImage, 4000);
+let sliderInterval = setInterval(changeSliderImage, 4000);
 /* =========================================================
    GLOBAL STATE MANAGER
 ========================================================= */
 
-const State = {
+window.State = {
     user: null,
     bookings: [],
     currentRegion: null,
@@ -209,22 +209,22 @@ const Booking = {
         const res = await Api.createBooking(booking);
 
         if (res.success) {
-            State.bookings.push(res);
-            Storage.save(CONFIG.storageKeys.bookings, State.bookings);
+            window.State.bookings.push(res);
+            Storage.save(CONFIG.storageKeys.bookings, window.State.bookings);
         }
 
         return res;
     },
 
     getAll() {
-        return State.bookings;
+        return window.State.bookings;
     },
 
     cancel(id) {
-        const b = State.bookings.find(x => x.id === id);
+        const b = window.State.bookings.find(x => x.id === id);
         if (b) b.status = "cancelled";
 
-        Storage.save(CONFIG.storageKeys.bookings, State.bookings);
+        Storage.save(CONFIG.storageKeys.bookings, window.State.bookings);
     }
 };
 
@@ -272,11 +272,10 @@ const Region = {
     current: null,
 
     select(id) {
-        State.currentRegion = id;
+        window.State.currentRegion = id;
         this.current = id;
     }
 };
-
 /* =========================================================
    UI EVENT BUS (INTERNAL COMMUNICATION)
 ========================================================= */
@@ -306,44 +305,48 @@ const BookingFlow = {
     },
 
     selectPackage(pkg) {
-        State.selectedPackage = pkg;
+        window.State.selectedPackage = pkg;
         EventBus.emit("package:selected", pkg);
     },
 
     selectDate(date) {
         if (!Calendar.isAvailable(date)) return false;
 
-        State.selectedDate = date;
+        window.State.selectedDate = date;
         EventBus.emit("date:selected", date);
 
         return true;
     },
 
     setGuests(num) {
-        State.selectedGuests = Math.min(CONFIG.maxGuests, num);
-        EventBus.emit("guests:selected", num);
+        const guests = Math.min(CONFIG.maxGuests, num);
+
+        window.State.selectedGuests = guests;
+        EventBus.emit("guests:selected", guests);
     },
 
     async confirm() {
 
         const pkg = State.selectedPackage;
 
-        if (!pkg || !State.selectedDate) {
+        if (!pkg || !window.State.selectedDate || !window.State.currentRegion) {
             throw new Error("MISSING_DATA");
         }
 
-        const price = Pricing.calculate(pkg.price, State.selectedGuests);
+        const price = Pricing.calculate(
+            pkg.price,
+            window.State.selectedGuests
+        );
 
         return await Booking.create({
-            region: State.currentRegion,
+            region: window.State.currentRegion,
             package: pkg,
-            date: State.selectedDate,
-            guests: State.selectedGuests,
+            date: window.State.selectedDate,
+            guests: window.State.selectedGuests,
             price
         });
     }
 };
-
 /* =========================================================
    INIT SYSTEM
 ========================================================= */
@@ -728,37 +731,7 @@ const Dashboard = {
     }
 };
 
-/* =========================================================
-   ANALYTICS ENGINE (REAL TRACKING SIMULATION)
-========================================================= */
 
-const Analytics = {
-
-    trackView() {
-        window.State.analytics.views++;
-        this.save();
-    },
-
-    trackBooking(amount) {
-        window.State.analytics.bookings++;
-        window.State.analytics.revenue += amount;
-        this.save();
-    },
-
-    save() {
-        localStorage.setItem(
-            "jt_analytics",
-            JSON.stringify(window.State.analytics)
-        );
-    },
-
-    load() {
-        const data = localStorage.getItem("jt_analytics");
-        if (data) {
-            window.State.analytics = JSON.parse(data);
-        }
-    }
-};
 
 /* =========================================================
    CALENDAR ENGINE (BOOKING UI CALENDAR)
@@ -999,7 +972,9 @@ document.addEventListener("keydown", (e) => {
     }
 
     if (e.key === "b") {
-        Dashboard.open();
+        if (window.Dashboard?.open) {
+            window.Dashboard.open();
+        }
     }
 
 });
@@ -1438,16 +1413,14 @@ document.addEventListener("contextmenu", function(e){
 /* חסימת גרירה */
 
 document.querySelectorAll("img").forEach(img => {
-
    img.addEventListener("dragstart", function(e){
       e.preventDefault();
    });
-
 });
 
 /* חסימת כמה קיצורי מקשים נפוצים */
 
-document.addEventListener("keydown", function(e){
+document.addEventListener("keydown", function(e) {
 
    if (
       e.key === "F12" ||
@@ -1457,48 +1430,8 @@ document.addEventListener("keydown", function(e){
       e.preventDefault();
    }
 
-});/* ===== תמונות מתחלפות ===== */
+}); // 👈 זה היה חסר
 
-const sliderImages=[
-
-"images/1.jpg",
-"images/2.jpg",
-"images/3.jpg",
-"images/4.jpg",
-"images/5.jpg",
-"images/6.jpg"
-
-];
-
-let currentImage=0;
-
-function changeSlider(){
-
-const slider=document.getElementById("image-slider");
-
-if(!slider) return;
-
-slider.style.opacity="0";
-
-setTimeout(()=>{
-
-currentImage++;
-
-if(currentImage>=sliderImages.length){
-
-currentImage=0;
-
-}
-
-slider.src=sliderImages[currentImage];
-
-slider.style.opacity="1";
-
-},500);
-
-}
-
-setInterval(changeSlider,4000);
 /* ===== פתיחת/סגירת תפריט ===== */
 
 const a11yBtn = document.getElementById("accessibility-btn");
@@ -1539,4 +1472,108 @@ function resetA11y() {
   document.body.classList.remove("grayscale");
   document.body.classList.remove("high-contrast");
   document.body.style.fontSize = "";
-}
+}/* ===== CONTACT FORM EMAILJS ===== */
+
+/* ===== CONTACT FORM EMAILJS + WHATSAPP (FINAL CLEAN VERSION) ===== */
+
+(function () {
+
+  emailjs.init("u9MRRRVgErghPjkuE");
+
+  const form = document.getElementById("contactForm");
+  const modal = document.getElementById("contactModal");
+
+  if (!form) return;
+
+  let isSending = false;
+
+  // הודעות UI (Toast)
+  function showToast(msg, type = "success") {
+
+    const el = document.createElement("div");
+    el.className = `toast toast-${type}`;
+    el.innerText = msg;
+
+    document.body.appendChild(el);
+
+    setTimeout(() => el.classList.add("show"), 50);
+
+    setTimeout(() => {
+      el.classList.remove("show");
+      setTimeout(() => el.remove(), 400);
+    }, 2500);
+  }
+
+  // וואטסאפ אחרי שליחה
+  function sendWhatsApp(firstName, lastName, phone, email) {
+
+    const message =
+`📩 פנייה חדשה מהאתר:
+👤 ${firstName} ${lastName}
+📞 ${phone}
+📧 ${email}`;
+
+    const url = `https://wa.me/972503251251?text=${encodeURIComponent(message)}`;
+
+    setTimeout(() => {
+      window.open(url, "_blank");
+    }, 800);
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (isSending) return;
+    isSending = true;
+
+    const btn = form.querySelector("button[type='submit']");
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = "שולח...";
+    }
+
+    const firstName = document.getElementById("firstName")?.value || "";
+    const lastName  = document.getElementById("lastName")?.value || "";
+    const phone      = document.getElementById("phone")?.value || "";
+    const email      = document.getElementById("email")?.value || "";
+
+    emailjs.send("tripjeru_service", "template_4qoa25e", {
+      first_name: firstName,
+      last_name: lastName,
+      phone: phone,
+      user_email: email
+    })
+    .then(() => {
+
+      showToast("הטופס נשלח בהצלחה ✅", "success");
+
+      form.reset();
+
+      if (modal) {
+        modal.style.display = "none";
+      }
+
+      sendWhatsApp(firstName, lastName, phone, email);
+
+    })
+    .catch((err) => {
+
+      console.log("EmailJS Error:", err);
+      showToast("שגיאה בשליחה ❌", "error");
+
+    })
+    .finally(() => {
+
+      isSending = false;
+
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = "שליחה";
+      }
+
+    });
+
+  });
+
+})();

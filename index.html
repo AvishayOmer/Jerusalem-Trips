@@ -21,14 +21,42 @@
   <div id="logo">ליווי ותכנון טיולים מקצועי</div>
 
   <div class="logo-img-container">
-    <img src="./images/logo.jpg" alt="לוגו טיולי ירושלים" class="logo">
+   <img
+  src="./images/logo.jpg"
+  alt="לוגו טיולי ירושלים"
+  class="logo"
+  loading="lazy"
+  draggable="false"
+  oncontextmenu="return false;"
+>
   </div>
 
-  <section class="gallery-wrapper slider-top">
-    <div class="gallery">
-      <img id="image-slider" src="images/1.jpg" alt="טיולי ירושלים">
-    </div>
-  </section>
+ <section class="gallery-wrapper slider-top">
+
+  <div class="gallery slider-container">
+
+   <img
+  id="image-slider"
+  src="images/1.jpg"
+  alt="טיולי ירושלים - סיורים מודרכים בירושלים"
+  loading="eager"
+  fetchpriority="high"
+  draggable="false"
+  oncontextmenu="return false;"
+>
+
+    <!-- לוגו קטן צף -->
+    <img
+      src="./images/logo.jpg"
+      class="slider-watermark"
+      alt="לוגו טיולי ירושלים"
+      draggable="false"
+      oncontextmenu="return false;"
+    >
+
+  </div>
+
+</section>
 </header>
 
 <section class="text-container">
@@ -108,8 +136,21 @@
   <h2>גלריית התמונות שלנו</h2>
 
   <div class="gallery">
-    <img src="images/11.jpg" alt="תמונה 1">
-    <img src="images/12.jpg" alt="תמונה 2">
+ <img
+  src="images/11.jpg"
+  alt="תמונה בגלריית טיולי ירושלים"
+  loading="lazy"
+  draggable="false"
+  oncontextmenu="return false;"
+>
+
+<img
+  src="images/12.jpg"
+  alt="תמונה בגלריית טיולי ירושלים"
+  loading="lazy"
+  draggable="false"
+  oncontextmenu="return false;"
+>
   </div>
 
   <div class="gallery-navigation">
@@ -125,20 +166,30 @@
    href="https://wa.me/972503251251"
    target="_blank">
 
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-    alt="WhatsApp">
+ <img
+  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+  alt="WhatsApp"
+  loading="lazy"
+  draggable="false"
+  oncontextmenu="return false;"
+>
 
 </a>
 
 <div id="backToTop">↑</div>
 
 <div id="accessibility-btn" title="תפריט נגישות">
+
   <img
     src="https://cdn-icons-png.flaticon.com/512/75/75154.png"
-    alt="נגישות"
+    alt="תפריט נגישות"
+    loading="lazy"
+    draggable="false"
+    oncontextmenu="return false;"
+    ondragstart="return false;"
     style="width: 30px; filter: invert(1);"
   >
+
 </div>
 
 <div id="accessibility-menu" class="a11y-menu">

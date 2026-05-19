@@ -1429,4 +1429,114 @@ window.addEventListener("click", (e) => {
     modal.style.display = "none";
   }
 
+});/* חסימת קליק ימני */
+
+document.addEventListener("contextmenu", function(e){
+   e.preventDefault();
 });
+
+/* חסימת גרירה */
+
+document.querySelectorAll("img").forEach(img => {
+
+   img.addEventListener("dragstart", function(e){
+      e.preventDefault();
+   });
+
+});
+
+/* חסימת כמה קיצורי מקשים נפוצים */
+
+document.addEventListener("keydown", function(e){
+
+   if (
+      e.key === "F12" ||
+      (e.ctrlKey && e.shiftKey && e.key === "I") ||
+      (e.ctrlKey && e.key === "u")
+   ) {
+      e.preventDefault();
+   }
+
+});/* ===== תמונות מתחלפות ===== */
+
+const sliderImages=[
+
+"images/1.jpg",
+"images/2.jpg",
+"images/3.jpg",
+"images/4.jpg",
+"images/5.jpg",
+"images/6.jpg"
+
+];
+
+let currentImage=0;
+
+function changeSlider(){
+
+const slider=document.getElementById("image-slider");
+
+if(!slider) return;
+
+slider.style.opacity="0";
+
+setTimeout(()=>{
+
+currentImage++;
+
+if(currentImage>=sliderImages.length){
+
+currentImage=0;
+
+}
+
+slider.src=sliderImages[currentImage];
+
+slider.style.opacity="1";
+
+},500);
+
+}
+
+setInterval(changeSlider,4000);
+/* ===== פתיחת/סגירת תפריט ===== */
+
+const a11yBtn = document.getElementById("accessibility-btn");
+const a11yMenu = document.getElementById("accessibility-menu");
+
+if (a11yBtn && a11yMenu) {
+  a11yBtn.addEventListener("click", () => {
+    a11yMenu.style.display =
+      a11yMenu.style.display === "block" ? "none" : "block";
+  });
+}
+
+/* ===== מצב שחור/לבן ===== */
+
+function toggleGrayscale() {
+  document.body.classList.toggle("grayscale");
+}
+
+/* ===== ניגודיות גבוהה ===== */
+
+function toggleHighContrast() {
+  document.body.classList.toggle("high-contrast");
+}
+
+/* ===== שינוי גודל טקסט ===== */
+
+function changeFontSize(step) {
+  let current = parseFloat(
+    window.getComputedStyle(document.body).fontSize
+  );
+
+  document.body.style.fontSize = (current + step) + "px";
+}
+
+/* ===== איפוס ===== */
+
+function resetA11y() {
+  document.body.classList.remove("grayscale");
+  document.body.classList.remove("high-contrast");
+  document.body.style.fontSize = "";
+}

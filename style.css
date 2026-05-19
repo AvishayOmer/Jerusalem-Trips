@@ -1,1067 +1,992 @@
-/* =========================================================
-   ULTRA UI SYSTEM — PART 1 / 3
-   BASE • ROOT • RESET • TYPOGRAPHY
-========================================================= */
 
-:root{
-  --primary:#15cfe0;
-  --secondary:#008793;
-  --dark:#0b0b0b;
-  --light:#ffffff;
-
-  --glass:rgba(255,255,255,0.08);
-  --glass-strong:rgba(255,255,255,0.14);
-
-  --shadow:0 15px 45px rgba(0,0,0,0.45);
-
-  --radius:20px;
-  --transition:0.3s ease;
+/* ===================== CSS כללי וניקוי כפילויות ===================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color:#ffffff;
 }
 
-/* ================= RESET ================= */
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  direction: rtl;
+  font-family: 'Varela Round', Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-html{
-  scroll-behavior:smooth;
-  overflow-x:hidden;
+
+body {
+  direction: rtl;
+  font-family: 'Varela Round', Arial, sans-serif;
+
+  /* 🔹 תמונת רקע */
+  background-image: url("images/3.jpg"); /* שנה לשם התמונה שלך */
+  background-size: cover;        /* מכסה את כל המסך */
+  background-position: center;   /* ממורכז */
+  background-repeat: no-repeat;  /* בלי חזרות */
+  background-attachment: fixed;  /* אפקט יפה במחשב */
+
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  z-index: 0;
+
+}
+body::before {
+  content: "";
+  position: fixed;        /* מכסה את כל המסך */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.32); /* עוצמת הכהות – אפשר לשחק עם המספר */
+  z-index: 0;            /* נשאר מאחורי התוכן */
 }
 
-body{
-  font-family:'Varela Round', Arial, sans-serif;
-  background:#050505;
-  color:#fff;
-  line-height:1.7;
-  overflow-x:hidden;
-  min-height:100vh;
+
+/* ===================== כותרות ופסקאות ===================== */
+h2, p {
+  margin-bottom: 20px;
 }
 
-/* ================= BACKGROUND LAYERS ================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9));
-  z-index:-2;
+/* ===================== קישורים ===================== */
+a {
+  text-decoration: none;
+  color: #008793;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #004d7a;
 }
 
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle at top, rgba(21,207,224,0.08), transparent 60%);
-  z-index:-1;
+/* ===================== סידור בסיסי - header, section ===================== */
+header, section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  animation: floatUpDown 3s ease-in-out infinite;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ================= TYPOGRAPHY ================= */
-
-h1,h2,h3,h4,p{
-  margin-bottom:16px;
+/* ===================== מצב כהה ===================== */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
 }
 
-h1{
-  font-size:clamp(2.2rem,5vw,4.5rem);
+body.dark-mode header,
+body.dark-mode section {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
 }
 
-h2{
-  font-size:clamp(1.6rem,3vw,2.8rem);
+body.dark-mode a {
+  color: #90caf9;
 }
 
-h3{
-  font-size:1.4rem;
+/* ===================== גלריה ===================== */
+.gallery-wrapper {
+  background-color: #fff;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 1.2s ease-in-out;
 }
 
-p{
-  font-size:1.05rem;
-  color:#eaeaea;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  margin: auto;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-/* =========================================================
-   ULTRA UI SYSTEM — PART 2 ADD-ON
-   ADVANCED FEATURES • ANIMATIONS • UX LAYER • UTILITIES
-========================================================= */
-
-/* ================= UTILITY CLASSES ================= */
-
-.hidden{
-  display:none !important;
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease, opacity 1s ease-in-out;
+  cursor: pointer;
 }
 
-.center{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.gallery img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
-.fade-in{
-  animation:fadeIn 0.5s ease forwards;
+/* במצב כהה גלריה מעט כהה */
+body.dark-mode .gallery img {
+  filter: brightness(80%) grayscale(100%);
+}
+body.dark-mode .gallery img:hover {
+  filter: brightness(100%) grayscale(0%);
 }
 
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
+/* ===================== כפתורים ===================== */
+#modeToggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #ff6b6b, #ffcc00);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1000;
+  animation: pulseButton 2.5s infinite ease-in-out;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+#modeToggle:hover {
+  background: #ff8c00;
+  transform: scale(1.1);
 }
 
-.slide-up{
-  animation:slideUp 0.5s ease forwards;
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  background: #008793;
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+#backToTop.show {
+  display: flex;
+}
+#backToTop:hover {
+  background-color: #004d7a;
 }
 
-@keyframes slideUp{
-  from{transform:translateY(20px);opacity:0}
-  to{transform:translateY(0);opacity:1}
+#whatsapp-chat {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  animation: pulse 2s infinite ease-in-out;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+#whatsapp-chat:hover {
+  background-color: #128c7e;
+  transform: scale(1.1);
+}
+#whatsapp-chat img {
+  width: 35px;
+  height: 35px;
 }
 
-/* ================= SCROLL REVEAL SYSTEM ================= */
-
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:0.8s ease;
+/* ===================== לוגו ===================== */
+.logo-img-container {
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
 }
 
-.reveal.active{
-  opacity:1;
-  transform:translateY(0);
+.logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.logo:hover {
+  transform: scale(1.1);
 }
 
-/* ================= PREMIUM SHADOW LAYERS ================= */
-
-.shadow-soft{
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+#logo {
+  font-size: 3em;
+  font-weight: bold;
+  color: #15cfe0;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.2);
+  animation: slideInFromTop 1s ease-out forwards;
+  cursor: default;
 }
 
-.shadow-heavy{
-  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+/* ===================== אנימציות ===================== */
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-/* ================= HOVER MICRO INTERACTIONS ================= */
-
-.hover-lift{
-  transition:0.3s ease;
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-.hover-lift:hover{
-  transform:translateY(-6px);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.hover-scale{
-  transition:0.3s ease;
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.hover-scale:hover{
-  transform:scale(1.05);
+@keyframes slideInFromTop {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* ================= GLASS VARIANTS ================= */
-
-.glass-light{
-  background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.06);
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.glass-strong{
-  background:rgba(255,255,255,0.14);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,0.12);
-}
-
-/* ================= BADGES ================= */
-
-.badge{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:12px;
-  background:var(--primary);
-  color:#000;
-  font-weight:bold;
-}
-
-/* ================= LOADING STATES ================= */
-
-.skeleton{
-  background:linear-gradient(
-    90deg,
-    rgba(255,255,255,0.05),
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.05)
-  );
-  background-size:200% 100%;
-  animation:loading 1.2s infinite;
-}
-
-@keyframes loading{
-  0%{background-position:200% 0}
-  100%{background-position:-200% 0}
-}
-
-/* ================= BUTTON VARIANTS ================= */
-
-.btn-outline{
-  background:transparent;
-  border:2px solid var(--primary);
-  color:var(--primary);
-}
-
-.btn-outline:hover{
-  background:var(--primary);
-  color:#000;
-}
-
-/* ================= FORM ENHANCEMENTS ================= */
-
-input,textarea{
-  outline:none;
-  transition:0.3s ease;
-}
-
-input:focus,textarea:focus{
-  transform:scale(1.02);
-  box-shadow:0 0 0 2px rgba(21,207,224,0.4);
-}
-
-/* ================= NAVIGATION EFFECTS ================= */
-
-.nav-link{
-  position:relative;
-}
-
-.nav-link::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-4px;
-  width:0%;
-  height:2px;
-  background:var(--primary);
-  transition:0.3s ease;
-}
-
-.nav-link:hover::after{
-  width:100%;
-}
-
-/* ================= IMAGE FILTER SYSTEM ================= */
-
-.img-dark{
-  filter:brightness(0.7);
-}
-
-.img-hover-bright:hover{
-  filter:brightness(1.1);
-}
-
-/* ================= MODAL ANIMATIONS ================= */
-
-.modal.open{
-  animation:modalIn 0.3s ease forwards;
-}
-
-@keyframes modalIn{
-  from{
-    opacity:0;
-    transform:scale(0.95);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-/* ================= LAYOUT HELPERS ================= */
-
-.grid-center{
-  display:grid;
-  place-items:center;
-}
-
-.flex-between{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-/* ================= SPACING UTILITIES ================= */
-
-.mt-10{margin-top:10px;}
-.mt-20{margin-top:20px;}
-.mt-40{margin-top:40px;}
-
-.mb-10{margin-bottom:10px;}
-.mb-20{margin-bottom:20px;}
-.mb-40{margin-bottom:40px;}
-
-/* ================= Z-INDEX LAYERS ================= */
-
-.z-1{z-index:1;}
-.z-10{z-index:10;}
-.z-100{z-index:100;}
-.z-max{z-index:999999;}
-
-/* ================= MOBILE FIXES EXTENSION ================= */
-
-@media(max-width:768px){
-
-  .hide-mobile{
-    display:none !important;
+/* ===================== רספונסיביות ===================== */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
   }
 
-  .text-center-mobile{
-    text-align:center;
+  .gallery-wrapper {
+    padding: 20px;
+    margin: 20px;
   }
 
-  .stack-mobile{
-    flex-direction:column;
+  #logo {
+    font-size: 1.8em;
+  }
+  
+  /* אם יש אלמנטים נוספים כמו services, description */
+  .services, .description {
+    font-size: 14px;
+  }
+}
+/* מונע גרירה של תמונות וסימון טקסט */
+.gallery img {
+  -webkit-user-drag: none;       /* Safari, Chrome */
+  -khtml-user-drag: none;        /* Konqueror */
+  -moz-user-select: none;         /* Firefox */
+  -webkit-user-select: none;      /* Safari, Chrome */
+  -ms-user-select: none;          /* Internet Explorer/Edge */
+  user-select: none;              /* סטנדרטי */
+}
+
+
+#openContactModal{
+  background-color: rgb(6 103 64 / 82%);
+  width: 350px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius:24px;
+  font-size: larger;
+  color: #ffd700;
+  font-weight: 500;
   }
 
-}/* =========================================================
-   ULTRA UI SYSTEM — PART 3 / 3
-   ENTERPRISE PRO LAYER • THEME ENGINE • STATES • UX CORE
-========================================================= */
+#openContactModal:hover{
+  background-color: rgba(26, 68, 31, 0.507);
 
-/* ================= THEME VARIABLES (LIGHT MODE) ================= */
-
-:root{
-
-  --bg:#050505;
-  --text:#ffffff;
-
-  --card:rgba(255,255,255,0.08);
-  --card-strong:rgba(255,255,255,0.14);
-
-  --primary:#15cfe0;
-  --secondary:#008793;
-
-  --shadow:0 15px 45px rgba(0,0,0,0.45);
-
-  --radius:20px;
 }
 
-/* ================= LIGHT MODE ================= */
 
-body.light-mode{
-
-  --bg:#f5f7fb;
-  --text:#111;
-
-  --card:rgba(0,0,0,0.05);
-  --card-strong:rgba(0,0,0,0.08);
-
-  --shadow:0 15px 35px rgba(0,0,0,0.15);
+/* גלריה מתחלפת בראש */
+.slider-top {
+  margin-top: 20px;
 }
 
-/* apply theme */
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  transition:0.4s ease;
+.slider img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
 }
 
-/* ================= GLOBAL SURFACE SYSTEM ================= */
-
-.surface{
-  background:var(--card);
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:var(--radius);
+/* footer + לוגו בתחתית */
+.site-footer {
+  margin-top: 80px;
+  padding: 40px 0;
+  text-align: center;
 }
 
-.surface-strong{
-  background:var(--card-strong);
-  backdrop-filter:blur(18px);
+.footer-logo {
+  width: 120px;
+  animation: floatUpDown 3s ease-in-out infinite;
 }
 
-/* ================= STATE SYSTEM ================= */
-
-.is-hidden{
-  opacity:0 !important;
-  pointer-events:none !important;
-  transform:translateY(10px);
+/* ================= מודאל יצירת קשר ================= */
+.modal {
+  display: none; /* מוסתר כברירת מחדל */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
 }
 
-.is-active{
-  opacity:1 !important;
-  transform:translateY(0);
+.modal-content {
+  background: #222;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeInUp 0.5s ease;
 }
 
-.is-loading{
-  position:relative;
-  overflow:hidden;
+.modal-content input,
+.modal-content button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
 }
 
-.is-loading::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.15),
-    transparent
-  );
-  animation:shimmer 1.2s infinite;
+.modal-content button {
+  background: #15cfe0;
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-@keyframes shimmer{
-  0%{transform:translateX(-100%)}
-  100%{transform:translateX(100%)}
+.modal-content button:hover {
+  background: #0fb3c2;
 }
 
-/* ================= BUTTON SYSTEM PRO ================= */
-
-.btn{
-  padding:14px 24px;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s ease;
+.close {
+  font-size: 28px;
+  cursor: pointer;
+  float: left;
 }
 
-.btn-primary{
-  background:linear-gradient(45deg,var(--primary),var(--secondary));
-  color:#000;
+
+/* כפתור מעבר לגלריה */
+.btn-gallery {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, #15cfe0, #008793);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Varela Round', sans-serif;
 }
 
-.btn-primary:hover{
-  transform:translateY(-4px);
+.btn-gallery:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(21, 207, 224, 0.4);
 }
 
-.btn-ghost{
-  background:transparent;
-  border:1px solid var(--primary);
-  color:var(--primary);
+/* התאמת המודאל לגלריה רחבה */
+.full-gallery-content {
+  max-width: 90% !important;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
-.btn-ghost:hover{
-  background:var(--primary);
-  color:#000;
+.full-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px 0;
 }
 
-/* ================= CARD SYSTEM ================= */
-
-.card{
-  padding:20px;
-  border-radius:var(--radius);
-  background:var(--card);
-  box-shadow:var(--shadow);
-  transition:0.3s ease;
+.full-gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s;
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  background:var(--card-strong);
+.full-gallery-grid img:hover {
+  transform: scale(1.03);
 }
 
-/* ================= NAVIGATION PRO ================= */
-
-.nav{
-  display:flex;
-  gap:20px;
-  align-items:center;
+.close-gallery {
+    color: white;
+    position: sticky;
+    top: 0;
 }
 
-.nav a{
-  position:relative;
-  padding:8px 0;
+/* עיצוב הקישור לדף הגלריה */
+.gallery-navigation {
+    margin-top: 30px;
+    z-index: 1;
 }
 
-.nav a::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:0%;
-  height:2px;
-  background:var(--primary);
-  transition:0.3s ease;
+.btn-gallery-link {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #15cfe0, #0fb3c2);
+    color: #000 !important; /* טקסט שחור בולט על הרקע התכלת */
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(21, 207, 224, 0.3);
+    transition: all 0.3s ease;
 }
 
-.nav a:hover::after{
-  width:100%;
+.btn-gallery-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(21, 207, 224, 0.5);
+    background: linear-gradient(45deg, #0fb3c2, #15cfe0);
 }
 
-/* ================= HERO GRADIENT OVERLAY ================= */
-
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.2),
-    rgba(0,0,0,0.85)
-  );
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .btn-gallery-link {
+        width: 80%;
+        padding: 12px 20px;
+    }
 }
 
-/* ================= SCROLL SNAP SYSTEM ================= */
-
-.snap-container{
-  scroll-snap-type:y mandatory;
-  overflow-y:auto;
-  height:100vh;
+/* עיצוב כפתור הקישור בדף הבית */
+.btn-gallery-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 35px;
+    background: #15cfe0;
+    color: #000 !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.snap-item{
-  scroll-snap-align:start;
+.btn-gallery-link:hover {
+    transform: scale(1.05);
+    background: #0fb3c2;
 }
 
-/* ================= PERFORMANCE OPTIMIZATION ================= */
-
-.gpu{
-  transform:translateZ(0);
-  will-change:transform,opacity;
+/* עיצוב דף הגלריה */
+.back-home {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 1.1em;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 20px;
+    border-radius: 20px;
 }
 
-/* ================= MICRO INTERACTIONS ================= */
-
-.click-scale:active{
-  transform:scale(0.95);
+.gallery-full-container {
+    padding: 40px 5%;
 }
 
-.hover-glow:hover{
-  box-shadow:0 0 20px rgba(21,207,224,0.4);
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-/* ================= LOADER SYSTEM ================= */
-
-.loader{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:3px solid rgba(255,255,255,0.2);
-  border-top-color:var(--primary);
-  animation:spin 1s linear infinite;
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.4s;
 }
 
-@keyframes spin{
-  to{transform:rotate(360deg)}
+.gallery-grid img:hover {
+    transform: scale(1.02) rotate(1deg);
+    filter: grayscale(0%);
 }
 
-/* ================= ACCESSIBILITY PRO ================= */
 
-.high-contrast{
-  filter:contrast(1.6);
+/* 1. תיקון השכבה הכהה - הוספת pointer-events: none כדי שלא תחסום את העכבר */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.32);
+    z-index: -1; /* חייב להיות מינוס 1 */
+    pointer-events: none; /* מאפשר לעכבר "לעבור דרך" השכבה */
 }
 
-.grayscale{
-  filter:grayscale(1);
+/* 2. הגבלת האנימציה - אל תפעיל אותה על כל ה-section, זה משגע את הגלילה */
+header, section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    /* הסרנו מכאן את ה-animation: floatUpDown */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ================= RESPONSIVE FINAL LAYER ================= */
+/* הפעל אנימציה רק על אלמנטים ספציפיים שלא מפריעים לגלילה, כמו הלוגו */
+.logo, #whatsapp-chat {
+    animation: floatUpDown 3s ease-in-out infinite;
+}
 
-@media(max-width:768px){
+/* 3. תיקון הגלריה והקישור */
+.gallery-wrapper {
+    position: relative;
+    z-index: 1; /* מוודא שהיא מעל הרקע */
+    background-color: rgba(255, 255, 255, 0.9); /* מעט שקיפות במקום לבן אטום */
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+}
 
-  .nav{
-    flex-direction:column;
-    gap:10px;
+.gallery-navigation {
+    position: relative;
+    z-index: 10;
+    margin-top: 30px;
+    pointer-events: auto; /* מוודא שהכפתור לחיץ */
+}
+
+/* מניעת בחירה וגרירה של תמונות בכל האתר */
+img {
+    -webkit-user-drag: none;    /* כרום וספארי */
+    -khtml-user-drag: none;
+    -moz-user-select: none;     /* פיירפוקס */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: auto;       /* מוודא שהן עדיין לחיצות אם תרצה להוסיף הגדלה */
+}
+
+.gallery-grid div {
+    position: relative;
+}
+
+/* יצירת שכבה שקופה מעל כל תמונה בגלריה */
+.gallery-grid div::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* הגנת גלריה - שכבה בלתי נראית מעל התמונות */
+.gallery-grid-protected {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.img-container img {
+    width: 20%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* השכבה המגינה */
+.img-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,0); /* שקוף לחלוטין */
+    cursor: default;
+}
+
+.img-container:hover img {
+    transform: scale(1.05);
+}
+
+/* הגדרות המיכל */
+.img-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #000; /* רקע שחור למקרה שהתמונה נטענת לאט */
+}
+
+/* התמונה הראשית */
+.img-container img:not(.watermark) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* שכבה תחתונה */
+}
+
+/* הלוגו הצף (Watermark) */
+.watermark {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 60px; /* הגדלתי מעט כדי שתראה את זה בבירור */
+    height: auto;
+    opacity: 0.7; /* שקיפות חלקית */
+    z-index: 5;   /* שכבה עליונה מעל התמונה */
+    pointer-events: none; /* שלא יפריע לעכבר */
+    border-radius: 99px;
+}
+
+/* שכבת ההגנה השקופה - מעל הכל */
+.img-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* השכבה הכי גבוהה שחוסמת קליק ימני */
+    background: rgba(0,0,0,0);
+}
+
+/* עיצוב מודאל התמונה הגדולה */
+.image-viewer-modal {
+    display: none; /* מוסתר כברירת מחדל */
+    position: fixed;
+    z-index: 9999; /* מעל הכל, כולל שכבות ההגנה */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+}
+
+.modal-content-full {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 10px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: zoomIn 0.3s ease;
+}
+
+.close-viewer {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+@keyframes zoomIn {
+    from { transform: translateY(-50%) scale(0.8); opacity: 0; }
+    to { transform: translateY(-50%) scale(1); opacity: 1; }
+}
+
+/* עיצוב ה-Footer */
+.site-footer {
+    background: rgba(0, 0, 0, 0.85); /* רקע כהה חצי שקוף */
+    color: #ffffff;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 3px solid #15cfe0; /* פס תכלת דק למעלה */
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-slogan {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #15cfe0;
+    margin-bottom: 10px;
+}
+
+.footer-inspiration {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    margin: 20px auto;
+    width: 60%;
+}
+
+.footer-copy {
+    font-size: 0.9em;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .footer-slogan {
+        font-size: 1.2em;
+    }
+    .footer-inspiration {
+        font-size: 1em;
+    }
+}
+
+/* כפתור הנגישות */
+#accessibility-btn {
+    position: fixed;
+    bottom: 150px; /* מעל הוואטסאפ */
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background: #008793;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+#accessibility-btn:hover { transform: scale(1.1); }
+
+/* תפריט הנגישות */
+.a11y-menu {
+    display: none;
+    position: fixed;
+    bottom: 215px;
+    right: 20px;
+    width: 250px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid #15cfe0;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 2000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.a11y-menu h3 {
+    color: #15cfe0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.a11y-menu button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Varela Round', sans-serif;
+    transition: 0.3s;
+}
+
+.a11y-menu button:hover {
+    background: #15cfe0;
+    color: #000;
+}
+
+/* מחלקות פונקציונליות לנגישות */
+/* שנה את זה */
+html.grayscale { 
+    filter: grayscale(100%) !important; 
+}
+
+/* וודא שהכפתורים נשארים מעל הפילטר אם צריך */
+#accessibility-btn, #accessibility-menu, #whatsapp-chat, #backToTop {
+    z-index: 99999;
+}
+.high-contrast { background: #000 !important; color: #ffff00 !important; }
+.high-contrast * { color: #ffff00 !important; border-color: #ffff00 !important; }
+
+
+/* ================= גלריה תחתונה – מובייל ================= */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr; /* תמונה מתחת לתמונה */
+    max-width: 100%;
   }
 
-  .card{
-    padding:14px;
+  .gallery img {
+    height: auto;
+    
+  }
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.32);
+  z-index: -1;
+  pointer-events: none;
+}
+/* עיצוב מיכל השירותים */
+.services-section {
+  padding: 20px;
+  background: #111;
+}#whatsapp-chat {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+#whatsapp-chat img {
+  width: 35px;
+  height: 35px;
+}/* ===== גלריה ===== */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.gallery img {
+  width: 280px;
+  max-width: 90%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}/* ===== מובייל ===== */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
   }
 
-  .btn{
-    width:100%;
+  .gallery img {
+    width: 95%;
+    height: 220px;
   }
 
-}
-
-/* ================= PRINT MODE ================= */
-
-@media print{
-
-  body{
-    background:#fff !important;
-    color:#000 !important;
+  .service-card {
+    width: 95%;
   }
 
-  .no-print{
-    display:none !important;
-  }
-}/* =========================================================
-   ULTRA UI SYSTEM — PART 3 / 3
-   ENTERPRISE PRO LAYER • THEME ENGINE • STATES • UX CORE
-========================================================= */
-
-/* ================= THEME VARIABLES (LIGHT MODE) ================= */
-
-:root{
-
-  --bg:#050505;
-  --text:#ffffff;
-
-  --card:rgba(255,255,255,0.08);
-  --card-strong:rgba(255,255,255,0.14);
-
-  --primary:#15cfe0;
-  --secondary:#008793;
-
-  --shadow:0 15px 45px rgba(0,0,0,0.45);
-
-  --radius:20px;
-}
-
-/* ================= LIGHT MODE ================= */
-
-body.light-mode{
-
-  --bg:#f5f7fb;
-  --text:#111;
-
-  --card:rgba(0,0,0,0.05);
-  --card-strong:rgba(0,0,0,0.08);
-
-  --shadow:0 15px 35px rgba(0,0,0,0.15);
-}
-
-/* apply theme */
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  transition:0.4s ease;
-}
-
-/* ================= GLOBAL SURFACE SYSTEM ================= */
-
-.surface{
-  background:var(--card);
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:var(--radius);
-}
-
-.surface-strong{
-  background:var(--card-strong);
-  backdrop-filter:blur(18px);
-}
-
-/* ================= STATE SYSTEM ================= */
-
-.is-hidden{
-  opacity:0 !important;
-  pointer-events:none !important;
-  transform:translateY(10px);
-}
-
-.is-active{
-  opacity:1 !important;
-  transform:translateY(0);
-}
-
-.is-loading{
-  position:relative;
-  overflow:hidden;
-}
-
-.is-loading::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.15),
-    transparent
-  );
-  animation:shimmer 1.2s infinite;
-}
-
-@keyframes shimmer{
-  0%{transform:translateX(-100%)}
-  100%{transform:translateX(100%)}
-}
-
-/* ================= BUTTON SYSTEM PRO ================= */
-
-.btn{
-  padding:14px 24px;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s ease;
-}
-
-.btn-primary{
-  background:linear-gradient(45deg,var(--primary),var(--secondary));
-  color:#000;
-}
-
-.btn-primary:hover{
-  transform:translateY(-4px);
-}
-
-.btn-ghost{
-  background:transparent;
-  border:1px solid var(--primary);
-  color:var(--primary);
-}
-
-.btn-ghost:hover{
-  background:var(--primary);
-  color:#000;
-}
-
-/* ================= CARD SYSTEM ================= */
-
-.card{
-  padding:20px;
-  border-radius:var(--radius);
-  background:var(--card);
-  box-shadow:var(--shadow);
-  transition:0.3s ease;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  background:var(--card-strong);
-}
-
-/* ================= NAVIGATION PRO ================= */
-
-.nav{
-  display:flex;
-  gap:20px;
-  align-items:center;
-}
-
-.nav a{
-  position:relative;
-  padding:8px 0;
-}
-
-.nav a::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:0%;
-  height:2px;
-  background:var(--primary);
-  transition:0.3s ease;
-}
-
-.nav a:hover::after{
-  width:100%;
-}
-
-/* ================= HERO GRADIENT OVERLAY ================= */
-
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.2),
-    rgba(0,0,0,0.85)
-  );
-}
-
-/* ================= SCROLL SNAP SYSTEM ================= */
-
-.snap-container{
-  scroll-snap-type:y mandatory;
-  overflow-y:auto;
-  height:100vh;
-}
-
-.snap-item{
-  scroll-snap-align:start;
-}
-
-/* ================= PERFORMANCE OPTIMIZATION ================= */
-
-.gpu{
-  transform:translateZ(0);
-  will-change:transform,opacity;
-}
-
-/* ================= MICRO INTERACTIONS ================= */
-
-.click-scale:active{
-  transform:scale(0.95);
-}
-
-.hover-glow:hover{
-  box-shadow:0 0 20px rgba(21,207,224,0.4);
-}
-
-/* ================= LOADER SYSTEM ================= */
-
-.loader{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:3px solid rgba(255,255,255,0.2);
-  border-top-color:var(--primary);
-  animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-/* ================= ACCESSIBILITY PRO ================= */
-
-.high-contrast{
-  filter:contrast(1.6);
-}
-
-.grayscale{
-  filter:grayscale(1);
-}
-
-/* ================= RESPONSIVE FINAL LAYER ================= */
-
-@media(max-width:768px){
-
-  .nav{
-    flex-direction:column;
-    gap:10px;
+  #logo {
+    font-size: 20px;
+    text-align: center;
   }
 
-  .card{
-    padding:14px;
+  .logo {
+    width: 80px;
   }
 
-  .btn{
-    width:100%;
-  }
-
+}#backToTop {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 55px;
+  height: 55px;
+  background: #15cfe0;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 99999;
+  font-size: 24px;
+}#whatsapp-chat {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
-/* ================= PRINT MODE ================= */
-
-@media print{
-
-  body{
-    background:#fff !important;
-    color:#000 !important;
-  }
-
-  .no-print{
-    display:none !important;
-  }
-}/* =========================================================
-   BOOKING SYSTEM ADD-ON — SAFE EXTENSION ONLY
-   (DO NOT OVERRIDE EXISTING STYLES)
-========================================================= */
-
-/* ================= BOOKING WRAPPER (SAFE LAYER) ================= */
-
-.booking-wrap{
-  width:100%;
-  max-width:1200px;
-  margin:50px auto;
-  padding:20px;
-}
-
-/* ================= BOOKING GRID LAYOUT ================= */
-
-.booking-grid{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:20px;
-}
-
-/* ================= BOOKING PANEL ================= */
-
-.booking-panel{
-  padding:20px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-/* ================= SAFE INPUT EXTENSION ================= */
-
-.booking-panel input,
-.booking-panel select{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:12px;
-  border:none;
-  outline:none;
-  transition:0.25s ease;
-}
-
-.booking-panel input:focus,
-.booking-panel select:focus{
-  transform:scale(1.02);
-  box-shadow:0 0 0 2px rgba(21,207,224,0.35);
-}
-
-/* ================= MINI CALENDAR UI ================= */
-
-.mini-calendar{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:6px;
-  margin-top:15px;
-}
-
-.mini-day{
-  padding:10px;
-  text-align:center;
-  border-radius:10px;
-  background:rgba(255,255,255,0.06);
-  cursor:pointer;
-  transition:0.25s ease;
-  font-size:0.9rem;
-}
-
-.mini-day:hover{
-  background:var(--primary);
-  color:#000;
-}
-
-.mini-day.selected{
-  background:var(--secondary);
-  color:#fff;
-  transform:scale(1.05);
-}
-
-/* ================= TIME PICKER ================= */
-
-.time-picker{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:15px;
-}
-
-.time-chip{
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,0.08);
-  cursor:pointer;
-  transition:0.25s ease;
-  font-size:0.9rem;
-}
-
-.time-chip:hover{
-  background:var(--primary);
-  color:#000;
-}
-
-.time-chip.active{
-  background:var(--primary);
-  color:#000;
-}
-
-/* ================= BOOKING INFO BOX ================= */
-
-.booking-info{
-  padding:18px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.1);
-}
-
-/* ================= PRICE DISPLAY ================= */
-
-.price-display{
-  font-size:1.4rem;
-  font-weight:bold;
-  color:var(--primary);
-}
-
-/* ================= SAFE BUTTON EXTENSION ================= */
-
-.booking-submit{
-  width:100%;
-  margin-top:15px;
-  padding:14px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(45deg,var(--primary),var(--secondary));
-  color:#000;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.3s ease;
-}
-
-.booking-submit:hover{
-  transform:translateY(-3px);
-}
-
-/* ================= STEP INDICATOR (SAFE) ================= */
-
-.step-indicator{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:15px;
-}
-
-.step-dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.2);
-}
-
-.step-dot.active{
-  background:var(--primary);
-  transform:scale(1.2);
-}
-
-/* ================= LOADING OVERLAY (SAFE EXTENSION) ================= */
-
-.booking-loader{
-  position:absolute;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(6px);
-}
-
-.booking-loader.show{
-  display:flex;
-}
-
-/* ================= STATUS MESSAGES ================= */
-
-.status-success{
-  padding:10px;
-  border-radius:10px;
-  background:rgba(0,255,120,0.12);
-  border:1px solid rgba(0,255,120,0.35);
-}
-
-.status-error{
-  padding:10px;
-  border-radius:10px;
-  background:rgba(255,0,0,0.12);
-  border:1px solid rgba(255,0,0,0.35);
-}
-
-/* ================= MOBILE SAFE EXTENSION ================= */
-
-@media(max-width:768px){
-
-  .booking-grid{
-    grid-template-columns:1fr;
-  }
-
-  .step-indicator{
-    flex-direction:column;
-    gap:6px;
-  }
-
+#whatsapp-chat img {
+  width: 34px;
+}#openContactModal {
+  position: fixed;
+  bottom: 160px;
+  right: 20px;
+  z-index: 99999;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 30px;
+  background: #15cfe0;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
 }

@@ -21,7 +21,40 @@ const CONFIG = {
         theme: "jt_theme"
     }
 };
+/* ===== סליידר ראשי ===== */
 
+const sliderImages = [
+  "images/1.jpg",
+  "images/2.jpg",
+  "images/3.jpg",
+  "images/4.jpg",
+  "images/5.jpg",
+  "images/6.jpg"
+];
+
+let currentSlide = 0;
+
+function changeSliderImage() {
+
+  const slider = document.getElementById("image-slider");
+
+  if (!slider) return;
+
+  currentSlide++;
+
+  if (currentSlide >= sliderImages.length) {
+    currentSlide = 0;
+  }
+
+  slider.style.opacity = "0";
+
+  setTimeout(() => {
+    slider.src = sliderImages[currentSlide];
+    slider.style.opacity = "1";
+  }, 400);
+}
+
+setInterval(changeSliderImage, 4000);
 /* =========================================================
    GLOBAL STATE MANAGER
 ========================================================= */
@@ -1353,3 +1386,47 @@ function init() {
 document.addEventListener("DOMContentLoaded", init);
 
 })();
+/* ===== חזרה למעלה ===== */
+
+const backBtn = document.getElementById("backToTop");
+
+if (backBtn) {
+
+  backBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  });
+
+}/* ===== צור קשר ===== */
+
+const modal = document.getElementById("contactModal");
+const openBtn = document.getElementById("openContactModal");
+const closeBtn = document.querySelector(".close");
+
+if (openBtn) {
+
+  openBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+}
+
+if (closeBtn) {
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+}
+
+window.addEventListener("click", (e) => {
+
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+
+});

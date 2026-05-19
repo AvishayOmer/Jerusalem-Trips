@@ -1,751 +1,195 @@
+
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>טיולי ירושלים - דף הבית</title>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="style.css">
 
-<title>טיולי ירושלים | פרימיום סיורים בישראל</title>
-
-<meta name="description"
-content="טיולי ירושלים - סיורים, הדרכה, אבטחה, גלריות, מסעדות כשרות וחוויות בכל רחבי ישראל." />
-
-<meta name="keywords"
-content="טיולים בירושלים, סיורים בישראל, אילת, תל אביב, מצדה, ים המלח, טיולי ירושלים" />
-
-<meta name="theme-color" content="#0b0b0b">
-
-<link rel="icon" href="./images/favicon.ico" />
-<link rel="stylesheet" href="style.css" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
-<body oncontextmenu="return false">
+<body>
 
-<!-- ================= INTRO LOADER ================= -->
+<header>
+  <div id="logo">שלום</div>
+  <div id="logo">wellcome</div>
+  <div id="logo">ליווי ותכנון טיולים מקצועי</div>
 
-<div class="intro-loader" id="introLoader">
+  <div class="logo-img-container">
+    <img src="./images/logo.jpg" alt="לוגו טיולי ירושלים" class="logo">
+  </div>
 
-<div class="intro-logo-wrap">
-
-<img src="./images/logo.jpg"
-class="intro-logo"
-alt="לוגו טיולי ירושלים">
-
-<h1>טיולי ירושלים</h1>
-
-<p>חווית טיולים ברמה אחרת</p>
-
-</div>
-
-</div>
-
-<!-- ================= VIDEO / IMAGE HERO ================= -->
-
-<header class="hero-header">
-
-<!-- תמונת רקע מתחלפת -->
-<div class="hero-background">
-
-<img id="heroSlider"
-src="./images/1.jpg"
-alt="טיולי ירושלים">
-
-<div class="hero-overlay"></div>
-
-</div>
-
-<!-- לוגו צף -->
-<div class="floating-logo-container">
-
-<img
-src="./images/logo.jpg"
-alt="לוגו"
-class="floating-logo">
-
-</div>
-
-<!-- תוכן עליון -->
-<div class="hero-content">
-
-<h1 class="main-title">
-טיולי ירושלים
-</h1>
-
-<p class="hero-subtitle">
-ליווי • אבטחה • הדרכה • הפקות • סיורים פרטיים
-</p>
-
-<div class="hero-buttons">
-
-<button class="hero-btn"
-onclick="openBookingPanel()">
-
-📅 הזמנת סיור
-
-</button>
-
-<a href="#gallery-section"
-class="hero-btn secondary-btn">
-
-📸 לצפייה בגלריה
-
-</a>
-
-</div>
-
-</div>
-
+  <section class="gallery-wrapper slider-top">
+    <div class="gallery">
+      <img id="image-slider" src="images/1.jpg" alt="טיולי ירושלים">
+    </div>
+  </section>
 </header>
 
-<!-- ================= FLOATING SOCIAL ================= -->
+<section class="text-container">
+  <h2>ברוכים הבאים לטיולי ירושלים</h2>
+  <p>שירות אישי ומקצועי מותאם אישית לכל לקוח 24/6</p>
+  <p>ניסיון רב של מספר שנים בתחום</p>
+  <p>לקוחות רבים ומרוצים</p>
+  <p>גמישות בזמנים בעת הזמנות חדשות</p>
+</section>
 
-<div id="whatsapp-chat">
+<section class="services-section">
+  <h2>השירותים שלנו</h2>
+  <p>אנחנו מעניקים מעטפת מקצועית לכל טיול ואירוע</p>
 
-<a
-href="https://wa.me/972000000000"
-target="_blank">
+  <button id="toggleServicesBtn" class="btn-primary">
+    🔍 לצפייה במגוון השירותים
+  </button>
 
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-alt="WhatsApp">
+  <div id="servicesGrid" class="services-expandable">
+
+    <div class="service-card">
+      <div class="icon">🚑</div>
+      <h3>אבטחה רפואית</h3>
+      <p>חובשים ופאראמדיקים ומערים מוסמכים לכל טיול ופעילות.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="icon">🛡️</div>
+      <h3>שמירה ואבטחה</h3>
+      <p>צוותי אבטחה חמושים ומיומנים ברמה הגבוהה ביותר.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="icon">🗺️</div>
+      <h3>הדרכת טיולים</h3>
+      <p>מדריכים מקצועיים המכירים כל פינה בירושלים ובכלל.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="icon">⚡</div>
+      <h3>לוגיסטיקה ושטח</h3>
+      <p>פתרונות חשמל, הגברה ותאורה לטיולי שטח.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="contacts">
+  <h2>צרו קשר</h2>
+  <p>להזמנה והצעת מחיר</p>
+
+  <button id="openContactModal">
+    📩 יצירת קשר מהירה
+  </button>
+</section>
+
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close">&times;</span>
+
+    <h2>השארת פרטים</h2>
+
+    <form id="contactForm">
+      <input id="firstName" placeholder="שם פרטי" required>
+      <input id="lastName" placeholder="שם משפחה" required>
+      <input id="phone" placeholder="טלפון" required>
+      <input id="email" type="email" placeholder="מייל" required>
+
+      <button type="submit">שליחה</button>
+    </form>
+
+  </div>
+</div>
+
+<section class="gallery-wrapper">
+  <h2>גלריית התמונות שלנו</h2>
+
+  <div class="gallery">
+    <img src="images/11.jpg" alt="תמונה 1">
+    <img src="images/12.jpg" alt="תמונה 2">
+  </div>
+
+  <div class="gallery-navigation">
+    <a href="gallery.html" class="btn-gallery-link">
+      📸 לצפייה בגלריה המלאה
+    </a>
+  </div>
+</section>
+
+<div id="modeToggle">🌙 מצב לילה</div>
+
+<a id="whatsapp-chat"
+   href="https://wa.me/972503251251"
+   target="_blank">
+
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp">
 
 </a>
 
+<div id="backToTop">↑</div>
+
+<div id="accessibility-btn" title="תפריט נגישות">
+  <img
+    src="https://cdn-icons-png.flaticon.com/512/75/75154.png"
+    alt="נגישות"
+    style="width: 30px; filter: invert(1);"
+  >
 </div>
 
-<div id="backToTop">
-↑
-</div>
+<div id="accessibility-menu" class="a11y-menu">
 
-<div id="modeToggle">
-🌙
-</div>
+  <h3>תפריט נגישות</h3>
 
-<!-- ================= MAIN CONTENT ================= -->
+  <button onclick="toggleGrayscale()">
+    🌑 גווני אפור
+  </button>
 
-<main>
+  <button onclick="toggleHighContrast()">
+    🌓 ניגודיות גבוהה
+  </button>
 
-<!-- ================= ABOUT ================= -->
+  <button onclick="changeFontSize(1)">
+    ➕ הגדלת טקסט
+  </button>
 
-<section class="premium-section reveal">
+  <button onclick="changeFontSize(-1)">
+    ➖ הקטנת טקסט
+  </button>
 
-<div class="section-glass">
+  <button onclick="resetA11y()">
+    🔄 איפוס הגדרות
+  </button>
 
-<h2>
-ברוכים הבאים לטיולי ירושלים
-</h2>
-
-<p>
-שירות אישי ומקצועי בהתאמה מלאה לכל לקוח
-</p>
-
-<p>
-מערך מקצועי מתקדם עם ניסיון רב בתחום
-</p>
-
-<p>
-מענה מהיר, זמינות גבוהה והתאמה אישית
-</p>
-
-<p>
-ליווי קבוצות, תיירים, משפחות וטיולי VIP
-</p>
+  <p style="font-size: 12px; margin-top: 10px; color: #bbb;">
+    טיולי ירושלים לכולם
+  </p>
 
 </div>
-
-</section>
-
-<!-- ================= SERVICES ================= -->
-
-<section class="premium-section reveal">
-
-<h2 class="section-title">
-המקצועיות שלנו
-</h2>
-
-<p class="section-description">
-מעטפת מקצועית מלאה לכל סוגי הטיולים והאירועים
-</p>
-
-<button
-id="toggleServicesBtn"
-class="btn-primary">
-
-🔍 לצפייה במגוון השירותים
-
-</button>
-
-<div id="servicesGrid"
-class="services-expandable">
-
-<div class="service-card">
-
-<div class="service-image">
-
-<img src="./images/11.jpg" alt="אבטחה רפואית">
-
-<div class="service-watermark">
-טיולי ירושלים
-</div>
-
-</div>
-
-<div class="service-content">
-
-<div class="icon">🚑</div>
-
-<h3>
-אבטחה רפואית
-</h3>
-
-<p>
-חובשים, פאראמדיקים ומערים מוסמכים
-לכל סוגי הפעילויות והטיולים.
-</p>
-
-</div>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-image">
-
-<img src="./images/12.jpg" alt="הדרכה">
-
-<div class="service-watermark">
-טיולי ירושלים
-</div>
-
-</div>
-
-<div class="service-content">
-
-<div class="icon">🗺️</div>
-
-<h3>
-הדרכת טיולים
-</h3>
-
-<p>
-מדריכים מקצועיים עם היכרות מלאה
-של אתרי התיירות בישראל.
-</p>
-
-</div>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-image">
-
-<img src="./images/13.jpg" alt="לוגיסטיקה">
-
-<div class="service-watermark">
-טיולי ירושלים
-</div>
-
-</div>
-
-<div class="service-content">
-
-<div class="icon">⚡</div>
-
-<h3>
-לוגיסטיקה ושטח
-</h3>
-
-<p>
-ציוד מתקדם, תאורה, הגברה
-ומערכות שטח מקצועיות.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= FULL WIDTH GALLERY STRIP ================= -->
-
-<section class="gallery-strip">
-
-<div class="gallery-strip-track">
-
-<img src="./images/1.jpg" alt="">
-<img src="./images/2.jpg" alt="">
-<img src="./images/3.jpg" alt="">
-<img src="./images/4.jpg" alt="">
-<img src="./images/5.jpg" alt="">
-<img src="./images/6.jpg" alt="">
-<img src="./images/7.jpg" alt="">
-<img src="./images/8.jpg" alt="">
-<img src="./images/9.jpg" alt="">
-<img src="./images/10.jpg" alt="">
-
-</div>
-
-<div class="gallery-strip-overlay">
-
-<h2>
-חוויה בלתי נשכחת בכל מסלול
-</h2>
-
-</div>
-
-</section>
-
-<!-- ================= BOOKING SECTION ================= -->
-
-<section class="premium-section reveal">
-
-<div class="booking-box">
-
-<h2>
-הזמנת סיור אונליין
-</h2>
-
-<form id="bookingForm">
-
-<div class="booking-grid">
-
-<input
-type="text"
-placeholder="שם מלא"
-required>
-
-<input
-type="tel"
-placeholder="טלפון"
-required>
-
-<input
-type="email"
-placeholder="אימייל"
-required>
-
-<select required>
-
-<option value="">
-בחר אזור
-</option>
-
-<option>
-ירושלים
-</option>
-
-<option>
-תל אביב
-</option>
-
-<option>
-אילת
-</option>
-
-<option>
-מצדה
-</option>
-
-<option>
-ים המלח
-</option>
-
-</select>
-
-<input
-type="date"
-required>
-
-<input
-type="number"
-placeholder="מספר משתתפים"
-required>
-
-</div>
-
-<textarea
-placeholder="פרטים נוספים"></textarea>
-
-<button type="submit"
-class="btn-primary">
-
-📅 שלח הזמנה
-
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-<!-- ================= GALLERY ================= -->
-
-<section
-id="gallery-section"
-class="gallery-wrapper reveal">
-
-<h2>
-גלריית התמונות שלנו
-</h2>
-
-<div class="gallery-grid">
-
-<div class="gallery-item">
-
-<img src="./images/11.jpg" alt="">
-
-<div class="gallery-watermark">
-© טיולי ירושלים
-</div>
-
-</div>
-
-<div class="gallery-item">
-
-<img src="./images/12.jpg" alt="">
-
-<div class="gallery-watermark">
-© טיולי ירושלים
-</div>
-
-</div>
-
-<div class="gallery-item">
-
-<img src="./images/13.jpg" alt="">
-
-<div class="gallery-watermark">
-© טיולי ירושלים
-</div>
-
-</div>
-
-<div class="gallery-item">
-
-<img src="./images/14.jpg" alt="">
-
-<div class="gallery-watermark">
-© טיולי ירושלים
-</div>
-
-</div>
-
-<div class="gallery-item">
-
-<img src="./images/15.jpg" alt="">
-
-<div class="gallery-watermark">
-© טיולי ירושלים
-</div>
-
-</div>
-
-<div class="gallery-item">
-
-<img src="./images/16.jpg" alt="">
-
-<div class="gallery-watermark">
-© טיולי ירושלים
-</div>
-
-</div>
-
-</div>
-
-<div class="gallery-buttons">
-
-<a href="gallery.html"
-class="btn-gallery-link">
-
-📸 גלריה מלאה
-
-</a>
-
-<button
-class="btn-gallery-link"
-onclick="openLightbox()">
-
-🖼️ תצוגת מסך מלא
-
-</button>
-
-</div>
-
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<section class="contacts reveal">
-
-<div class="contact-box">
-
-<h2>
-צרו קשר
-</h2>
-
-<p>
-להזמנות והצעות מחיר
-</p>
-
-<button
-id="openContactModal"
-class="btn-primary">
-
-📩 יצירת קשר מהירה
-
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-<!-- ================= CONTACT MODAL ================= -->
-
-<div id="contactModal"
-class="modal">
-
-<div class="modal-content">
-
-<span class="close">
-×
-</span>
-
-<h2>
-השארת פרטים
-</h2>
-
-<form id="contactForm">
-
-<input
-id="firstName"
-placeholder="שם פרטי"
-required>
-
-<input
-id="lastName"
-placeholder="שם משפחה"
-required>
-
-<input
-id="phone"
-placeholder="טלפון"
-required>
-
-<input
-id="email"
-type="email"
-placeholder="מייל"
-required>
-
-<textarea
-placeholder="הודעה"></textarea>
-
-<button type="submit">
-
-שליחה
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-<!-- ================= BOOKING OVERLAY ================= -->
-
-<div
-id="booking-panel"
-class="overlay">
-
-<div class="overlay-content">
-
-<span
-class="close"
-onclick="closeBookingPanel()">
-
-×
-
-</span>
-
-<h2>
-מערכת הזמנות
-</h2>
-
-<form id="booking-form">
-
-<input
-placeholder="שם מלא">
-
-<input
-placeholder="טלפון">
-
-<select>
-
-<option>
-ירושלים
-</option>
-
-<option>
-אילת
-</option>
-
-<option>
-תל אביב
-</option>
-
-</select>
-
-<input type="date">
-
-<input
-type="number"
-placeholder="כמות אנשים">
-
-<button type="submit">
-בצע הזמנה
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-<!-- ================= LIGHTBOX ================= -->
-
-<div
-id="imageModal"
-class="lightbox">
-
-<span
-class="close-viewer"
-onclick="closeLightbox()">
-
-×
-
-</span>
-
-<img
-id="lightboxImg"
-src="./images/1.jpg"
-alt="">
-
-</div>
-
-<!-- ================= ACCESSIBILITY ================= -->
-
-<div id="a11y-btn">
-
-<img
-src="https://cdn-icons-png.flaticon.com/512/75/75154.png"
-alt="נגישות">
-
-</div>
-
-<div
-id="accessibility-menu"
-class="a11y-menu">
-
-<h3>
-תפריט נגישות
-</h3>
-
-<button onclick="toggleGrayscale()">
-🌑 גווני אפור
-</button>
-
-<button onclick="toggleHighContrast()">
-🌓 ניגודיות גבוהה
-</button>
-
-<button onclick="changeFontSize(1)">
-➕ הגדלת טקסט
-</button>
-
-<button onclick="changeFontSize(-1)">
-➖ הקטנת טקסט
-</button>
-
-<button onclick="resetA11y()">
-🔄 איפוס
-</button>
-
-</div>
-
-<!-- ================= FOOTER ================= -->
 
 <footer class="site-footer">
+  <div class="footer-content">
 
-<div class="footer-content">
+    <p class="footer-slogan">
+      שירותיות ומקצועיות באהבה ❤️
+    </p>
 
-<div class="footer-logo">
+    <p class="footer-inspiration">
+      מחפשים השראה למסלול הבא? קבלו כתבות ורעיונות!
+    </p>
 
-<img
-src="./images/logo.jpg"
-alt="לוגו">
+    <div class="footer-divider"></div>
 
-</div>
+    <p class="footer-copy">
+      &copy; 2015-2026 טיולי ירושלים - כל הזכויות שמורות
+    </p>
 
-<h3>
-טיולי ירושלים
-</h3>
-
-<p>
-שירות • מקצועיות • איכות
-</p>
-
-<div class="footer-divider"></div>
-
-<p>
-© 2015-2026 כל הזכויות שמורות לטיולי ירושלים
-</p>
-
-<p>
-אין להעתיק תמונות או תוכן מהאתר ללא אישור
-</p>
-
-</div>
-
+  </div>
 </footer>
-
-<!-- ================= ANTI COPY ================= -->
-
-<script>
-
-document.addEventListener("contextmenu", e => {
-e.preventDefault();
-});
-
-document.addEventListener("keydown", e => {
-
-if (
-e.key === "F12" ||
-(e.ctrlKey && e.key === "u") ||
-(e.ctrlKey && e.shiftKey && e.key === "I")
-){
-e.preventDefault();
-}
-
-});
-
-</script>
-
-<!-- ================= MAIN SCRIPT ================= -->
 
 <script src="script.js"></script>
 

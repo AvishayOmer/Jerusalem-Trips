@@ -1516,7 +1516,7 @@ function resetA11y() {
     })
     .then(() => {
 
-      showToast("הטופס נשלח בהצלחה ✅", "success");
+      showSuccessMessage("נשלח בהצלחה ✅");
 
       form.reset();
 
@@ -1631,4 +1631,52 @@ window.addEventListener('scroll', function () {
 
 function closeRoom(){
   document.getElementById("room").style.display = "none";
+}function showToast(message, type = "success") {
+
+  let toast = document.getElementById("toast");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.innerText = message;
+
+  toast.style.position = "fixed";
+  toast.style.bottom = "30px";
+  toast.style.right = "30px";
+  toast.style.padding = "14px 20px";
+  toast.style.borderRadius = "12px";
+  toast.style.color = "#fff";
+  toast.style.zIndex = "999999";
+  toast.style.fontWeight = "bold";
+  toast.style.fontSize = "15px";
+  toast.style.transition = "0.4s ease";
+
+  if (type === "success") {
+    toast.style.background = "#22c55e";
+  } else {
+    toast.style.background = "#ef4444";
+  }
+
+  toast.style.opacity = "1";
+  toast.style.transform = "translateY(0)";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(20px)";
+  }, 2500);
+}function showSuccessMessage(text) {
+  const toast = document.getElementById("toast");
+
+  toast.innerText = text;
+
+  toast.style.opacity = "1";
+  toast.style.transform = "translateY(0)";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(20px)";
+  }, 2500);
 }

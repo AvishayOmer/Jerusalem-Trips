@@ -19,7 +19,7 @@ content="טיולי ירושלים | סיורים מודרכים בישראל">
 
 <meta property="og:description"
 content="סיורים מקצועיים, אבטחה, הדרכה וחוויות טיולים בישראל">
-
+<meta name="theme-color" content="#0a0f19">
 <meta property="og:image"
 content="https://tripjeru.org.il/images/logo.jpg">
 
@@ -48,14 +48,13 @@ content="https://tripjeru.org.il/">
 </head>
 
 <body>
-
 <header class="sticky-header">
 
   <div class="header-left">
     <img src="./images/logo.jpg" class="small-logo" alt="לוגו טיולי ירושלים">
   </div>
 
-  <nav class="header-nav">
+  <nav class="header-center">
     <a href="#faq">שאלות</a>
     <a href="#reviews">המלצות</a>
     <a href="#service-areas">אזורים</a>
@@ -67,6 +66,12 @@ content="https://tripjeru.org.il/">
     <a class="whatsapp-btn" href="https://wa.me/972503251251" target="_blank">
       וואטסאפ 📞
     </a>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 
 </header>
@@ -95,10 +100,11 @@ content="https://tripjeru.org.il/">
   </div>
 
 </section>
-
-  <div id="logo">שלום</div>
-  <div id="logo">wellcome</div>
-  <div id="logo">ליווי ותכנון טיולים מקצועי</div>
+<div class="hero-text-stack">
+  <div>שלום</div>
+  <div>Welcome</div>
+  <div>ליווי ותכנון טיולים מקצועי</div>
+</div>
 
   <div class="logo-img-container">
    <img
@@ -136,7 +142,6 @@ content="https://tripjeru.org.il/">
   </div>
 
 
-</header>
 <section class="text-container">
   <h2>ברוכים הבאים לטיולי ירושלים</h2>
   <p>שירות אישי ומקצועי מותאם אישית לכל לקוח 24/6</p>

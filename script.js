@@ -1601,3 +1601,18 @@ function showSlide() {
 }
 
 setInterval(showSlide, 4000);
+// פתיחת תפריט מובייל
+function toggleMenu() {
+    document.querySelector('.header-nav').classList.toggle('open');
+}
+
+// shrink header בגלילה
+window.addEventListener('scroll', function () {
+    const header = document.querySelector('.sticky-header');
+
+    if (window.scrollY > 50) {
+        header.classList.add('shrink');
+    } else {
+        header.classList.remove('shrink');
+    }
+});

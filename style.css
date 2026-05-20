@@ -1110,3 +1110,84 @@ width:30px;
   border-radius: 6px;
   cursor: pointer;
 }
+.gallery img {
+  filter: grayscale(100%);
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+
+.gallery img.active-color {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}.gallery {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.gallery img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+  filter: grayscale(100%);
+  cursor: pointer;
+  position: relative;
+}
+
+/* אפקט זוהר "נטפליקס" */
+.gallery img.active,
+.gallery img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.12);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6),
+              0 0 60px rgba(0, 255, 255, 0.3);
+  z-index: 2;
+}
+
+/* גל אור שעובר */
+.gallery img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}#whatsapp-chat {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 99999;
+}#whatsapp-chat img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+.gallery,
+.slider-container {
+  position: relative;
+  z-index: 1;
+}
+
+#whatsapp-chat {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: auto;
+}

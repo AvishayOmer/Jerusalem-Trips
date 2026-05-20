@@ -54,7 +54,7 @@ function changeSliderImage() {
   }, 400);
 }
 
-let sliderInterval = setInterval(changeSliderImage, 4000);
+let sliderInterval = setInterval(changeSliderImage, 7000);
 /* =========================================================
    GLOBAL STATE MANAGER
 ========================================================= */
@@ -1577,3 +1577,41 @@ function resetA11y() {
   });
 
 })();
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+
+    // מוריד מצב מכל התמונות
+    document.querySelectorAll(".gallery img")
+      .forEach(i => i.classList.remove("active-color"));
+
+    // שם צבע רק על התמונה שנלחצה
+    img.classList.add("active-color");
+  });
+});
+document.querySelectorAll(".gallery img").forEach(img => {
+
+  img.addEventListener("click", () => {
+
+    document.querySelectorAll(".gallery img")
+      .forEach(i => i.classList.remove("active"));
+
+    img.classList.add("active");
+
+  });
+
+});
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+document.getElementById("backToTop").addEventListener("click", function () {
+  const rooms = document.querySelectorAll(".gallery, .slider-container, main, body");
+
+  rooms.forEach(r => {
+    r.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});

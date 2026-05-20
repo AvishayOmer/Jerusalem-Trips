@@ -1623,4 +1623,12 @@ window.addEventListener('scroll', function () {
   } else {
     header.classList.remove("shrink");
   }
-});
+});function openRoom(id){
+  const content = document.getElementById(id).innerHTML;
+  document.getElementById("room-inner").innerHTML = content;
+  document.getElementById("room").style.display = "flex";
+}
+
+function closeRoom(){
+  document.getElementById("room").style.display = "none";
+}

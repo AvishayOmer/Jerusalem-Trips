@@ -48,32 +48,28 @@ content="https://tripjeru.org.il/">
 </head>
 
 <body>
-<header class="sticky-header"> id="header">
-  
+<header class="premium-header">
 
-  <div class="header-left">
-    <img src="./images/logo.jpg" class="small-logo" alt="לוגו טיולי ירושלים">
-  </div>
-
-  <nav class="header-center">
-    <a href="#faq">שאלות</a>
-    <a href="#reviews">המלצות</a>
-    <a href="#service-areas">אזורים</a>
-    <a href="#popular-tours">מסלולים</a>
-    <a href="#contact">צור קשר</a>
-  </nav>
-
-  <div class="header-right">
-    <a class="whatsapp-btn" href="https://wa.me/972503251251" target="_blank">
-      וואטסאפ 📞
-    </a>
-
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+  <div class="brand-box">
+    <img src="./images/logo.jpg" class="brand-logo" alt="לוגו">
+    
+    <div class="brand-text">
+      <div class="brand-title">טיולי ירושלים</div>
+      <div class="brand-subtitle">סיורים מודרכים בישראל</div>
     </div>
   </div>
+
+  <nav class="header-nav">
+    <a onclick="openRoom('faq')">שאלות</a>
+    <a onclick="openRoom('reviews')">המלצות</a>
+    <a onclick="openRoom('service-areas')">אזורים</a>
+    <a onclick="openRoom('popular-tours')">מסלולים</a>
+    <a onclick="openRoom('contact')">צור קשר</a>
+  </nav>
+
+  <a class="whatsapp-btn" href="https://wa.me/972503251251" target="_blank">
+    וואטסאפ 📞
+  </a>
 
 </header>
 
@@ -429,7 +425,12 @@ content="https://tripjeru.org.il/">
   </p>
 
 </div>
-
+<div id="room" class="room">
+  <div class="room-content">
+    <span class="close-room" onclick="closeRoom()">✖</span>
+    <div id="room-inner"></div>
+  </div>
+</div>
 <footer class="site-footer">
   <div class="footer-content">
 

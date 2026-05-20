@@ -154,36 +154,6 @@ const Api = {
 };
 
 /* =========================================================
-   USER AUTH SYSTEM (SIMPLIFIED)
-========================================================= */
-
-const Auth = {
-
-    login(name, phone) {
-
-        const user = {
-            id: "U_" + Date.now(),
-            name,
-            phone
-        };
-
-        State.user = user;
-        Storage.save(CONFIG.storageKeys.user, user);
-
-        return user;
-    },
-
-    logout() {
-        State.user = null;
-        Storage.remove(CONFIG.storageKeys.user);
-    },
-
-    isLoggedIn() {
-        return !!State.user;
-    }
-};
-
-/* =========================================================
    BOOKING ENGINE CORE
 ========================================================= */
 
@@ -1614,4 +1584,20 @@ document.getElementById("backToTop").addEventListener("click", function () {
   });
 
   window.scrollTo({ top: 0, behavior: "smooth" });
-});
+});function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}let index = 0;
+const slides = document.querySelectorAll(".hero-slide");
+
+function showSlide() {
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+
+  index++;
+  if (index >= slides.length) index = 0;
+}
+
+setInterval(showSlide, 4000);

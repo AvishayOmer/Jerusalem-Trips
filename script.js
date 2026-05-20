@@ -1426,257 +1426,357 @@ function toggleHighContrast() {
   document.body.classList.toggle("high-contrast");
 }
 
-/* ===== שינוי גודל טקסט ===== */
+/* ===============================
+   TRIP JERU — APPLE EDITION
+   Clean + Premium JS
+================================== */
 
-function changeFontSize(step) {
-  let current = parseFloat(
-    window.getComputedStyle(document.body).fontSize
-  );
+(function(){
 
-  document.body.style.fontSize = (current + step) + "px";
+/* ===============================
+   EMAILJS
+================================== */
+
+emailjs.init("u9MRRRVgErghPjkuE");
+
+const form = document.getElementById("contactForm");
+const modal = document.getElementById("contactModal");
+
+let isSending=false;
+
+
+/* ===============================
+   TOAST SYSTEM
+================================== */
+
+function showToast(message,type="success"){
+
+let toast=document.getElementById("toast");
+
+if(!toast){
+
+toast=document.createElement("div");
+toast.id="toast";
+
+document.body.appendChild(toast);
+
 }
 
-/* ===== איפוס ===== */
+toast.innerText=message;
 
-function resetA11y() {
-  document.body.classList.remove("grayscale");
-  document.body.classList.remove("high-contrast");
-  document.body.style.fontSize = "";
-}/* ===== CONTACT FORM EMAILJS ===== */
+toast.className=`toast ${type}`;
 
-/* ===== CONTACT FORM EMAILJS + WHATSAPP (FINAL CLEAN VERSION) ===== */
+toast.style.cssText=`
 
-(function () {
+position:fixed;
+bottom:30px;
+right:30px;
+padding:15px 22px;
+border-radius:18px;
+font-size:15px;
+font-weight:600;
+color:white;
+z-index:999999;
 
-  emailjs.init("u9MRRRVgErghPjkuE");
+backdrop-filter:blur(18px);
 
-  const form = document.getElementById("contactForm");
-  const modal = document.getElementById("contactModal");
+box-shadow:
+0 10px 30px rgba(0,0,0,0.3);
 
-  if (!form) return;
+opacity:0;
+transform:translateY(20px);
 
-  let isSending = false;
+transition:.4s ease;
 
-  // הודעות UI (Toast)
-  function showToast(msg, type = "success") {
+background:${
+type==="success"
+?
+"rgba(34,197,94,.9)"
+:
+"rgba(239,68,68,.9)"
+};
 
-    const el = document.createElement("div");
-    el.className = `toast toast-${type}`;
-    el.innerText = msg;
+`;
 
-    document.body.appendChild(el);
+setTimeout(()=>{
 
-    setTimeout(() => el.classList.add("show"), 50);
+toast.style.opacity="1";
+toast.style.transform="translateY(0)";
 
-    setTimeout(() => {
-      el.classList.remove("show");
-      setTimeout(() => el.remove(), 400);
-    }, 2500);
-  }
+},50);
 
-  // וואטסאפ אחרי שליחה
-  function sendWhatsApp(firstName, lastName, phone, email) {
+setTimeout(()=>{
 
-    const message =
-`📩 פנייה חדשה מהאתר:
+toast.style.opacity="0";
+toast.style.transform="translateY(20px)";
+
+},2500);
+
+}
+
+
+/* ===============================
+   WHATSAPP
+================================== */
+
+function sendWhatsApp(
+firstName,
+lastName,
+phone,
+email
+){
+
+const message=`
+
+📩 פנייה חדשה מהאתר
+
 👤 ${firstName} ${lastName}
+
 📞 ${phone}
-📧 ${email}`;
 
-    const url = `https://wa.me/972503251251?text=${encodeURIComponent(message)}`;
+📧 ${email}
 
-    setTimeout(() => {
-      window.open(url, "_blank");
-    }, 800);
-  }
+`;
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+const url=`https://wa.me/972503251251?text=${encodeURIComponent(message)}`;
 
-    if (isSending) return;
-    isSending = true;
+setTimeout(()=>{
 
-    const btn = form.querySelector("button[type='submit']");
+window.open(url,"_blank");
 
-    if (btn) {
-      btn.disabled = true;
-      btn.innerText = "שולח...";
-    }
+},800);
 
-    const firstName = document.getElementById("firstName")?.value || "";
-    const lastName  = document.getElementById("lastName")?.value || "";
-    const phone      = document.getElementById("phone")?.value || "";
-    const email      = document.getElementById("email")?.value || "";
+}
 
-    emailjs.send("tripjeru_service", "template_4qoa25e", {
-      first_name: firstName,
-      last_name: lastName,
-      phone: phone,
-      user_email: email
-    })
-    .then(() => {
 
-      showSuccessMessage("נשלח בהצלחה ✅");
+/* ===============================
+   CONTACT FORM
+================================== */
 
-      form.reset();
+if(form){
 
-      if (modal) {
-        modal.style.display = "none";
-      }
+form.addEventListener("submit",(e)=>{
 
-      sendWhatsApp(firstName, lastName, phone, email);
+e.preventDefault();
 
-    })
-    .catch((err) => {
+if(isSending)return;
 
-      console.log("EmailJS Error:", err);
-      showToast("שגיאה בשליחה ❌", "error");
+isSending=true;
 
-    })
-    .finally(() => {
+const btn=form.querySelector(
+"button[type='submit']"
+);
 
-      isSending = false;
+btn.disabled=true;
+btn.innerText="שולח...";
 
-      if (btn) {
-        btn.disabled = false;
-        btn.innerText = "שליחה";
-      }
 
-    });
+const firstName=
+document.getElementById("firstName")?.value || "";
 
-  });
+const lastName=
+document.getElementById("lastName")?.value || "";
+
+const phone=
+document.getElementById("phone")?.value || "";
+
+const email=
+document.getElementById("email")?.value || "";
+
+
+emailjs.send(
+"tripjeru_service",
+"template_4qoa25e",
+{
+
+first_name:firstName,
+last_name:lastName,
+phone:phone,
+user_email:email
+
+})
+
+.then(()=>{
+
+showToast(
+"נשלח בהצלחה ✅",
+"success"
+);
+
+form.reset();
+
+if(modal){
+
+modal.style.display="none";
+
+}
+
+sendWhatsApp(
+firstName,
+lastName,
+phone,
+email
+);
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+showToast(
+"שגיאה בשליחה ❌",
+"error"
+);
+
+})
+
+.finally(()=>{
+
+isSending=false;
+
+btn.disabled=false;
+btn.innerText="שליחה";
+
+});
+
+});
+
+}
+
+
+/* ===============================
+   HERO SLIDER
+================================== */
+
+const slides=
+document.querySelectorAll(
+".hero-slide"
+);
+
+let currentSlide=0;
+
+if(slides.length){
+
+setInterval(()=>{
+
+slides.forEach(
+slide=>
+slide.classList.remove(
+"active"
+)
+);
+
+currentSlide++;
+
+if(
+currentSlide>=slides.length
+){
+
+currentSlide=0;
+
+}
+
+slides[currentSlide]
+.classList.add(
+"active"
+);
+
+},5000);
+
+}
+
+
+/* ===============================
+   HEADER SHRINK
+================================== */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const header=
+document.getElementById(
+"header"
+);
+
+if(!header)return;
+
+header.classList.toggle(
+"shrink",
+window.scrollY>50
+);
+
+}
+);
+
+
+/* ===============================
+   MOBILE MENU
+================================== */
+
+window.toggleMenu=function(){
+
+document
+.querySelector(
+".header-center"
+)
+?.classList.toggle(
+"open"
+);
+
+}
+
+
+/* ===============================
+   BACK TO TOP
+================================== */
+
+window.scrollToTop=function(){
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+};
+
+
+/* ===============================
+   GALLERY EFFECT
+================================== */
+
+document
+.querySelectorAll(
+".gallery img"
+)
+
+.forEach(img=>{
+
+img.addEventListener(
+"click",
+()=>{
+
+document
+.querySelectorAll(
+".gallery img"
+)
+
+.forEach(i=>
+i.classList.remove(
+"active-color"
+)
+);
+
+img.classList.add(
+"active-color"
+);
+
+});
+
+});
+
 
 })();
-document.querySelectorAll(".gallery img").forEach(img => {
-  img.addEventListener("click", () => {
-
-    // מוריד מצב מכל התמונות
-    document.querySelectorAll(".gallery img")
-      .forEach(i => i.classList.remove("active-color"));
-
-    // שם צבע רק על התמונה שנלחצה
-    img.classList.add("active-color");
-  });
-});
-document.querySelectorAll(".gallery img").forEach(img => {
-
-  img.addEventListener("click", () => {
-
-    document.querySelectorAll(".gallery img")
-      .forEach(i => i.classList.remove("active"));
-
-    img.classList.add("active");
-
-  });
-
-});
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-document.getElementById("backToTop").addEventListener("click", function () {
-  const rooms = document.querySelectorAll(".gallery, .slider-container, main, body");
-
-  rooms.forEach(r => {
-    r.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}let index = 0;
-const slides = document.querySelectorAll(".hero-slide");
-
-function showSlide() {
-  slides.forEach(s => s.classList.remove("active"));
-  slides[index].classList.add("active");
-
-  index++;
-  if (index >= slides.length) index = 0;
-}
-
-setInterval(showSlide, 4000);
-// פתיחת תפריט מובייל
-function toggleMenu() {
-    document.querySelector('.header-nav').classList.toggle('open');
-}
-
-// shrink header בגלילה
-window.addEventListener('scroll', function () {
-    const header = document.querySelector('.sticky-header');
-
-    if (window.scrollY > 50) {
-        header.classList.add('shrink');
-    } else {
-        header.classList.remove('shrink');
-    }
-});window.addEventListener("scroll", () => {
-  const header = document.getElementById("header");
-
-  if(window.scrollY > 50){
-    header.classList.add("shrink");
-  } else {
-    header.classList.remove("shrink");
-  }
-});function openRoom(id){
-  const content = document.getElementById(id).innerHTML;
-  document.getElementById("room-inner").innerHTML = content;
-  document.getElementById("room").style.display = "flex";
-}
-
-function closeRoom(){
-  document.getElementById("room").style.display = "none";
-}function showToast(message, type = "success") {
-
-  let toast = document.getElementById("toast");
-
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "toast";
-    document.body.appendChild(toast);
-  }
-
-  toast.innerText = message;
-
-  toast.style.position = "fixed";
-  toast.style.bottom = "30px";
-  toast.style.right = "30px";
-  toast.style.padding = "14px 20px";
-  toast.style.borderRadius = "12px";
-  toast.style.color = "#fff";
-  toast.style.zIndex = "999999";
-  toast.style.fontWeight = "bold";
-  toast.style.fontSize = "15px";
-  toast.style.transition = "0.4s ease";
-
-  if (type === "success") {
-    toast.style.background = "#22c55e";
-  } else {
-    toast.style.background = "#ef4444";
-  }
-
-  toast.style.opacity = "1";
-  toast.style.transform = "translateY(0)";
-
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateY(20px)";
-  }, 2500);
-}function showSuccessMessage(text) {
-  const toast = document.getElementById("toast");
-
-  toast.innerText = text;
-
-  toast.style.opacity = "1";
-  toast.style.transform = "translateY(0)";
-
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateY(20px)";
-  }, 2500);
-}

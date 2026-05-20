@@ -1618,4 +1618,12 @@ body {
 
   pointer-events: none;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}.toast{
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.2);
+
+font-family:'Varela Round',sans-serif;
+
 }

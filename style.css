@@ -1536,4 +1536,20 @@ body {
   z-index: 9999;
   display: flex;
   align-items: center;
+}.sticky-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 25px;
+  height:75px;
+
+  background:rgba(10,15,25,0.75);
+  backdrop-filter:blur(12px);
+
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:9999;
+
+  transition:0.3s ease;
 }

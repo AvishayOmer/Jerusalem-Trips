@@ -1331,204 +1331,243 @@ function init() {
 document.addEventListener("DOMContentLoaded", init);
 
 })();
-/* ===== חזרה למעלה ===== */
+/* ====================================
+   TRIP JERU PREMIUM FINAL
+   HTML SYNC VERSION
+==================================== */
 
-const backBtn = document.getElementById("backToTop");
+document.addEventListener("DOMContentLoaded",()=>{
 
-if (backBtn) {
+/* ==========================
+   ELEMENTS
+========================== */
 
-  backBtn.addEventListener("click", () => {
+const backBtn=document.getElementById("backToTop");
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+const modal=document.getElementById(
+"contactModal"
+);
 
-  });
+const openBtn=document.getElementById(
+"openContactModal"
+);
 
-}/* ===== צור קשר ===== */
+const closeBtn=document.querySelector(
+".close"
+);
 
-const modal = document.getElementById("contactModal");
-const openBtn = document.getElementById("openContactModal");
-const closeBtn = document.querySelector(".close");
+const form=document.getElementById(
+"contactForm"
+);
 
-if (openBtn) {
+const a11yBtn=document.getElementById(
+"accessibility-btn"
+);
 
-  openBtn.addEventListener("click", () => {
-    modal.style.display = "block";
-  });
+const a11yMenu=document.getElementById(
+"accessibility-menu"
+);
 
-}
+const header=document.getElementById(
+"header"
+);
 
-if (closeBtn) {
+const slides=document.querySelectorAll(
+".hero-slide"
+);
 
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
 
-}
-
-window.addEventListener("click", (e) => {
-
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-
-});/* חסימת קליק ימני */
-
-document.addEventListener("contextmenu", function(e){
-   e.preventDefault();
-});
-
-/* חסימת גרירה */
-
-document.querySelectorAll("img").forEach(img => {
-   img.addEventListener("dragstart", function(e){
-      e.preventDefault();
-   });
-});
-
-/* חסימת כמה קיצורי מקשים נפוצים */
-
-document.addEventListener("keydown", function(e) {
-
-   if (
-      e.key === "F12" ||
-      (e.ctrlKey && e.shiftKey && e.key === "I") ||
-      (e.ctrlKey && e.key === "u")
-   ) {
-      e.preventDefault();
-   }
-
-}); // 👈 זה היה חסר
-
-/* ===== פתיחת/סגירת תפריט ===== */
-
-const a11yBtn = document.getElementById("accessibility-btn");
-const a11yMenu = document.getElementById("accessibility-menu");
-
-if (a11yBtn && a11yMenu) {
-  a11yBtn.addEventListener("click", () => {
-    a11yMenu.style.display =
-      a11yMenu.style.display === "block" ? "none" : "block";
-  });
-}
-
-/* ===== מצב שחור/לבן ===== */
-
-function toggleGrayscale() {
-  document.body.classList.toggle("grayscale");
-}
-
-/* ===== ניגודיות גבוהה ===== */
-
-function toggleHighContrast() {
-  document.body.classList.toggle("high-contrast");
-}
-
-/* ===============================
-   TRIP JERU — APPLE EDITION
-   Clean + Premium JS
-================================== */
-
-(function(){
-
-/* ===============================
+/* ==========================
    EMAILJS
-================================== */
+========================== */
 
-emailjs.init("u9MRRRVgErghPjkuE");
-
-const form = document.getElementById("contactForm");
-const modal = document.getElementById("contactModal");
-
-let isSending=false;
+emailjs.init(
+"u9MRRRVgErghPjkuE"
+);
 
 
-/* ===============================
-   TOAST SYSTEM
-================================== */
+/* ==========================
+   TOAST
+========================== */
 
-function showToast(message,type="success"){
+function showToast(
+message,
+type="success"
+){
 
-let toast=document.getElementById("toast");
+let toast=
+document.getElementById(
+"toast"
+);
 
 if(!toast){
 
-toast=document.createElement("div");
+toast=
+document.createElement(
+"div"
+);
+
 toast.id="toast";
 
-document.body.appendChild(toast);
+toast.className="toast";
+
+document.body.appendChild(
+toast
+);
 
 }
 
 toast.innerText=message;
 
-toast.className=`toast ${type}`;
+toast.style.background=
 
-toast.style.cssText=`
-
-position:fixed;
-bottom:30px;
-right:30px;
-padding:15px 22px;
-border-radius:18px;
-font-size:15px;
-font-weight:600;
-color:white;
-z-index:999999;
-
-backdrop-filter:blur(18px);
-
-box-shadow:
-0 10px 30px rgba(0,0,0,0.3);
-
-opacity:0;
-transform:translateY(20px);
-
-transition:.4s ease;
-
-background:${
 type==="success"
+
 ?
-"rgba(34,197,94,.9)"
+
+"rgba(34,197,94,.92)"
+
 :
-"rgba(239,68,68,.9)"
-};
 
-`;
+"rgba(239,68,68,.92)";
 
-setTimeout(()=>{
-
-toast.style.opacity="1";
-toast.style.transform="translateY(0)";
-
-},50);
+toast.classList.add(
+"show"
+);
 
 setTimeout(()=>{
 
-toast.style.opacity="0";
-toast.style.transform="translateY(20px)";
+toast.classList.remove(
+"show"
+);
 
 },2500);
 
 }
 
 
-/* ===============================
-   WHATSAPP
-================================== */
+/* ==========================
+   CONTACT MODAL
+========================== */
 
-function sendWhatsApp(
-firstName,
-lastName,
-phone,
-email
+if(openBtn){
+
+openBtn.onclick=()=>{
+
+modal.style.display=
+"block";
+
+};
+
+}
+
+if(closeBtn){
+
+closeBtn.onclick=()=>{
+
+modal.style.display=
+"none";
+
+};
+
+}
+
+window.onclick=(e)=>{
+
+if(
+e.target===modal
 ){
 
-const message=`
+modal.style.display=
+"none";
+}
 
-📩 פנייה חדשה מהאתר
+};
+
+
+/* ==========================
+   CONTACT FORM
+========================== */
+
+let isSending=false;
+
+if(form){
+
+form.addEventListener(
+"submit",
+function(e){
+
+e.preventDefault();
+
+if(isSending)
+return;
+
+isSending=true;
+
+const btn=
+form.querySelector(
+"button[type='submit']"
+);
+
+btn.disabled=true;
+
+btn.innerText=
+"שולח...";
+
+
+const firstName=
+document.getElementById(
+"firstName"
+)?.value || "";
+
+const lastName=
+document.getElementById(
+"lastName"
+)?.value || "";
+
+const phone=
+document.getElementById(
+"phone"
+)?.value || "";
+
+const email=
+document.getElementById(
+"email"
+)?.value || "";
+
+
+emailjs.send(
+
+"tripjeru_service",
+
+"template_4qoa25e",
+
+{
+
+first_name:firstName,
+last_name:lastName,
+phone:phone,
+user_email:email
+
+}
+
+)
+
+.then(()=>{
+
+showToast(
+"נשלח בהצלחה ✅"
+);
+
+form.reset();
+
+modal.style.display=
+"none";
+
+
+const whatsappMessage=`
+
+📩 פנייה חדשה
 
 👤 ${firstName} ${lastName}
 
@@ -1538,95 +1577,26 @@ const message=`
 
 `;
 
-const url=`https://wa.me/972503251251?text=${encodeURIComponent(message)}`;
+window.open(
 
-setTimeout(()=>{
+`https://wa.me/972503251251?text=${encodeURIComponent(whatsappMessage)}`,
 
-window.open(url,"_blank");
+"_blank"
 
-},800);
-
-}
-
-
-/* ===============================
-   CONTACT FORM
-================================== */
-
-if(form){
-
-form.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-if(isSending)return;
-
-isSending=true;
-
-const btn=form.querySelector(
-"button[type='submit']"
-);
-
-btn.disabled=true;
-btn.innerText="שולח...";
-
-
-const firstName=
-document.getElementById("firstName")?.value || "";
-
-const lastName=
-document.getElementById("lastName")?.value || "";
-
-const phone=
-document.getElementById("phone")?.value || "";
-
-const email=
-document.getElementById("email")?.value || "";
-
-
-emailjs.send(
-"tripjeru_service",
-"template_4qoa25e",
-{
-
-first_name:firstName,
-last_name:lastName,
-phone:phone,
-user_email:email
-
-})
-
-.then(()=>{
-
-showToast(
-"נשלח בהצלחה ✅",
-"success"
-);
-
-form.reset();
-
-if(modal){
-
-modal.style.display="none";
-
-}
-
-sendWhatsApp(
-firstName,
-lastName,
-phone,
-email
 );
 
 })
 
-.catch(error=>{
+.catch((err)=>{
 
-console.log(error);
+console.log(err);
 
 showToast(
+
 "שגיאה בשליחה ❌",
+
 "error"
+
 );
 
 })
@@ -1636,7 +1606,9 @@ showToast(
 isSending=false;
 
 btn.disabled=false;
-btn.innerText="שליחה";
+
+btn.innerText=
+"שליחה";
 
 });
 
@@ -1645,18 +1617,13 @@ btn.innerText="שליחה";
 }
 
 
-/* ===============================
+/* ==========================
    HERO SLIDER
-================================== */
-
-const slides=
-document.querySelectorAll(
-".hero-slide"
-);
-
-let currentSlide=0;
+========================== */
 
 if(slides.length){
+
+let index=0;
 
 setInterval(()=>{
 
@@ -1667,17 +1634,17 @@ slide.classList.remove(
 )
 );
 
-currentSlide++;
+index++;
 
 if(
-currentSlide>=slides.length
+index>=slides.length
 ){
 
-currentSlide=0;
+index=0;
 
 }
 
-slides[currentSlide]
+slides[index]
 .classList.add(
 "active"
 );
@@ -1687,35 +1654,31 @@ slides[currentSlide]
 }
 
 
-/* ===============================
+/* ==========================
    HEADER SHRINK
-================================== */
+========================== */
 
 window.addEventListener(
 "scroll",
 ()=>{
 
-const header=
-document.getElementById(
-"header"
-);
-
-if(!header)return;
+if(!header)
+return;
 
 header.classList.toggle(
 "shrink",
 window.scrollY>50
 );
 
-}
-);
+});
 
 
-/* ===============================
-   MOBILE MENU
-================================== */
+/* ==========================
+   HAMBURGER
+========================== */
 
-window.toggleMenu=function(){
+window.toggleMenu=
+function(){
 
 document
 .querySelector(
@@ -1725,14 +1688,16 @@ document
 "open"
 );
 
-}
+};
 
 
-/* ===============================
+/* ==========================
    BACK TO TOP
-================================== */
+========================== */
 
-window.scrollToTop=function(){
+if(backBtn){
+
+backBtn.onclick=()=>{
 
 window.scrollTo({
 
@@ -1743,10 +1708,92 @@ behavior:"smooth"
 
 };
 
+}
 
-/* ===============================
-   GALLERY EFFECT
-================================== */
+
+/* ==========================
+   ACCESSIBILITY
+========================== */
+
+if(
+a11yBtn &&
+a11yMenu
+){
+
+a11yBtn.onclick=()=>{
+
+a11yMenu.style.display=
+
+a11yMenu.style.display==="block"
+
+?
+
+"none"
+
+:
+
+"block";
+
+};
+
+}
+
+window.toggleGrayscale=
+()=>{
+
+document.body.classList.toggle(
+"grayscale"
+);
+
+};
+
+window.toggleHighContrast=
+()=>{
+
+document.body.classList.toggle(
+"high-contrast"
+);
+
+};
+
+window.changeFontSize=
+(step)=>{
+
+let size=parseFloat(
+
+window.getComputedStyle(
+document.body
+)
+
+.fontSize
+
+);
+
+document.body.style.fontSize=
+
+(size+step)+"px";
+
+};
+
+window.resetA11y=
+()=>{
+
+document.body.classList.remove(
+"grayscale"
+);
+
+document.body.classList.remove(
+"high-contrast"
+);
+
+document.body.style.fontSize="";
+
+};
+
+
+/* ==========================
+   GALLERY
+========================== */
 
 document
 .querySelectorAll(
@@ -1765,9 +1812,11 @@ document
 )
 
 .forEach(i=>
+
 i.classList.remove(
 "active-color"
 )
+
 );
 
 img.classList.add(
@@ -1779,4 +1828,31 @@ img.classList.add(
 });
 
 
-})();
+/* ==========================
+   IMAGE PROTECTION
+========================== */
+
+document.addEventListener(
+
+"contextmenu",
+
+e=>e.preventDefault()
+
+);
+
+document
+.querySelectorAll("img")
+
+.forEach(img=>{
+
+img.addEventListener(
+
+"dragstart",
+
+e=>e.preventDefault()
+
+);
+
+});
+
+});

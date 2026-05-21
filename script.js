@@ -1856,3 +1856,55 @@ e=>e.preventDefault()
 });
 
 });
+/* ==========================
+   HEADER BUTTONS FIX
+========================== */
+
+function openRoom(sectionId){
+
+const room =
+document.getElementById("room");
+
+const roomInner =
+document.getElementById("room-inner");
+
+const section =
+document.getElementById(sectionId);
+
+if(!room || !roomInner || !section){
+console.log("Section not found");
+return;
+}
+
+roomInner.innerHTML =
+section.innerHTML;
+
+room.style.display="flex";
+
+document.body.style.overflow="hidden";
+
+}
+
+function closeRoom(){
+
+const room =
+document.getElementById("room");
+
+if(room){
+room.style.display="none";
+}
+
+document.body.style.overflow="auto";
+
+}
+
+function toggleMenu(){
+
+const nav =
+document.querySelector(".header-nav");
+
+if(nav){
+nav.classList.toggle("active");
+}
+
+}

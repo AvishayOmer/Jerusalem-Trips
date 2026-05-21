@@ -1015,24 +1015,7 @@ pointer-events:none;
 z-index:10;
 }
 
-
-/* מובייל */
-
-@media(max-width:768px){
-
-#image-slider{
-
-height:260px;
-
-}
-
-.slider-watermark{
-
-width:30px;
-
-}
-
-}/* ===== נגישות ===== */
+/* ===== נגישות ===== */
 
 .grayscale {
   filter: grayscale(100%);
@@ -1173,16 +1156,6 @@ width:30px;
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-6px); }
     100% { transform: translateY(0); }
-}
-
-/* מובייל */
-@media(max-width:768px) {
-    #whatsapp-chat {
-        width: 55px;
-        height: 55px;
-        left: 15px;
-        bottom: 15px;
-    }
 }
 
 /* =========================
@@ -1650,15 +1623,31 @@ transform:scale(1);
 
 }
 
-}
-/* =====================
+}/* =====================
    מובייל
 ===================== */
 
 @media(max-width:768px){
 
-.premium-header{
+/* סליידר */
+#image-slider{
+height:260px;
+}
 
+.slider-watermark{
+width:30px;
+}
+
+/* וואטסאפ */
+#whatsapp-chat{
+width:55px;
+height:55px;
+left:15px;
+bottom:15px;
+}
+
+/* Header */
+.premium-header{
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -1670,17 +1659,14 @@ z-index:1000;
 }
 
 .brand-box{
-
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-
 margin-bottom:10px;
 }
 
 .brand-logo{
-
 width:65px;
 height:65px;
 object-fit:cover;
@@ -1688,20 +1674,17 @@ border-radius:50%;
 }
 
 .brand-title{
-
 font-size:22px;
 font-weight:700;
 }
 
 .brand-subtitle{
-
 font-size:13px;
 opacity:.8;
 margin-top:4px;
 }
 
 .header-nav{
-
 display:none;
 position:absolute;
 
@@ -1720,36 +1703,27 @@ z-index:9999;
 }
 
 .header-nav.active{
-
 display:flex;
 }
 
 .hamburger{
-
 display:flex;
 cursor:pointer;
 }
 
 .main-title{
-
 display:block;
-
 font-size:26px;
 line-height:1.5;
-
 text-align:center;
-
 padding:15px;
 margin-top:20px;
 }
 
 .hero-text-stack{
-
 display:flex;
 flex-direction:column;
-
 text-align:center;
-
 margin-top:10px;
 font-size:18px;
 }

@@ -2005,4 +2005,16 @@ overflow:auto;
   .logo {
     width: 90px;
   }
+}header, .premium-header {
+    position: relative;
+    z-index: 9999;
+}
+
+body {
+    padding-top: 100px;
+}.text-container,
+.hero,
+section {
+    position: relative;
+    z-index: 2;
 }

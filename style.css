@@ -313,7 +313,7 @@ body.dark-mode .gallery img:hover {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
-  z-index: 2000;
+  z-index:3000;
   justify-content: center;
   align-items: center;
 }
@@ -586,16 +586,22 @@ img {
 }
 
 /* השכבה המגינה */
-.img-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    background: rgba(0,0,0,0); /* שקוף לחלוטין */
-    cursor: default;
+.img-container{
+    position:relative;
+    overflow:hidden;
+}
+
+.img-container::after{
+    content:"";
+    position:absolute;
+
+    inset:0;
+
+    z-index:10;
+
+    background:transparent;
+
+    pointer-events:auto;
 }
 
 .img-container:hover img {
@@ -759,20 +765,30 @@ img {
 #accessibility-btn:hover { transform: scale(1.1); }
 
 /* תפריט הנגישות */
-.a11y-menu {
-    display: none;
-    position: fixed;
-    bottom: 215px;
-    right: 20px;
-    width: 250px;
-    background: rgba(30, 30, 30, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid #15cfe0;
-    border-radius: 15px;
-    padding: 20px;
-    z-index: 2000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    text-align: center;
+.a11y-menu{
+    display:none;
+    position:fixed;
+
+    bottom:220px;
+    right:20px;
+
+    width:250px;
+
+    background:rgba(30,30,30,.96);
+    backdrop-filter:blur(10px);
+
+    border:1px solid #15cfe0;
+    border-radius:15px;
+
+    padding:20px;
+
+    z-index:9999998;
+
+    pointer-events:auto;
+}
+
+#accessibility-btn{
+    z-index:9999999;
 }
 
 .a11y-menu h3 {
@@ -949,25 +965,25 @@ body.grayscale {
 
   box-shadow: 0 0 12px rgba(0,0,0,0.3);
 }
-/* הגנה בסיסית על תמונות */
-img {
-  -webkit-user-drag: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
+/* ===== הגנה על תמונות בלי לשבור לחיצות ===== */
 
-/* אם אתה רוצה חסימה בגלריה בלבד */
-.gallery img {
-  pointer-events: none;
-}
-
-
-
+img,
 .gallery img,
 #image-slider,
 .logo {
-  -webkit-touch-callout: none;
+
+    -webkit-user-drag:none;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-touch-callout:none;
+}
+
+/* לא לחסום קליקים */
+.gallery img{
+    pointer-events:auto;
+
 }/* ===== סליידר פרימיום ===== */
 
 .slider-container{
@@ -1124,30 +1140,39 @@ z-index:10;
 /* =========================
    WHATSAPP FLOAT - גרסה נקייה ויציבה
    ========================= */
+#whatsapp-chat{
+    position:fixed;
 
-#whatsapp-chat {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom:20px;
+    left:20px;
 
-    width: 65px;
-    height: 65px;
+    width:65px;
+    height:65px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    border-radius: 50%;
-    background: white;
+    border-radius:50%;
+    background:#fff;
 
-    z-index: 999999;
+    z-index:9999999;
 
-    box-shadow: 0 0 15px rgba(0,0,0,.3);
-    cursor: pointer;
+    cursor:pointer;
 
-    animation: whatsappFloat 2.5s ease-in-out infinite;
+    pointer-events:auto;
+
+    box-shadow:0 0 15px rgba(0,0,0,.3);
+
+    animation:whatsappFloat 2.5s ease-in-out infinite;
 }
 
+#whatsapp-chat img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
 #whatsapp-chat img {
     width: 100%;
     height: 100%;
@@ -1332,6 +1357,7 @@ body{
     position:fixed;
     top:0;
     right:0;
+
     width:100%;
     height:85px;
 
@@ -1339,16 +1365,46 @@ body{
     align-items:center;
     justify-content:space-between;
 
-    padding:0 20px;
+    padding:0 30px;
 
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(15px);
 
     border-bottom:1px solid rgba(0,0,0,.08);
 
-    z-index:99999;
+    z-index:1000;
+}
 
-    transition:.35s ease;
+/* מרכז הכותרת */
+.header-center{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:25px;
+
+    flex:1;
+}
+
+/* לוגו */
+.small-logo{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+/* טקסט */
+.header-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    white-space:nowrap;
+
+    font-size:18px;
+    font-weight:700;
+
+    color:#0a8f45;
 }
 
 /* קטן בגלילה */
@@ -1590,7 +1646,7 @@ align-items:center;
 
 background:rgba(0,0,0,.75);
 
-z-index:100000;
+z-index:2000;
 }
 
 .room-content{
@@ -1831,4 +1887,10 @@ border-radius:40px;
 text-decoration:none;
 font-size:20px;
 
+}/* הגנת תמונות */
+img{
+    -webkit-user-drag:none;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
 }

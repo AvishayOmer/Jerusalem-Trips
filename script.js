@@ -876,14 +876,14 @@ const WhatsApp = {
 
     shareBooking() {
 
-        const s = window.State;
+        const s = window.State || {};
 
         const msg =
 `הזמנה חדשה:
-📍 אזור: ${s.currentRegion}
-📅 תאריך: ${s.selectedDate}
-👥 משתתפים: ${s.selectedGuests}
-💰 מחיר: ₪${s.lastPrice}`;
+📍 אזור: ${s.currentRegion || "לא נבחר"}
+📅 תאריך: ${s.selectedDate || "לא נבחר"}
+👥 משתתפים: ${s.selectedGuests || "לא צוין"}
+💰 מחיר: ₪${s.lastPrice || 0}`;
 
         const url = `https://wa.me/${CONFIG?.whatsapp || "972503251251"}?text=${encodeURIComponent(msg)}`;
 

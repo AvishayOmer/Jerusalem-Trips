@@ -47,9 +47,9 @@ content="https://tripjeru.org.il/">
 </script>
 </head>
 
-<body>
-<header class="premium-header" id="header">
 <body oncontextmenu="return false;">
+
+<header class="premium-header" id="header">
   
   <div class="brand-box">
     <img src="./images/logo.jpg" class="brand-logo" alt="לוגו">
@@ -58,32 +58,24 @@ content="https://tripjeru.org.il/">
       <div class="brand-title">טיולי ירושלים</div>
       <div class="brand-subtitle">סיורים מודרכים בישראל</div>
     </div>
-  </div>
-
-  <nav class="header-nav">
-    <a onclick="openRoom('faq')">שאלות</a>
-    <a onclick="openRoom('reviews')">המלצות</a>
-    <a onclick="openRoom('service-areas')">אזורים</a>
-    <a onclick="openRoom('popular-tours')">מסלולים</a>
-    <a onclick="openRoom('contact')">צור קשר</a>
-  </nav>
-
-  <a class="whatsapp-btn" href="https://wa.me/972503251251" target="_blank">
-    וואטסאפ 📞
-  </a>
 <div class="hamburger" onclick="toggleMenu()">
-  <div id="mobileMenu" class="mobile-menu">
-
-  <a onclick="openRoom('faq')">שאלות</a>
-  <a onclick="openRoom('reviews')">המלצות</a>
-  <a onclick="openRoom('service-areas')">אזורים</a>
-  <a onclick="openRoom('popular-tours')">מסלולים</a>
-  <a onclick="openRoom('contact')">צור קשר</a>
-
+   <span></span>
+   <span></span>
+   <span></span>
 </div>
-  <span></span>
-  <span></span>
-  <span></span>
+
+<div id="mobileMenu" class="mobile-menu">
+
+<a onclick="openRoom('faq')">שאלות</a>
+
+<a onclick="openRoom('reviews')">המלצות</a>
+
+<a onclick="openRoom('service-areas')">אזורים</a>
+
+<a onclick="openRoom('popular-tours')">מסלולים</a>
+
+<a onclick="openRoom('contact')">צור קשר</a>
+
 </div>
 
 </header>
@@ -350,7 +342,7 @@ name="phone"
 type="tel"
 placeholder="050-3251251"
 required>
-  >
+
 
   <input
     id="email"
@@ -382,7 +374,7 @@ decoding="async"
 width="600"
 height="400"
 alt="טיול בירושלים">
->
+
 
 <img
 src="images/12.jpg"
@@ -391,7 +383,7 @@ decoding="async"
 width="600"
 height="400"
 alt="טיול בירושלים">
->
+
   </div>
 
   <div class="gallery-navigation">
@@ -400,23 +392,18 @@ alt="טיול בירושלים">
     </a>
   </div>
 </section>
-
-
-<a id="whatsapp-chat"
-   href=<a href="https://wa.me/972503251251?text=שלום,%20אני%20מעוניין%20לקבל%20פרטים%20על%20טיולים"
+<a
+id="whatsapp-chat"
+href="https://wa.me/972503251251?text=שלום,%20אני%20מעוניין%20לקבל%20פרטים%20על%20טיולים"
 target="_blank">
-   target="_blank">
 
- <img
-  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-  alt="WhatsApp"
-  loading="lazy"
-  draggable="false"
-  oncontextmenu="return false;"
->
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+alt="WhatsApp"
+draggable="false"
+oncontextmenu="return false;">
 
 </a>
-
 
 <div id="accessibility-btn" title="תפריט נגישות">
 
@@ -455,6 +442,10 @@ target="_blank">
   <button onclick="resetA11y()">
     🔄 איפוס הגדרות
   </button>
+  
+<button onclick="WhatsApp.shareBooking()">
+  וואטסאפ
+</button>
 
   <p style="font-size: 12px; margin-top: 10px; color: #bbb;">
     טיולי ירושלים לכולם

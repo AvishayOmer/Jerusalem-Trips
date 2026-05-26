@@ -58,23 +58,30 @@ content="https://tripjeru.org.il/">
       <div class="brand-title">טיולי ירושלים</div>
       <div class="brand-subtitle">סיורים מודרכים בישראל</div>
     </div>
-<div class="hamburger" onclick="toggleMenu()">
-   <span></span>
-   <span></span>
-   <span></span>
-</div>
+<button
+class="hamburger"
+onclick="toggleMenu()"
+aria-label="פתח תפריט">
+
+<span></span>
+<span></span>
+<span></span>
+
+</button>
 
 <div id="mobileMenu" class="mobile-menu">
 
-<a onclick="openRoom('faq')">שאלות</a>
+<a href="#faq" onclick="openRoom('faq')">שאלות</a>
 
-<a onclick="openRoom('reviews')">המלצות</a>
+<a href="#reviews" onclick="openRoom('reviews')">המלצות</a>
 
-<a onclick="openRoom('service-areas')">אזורים</a>
+<a href="#service-areas" onclick="openRoom('service-areas')">אזורים</a>
 
-<a onclick="openRoom('popular-tours')">מסלולים</a>
+<a href="#popular-tours" onclick="openRoom('popular-tours')">מסלולים</a>
 
-<a onclick="openRoom('contact')">צור קשר</a>
+<a href="#contact" onclick="openRoom('contact')">צור קשר</a>
+
+</div>
 
 </div>
 
@@ -84,7 +91,8 @@ content="https://tripjeru.org.il/">
   טיולי ירושלים - סיורים מודרכים, אבטחה והדרכת טיולים בישראל
 </h1>
 <section class="hero">
-<section class="cta-box">
+
+<div class="cta-box">
 
 <h2>מוכנים לטיול הבא?</h2>
 
@@ -100,7 +108,7 @@ class="cta-btn">
 
 </a>
 
-</section>
+</div>
   <div class="hero-slide active">
     <img src="images/1.jpg" alt="טיולי ירושלים">
 
@@ -442,7 +450,7 @@ oncontextmenu="return false;">
   <button onclick="resetA11y()">
     🔄 איפוס הגדרות
   </button>
-  
+
 <button onclick="WhatsApp.shareBooking()">
   וואטסאפ
 </button>

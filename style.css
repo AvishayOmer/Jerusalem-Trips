@@ -2126,4 +2126,192 @@ header.premium-header {
 /* מונע חפיפה עם תוכן */
 body {
   padding-top: 110px;
+}/* ===== HEADER משודרג ===== */
+
+.premium-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(5, 10, 25, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 0;
 }
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.brand-logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.brand-text {
+  margin-right: 10px;
+}
+
+.brand-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+/* ===== תפריט דסקטופ ===== */
+
+.main-nav {
+  display: none;
+  gap: 20px;
+}
+
+.main-nav a {
+  color: #fff;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.main-nav a:hover {
+  color: #ffd36b;
+}
+
+/* ===== תפריט מובייל ===== */
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: rgba(5, 10, 25, 0.95);
+  padding: 20px;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 200px;
+  border-radius: 0 0 0 12px;
+}
+
+.mobile-menu a {
+  padding: 10px 0;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== דסקטופ ===== */
+
+@media (min-width: 900px) {
+  .main-nav {
+    display: flex;
+  }
+  .hamburger,
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* ===== HERO משודרג ===== */
+
+.hero {
+  position: relative;
+  min-height: 70vh;
+  overflow: hidden;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 10, 25, 0.85),
+    rgba(5, 10, 25, 0.3)
+  );
+}
+
+/* טקסט על התמונה */
+.hero-text {
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+  color: #fff;
+  max-width: 350px;
+}
+
+.hero-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* ===== CTA קופסה ===== */
+
+.cta-box {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  background: rgba(5, 10, 25, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+  max-width: 300px;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #ffd36b;
+  color: #000;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.cta-btn:hover {
+  background: #ffca4d;
+}
+
+/* ===== טקסטים מסתובבים ===== */
+
+.hero-text-stack {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+

@@ -1907,4 +1907,27 @@ if(nav){
 nav.classList.toggle("active");
 }
 
-}
+}const fabMenu = document.getElementById("fabMenu");
+const fabMain = document.getElementById("fabMain");
+const backToTop = document.getElementById("backToTop");
+
+fabMain.addEventListener("click", () => {
+  fabMenu.classList.toggle("open");
+});
+
+// חזור למעלה
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+// הצגת כפתור חזרה למעלה בגלילה
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+});

@@ -1025,14 +1025,23 @@ const Auth = {
         return user;
     },
 
-    logout() {
-        window.State.session = null;
-        window.State.role = "guest";
-    },
+  logout() {
+window.State.session = null;
+window.State.role = "guest";
+},
 
-    isAdmin() {
-        return window.State.role === "admin";
-    }
+isLoggedIn(){
+
+return !!window.State.session;
+
+},
+
+isAdmin() {
+return window.State.role === "admin";
+}
+
+
+    
 };
 
 /* =========================================================
@@ -1167,7 +1176,21 @@ const SEO = {
 ========================================================= */
 
 const Analytics = {
+load(){
 
+const logs=
+JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+window.State.analytics.views=
+logs.length;
+
+return logs;
+
+},
     track(event, data = {}) {
 
         const log = {
@@ -1192,7 +1215,7 @@ const Analytics = {
    API LAYER (FINAL MOCK BACKEND)
 ========================================================= */
 
-const Api = {
+const CoreApi = {
 
     async request(endpoint, data = {}) {
 
@@ -1261,7 +1284,7 @@ const BookingSystem = {
             throw new Error("NOT_ALLOWED");
         }
 
-        const response = await Api.request("/booking/create", data);
+        const response = await CoreApi.request("/booking/create", data);
 
         Analytics.track("booking_created", data);
 
@@ -1896,38 +1919,103 @@ room.style.display="none";
 
 document.body.style.overflow="auto";
 
-}
+window.toggleMenu = function(){
 
-function toggleMenu(){
+const menu =
+document.getElementById("mobileMenu");
 
 const nav =
 document.querySelector(".header-nav");
+
+if(menu){
+menu.classList.toggle("active");
+}
 
 if(nav){
 nav.classList.toggle("active");
 }
 
-}const fabMenu = document.getElementById("fabMenu");
+};
+
+}
+const fabMenu = document.getElementById("fabMenu");
 const fabMain = document.getElementById("fabMain");
 const backToTop = document.getElementById("backToTop");
 
-fabMain.addEventListener("click", () => {
-  fabMenu.classList.toggle("open");
+/* FAB MENU */
+
+if(fabMain){
+
+fabMain.addEventListener("click",()=>{
+
+fabMenu?.classList.toggle("open");
+
 });
 
-// חזור למעלה
-backToTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+}
+
+/* חזור למעלה */
+
+if(backToTop){
+
+backToTop.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
 });
 
-// הצגת כפתור חזרה למעלה בגלילה
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
 });
+
+}
+
+/* הצגה בגלילה */
+
+window.addEventListener("scroll",()=>{
+
+if(!backToTop) return;
+
+if(window.scrollY>300){
+
+backToTop.style.display="block";
+
+}else{
+
+backToTop.style.display="none";
+
+}
+
+});
+
+
+/* MOBILE MENU */
+
+window.toggleMenu=function(){
+
+const menu=
+document.getElementById(
+"mobileMenu"
+);
+
+if(menu){
+
+menu.classList.toggle(
+"active"
+);
+
+}
+
+};
+
+
+/* PHONE SANITIZE */
+
+const phone =
+document
+.getElementById("phone")
+?.value
+.replace(/\D/g,"")
+.substring(0,10)
+||"";

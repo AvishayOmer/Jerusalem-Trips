@@ -817,9 +817,11 @@ body.grayscale {
 /* ================= גלריה תחתונה – מובייל ================= */
 @media (max-width: 768px) {
   .gallery {
-    grid-template-columns: 1fr; /* תמונה מתחת לתמונה */
+    grid-template-columns: 1fr;
     max-width: 100%;
   }
+}
+
 /* ================= שירותים ================= */
 
 .services-section {
@@ -960,7 +962,7 @@ img {
   pointer-events: none;
 }
 
-}
+
 
 .gallery img,
 #image-slider,
@@ -1013,7 +1015,6 @@ opacity:0.75;
 
 border-radius:50%;
 
-pointer-events:none;
 
 z-index:10;
 }
@@ -1789,4 +1790,45 @@ font-size:18px;
 
 #backToTop {
   background: #008793;
+}
+.mobile-menu{
+display:none;
+position:absolute;
+top:100%;
+right:0;
+width:100%;
+background:#0a0f19;
+padding:20px;
+z-index:999;
+}
+
+.mobile-menu.active{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.mobile-menu a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}.cta-box{
+
+padding:50px 20px;
+text-align:center;
+border-radius:25px;
+margin:40px auto;
+max-width:800px;
+background:#111827;
+
+}
+
+.cta-btn{
+
+display:inline-block;
+padding:15px 30px;
+border-radius:40px;
+text-decoration:none;
+font-size:20px;
+
 }

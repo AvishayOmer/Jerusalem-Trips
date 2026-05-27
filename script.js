@@ -467,6 +467,72 @@ const Availability = {
         return true;
     }
 };
+/* =========================================================
+   ANALYTICS CORE (FINAL VERSION)
+========================================================= */
+
+const Analytics = {
+
+load(){
+
+const logs=
+JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+/* אם State לא קיים — צור אותו */
+window.State=
+window.State||{};
+
+window.State.analytics=
+window.State.analytics||{};
+
+window.State.analytics.views=
+logs.length;
+
+return logs;
+
+},
+
+track(event,data={}){
+
+const log={
+
+event,
+data,
+time:new Date().toISOString()
+
+};
+
+let history=
+JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+history.push(log);
+
+localStorage.setItem(
+"jt_logs",
+JSON.stringify(history)
+);
+
+},
+
+getLogs(){
+
+return JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+}
+
+};
 
 /* =========================================================
    SMART PRICING ENGINE (DYNAMIC PRICING)
@@ -955,7 +1021,15 @@ document.addEventListener("keydown", (e) => {
 
 function init() {
 
-    Analytics.load();
+  if (typeof Analytics !== "undefined") {
+
+Analytics.init();
+
+}if (typeof Analytics !== "undefined") {
+
+Analytics.track();
+
+}
     ScrollFX.init();
     Search.init();
     CalendarUI.generate(window.State.calendarMonth, window.State.calendarYear);
@@ -1171,45 +1245,6 @@ const SEO = {
     }
 };
 
-/* =========================================================
-   ANALYTICS CORE (FINAL VERSION)
-========================================================= */
-
-const Analytics = {
-load(){
-
-const logs=
-JSON.parse(
-localStorage.getItem(
-"jt_logs"
-)||"[]"
-);
-
-window.State.analytics.views=
-logs.length;
-
-return logs;
-
-},
-    track(event, data = {}) {
-
-        const log = {
-            event,
-            data,
-            time: new Date().toISOString()
-        };
-
-        let history = JSON.parse(localStorage.getItem("jt_logs") || "[]");
-
-        history.push(log);
-
-        localStorage.setItem("jt_logs", JSON.stringify(history));
-    },
-
-    getLogs() {
-        return JSON.parse(localStorage.getItem("jt_logs") || "[]");
-    }
-};
 
 /* =========================================================
    API LAYER (FINAL MOCK BACKEND)
@@ -1406,9 +1441,23 @@ const slides=document.querySelectorAll(
 
 if (window.emailjs) {
 
+document.addEventListener("DOMContentLoaded", () => {
+
+if (typeof emailjs !== "undefined") {
+
 emailjs.init(
 "u9MRRRVgErghPjkuE"
 );
+
+console.log("EmailJS נטען");
+
+} else {
+
+console.error("EmailJS לא נטען");
+
+}
+
+});
 
 } else {
 

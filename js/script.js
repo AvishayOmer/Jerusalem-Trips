@@ -1833,23 +1833,6 @@ window.scrollY>50
 });
 
 
-/* ==========================
-   HAMBURGER
-========================== */
-
-window.toggleMenu=
-function(){
-
-document
-.querySelector(
-".header-center"
-)
-?.classList.toggle(
-"open"
-);
-
-};
-
 
 /* ==========================
    BACK TO TOP
@@ -2015,87 +1998,192 @@ e=>e.preventDefault()
 
 });
 
-});
-/* ==========================
-   HEADER BUTTONS FIX
-========================== */
+});/* =========================================================
+   JERUSALEM TRIPS UI ENGINE v2026
+========================================================= */
 
-function openRoom(sectionId){
+/* ---------- ROOM SYSTEM ---------- */
 
-const room =
-document.getElementById("room");
+const room = document.getElementById("room");
+const roomInner = document.getElementById("room-inner");
 
-const roomInner =
-document.getElementById("room-inner");
+/* פתיחת חדר */
 
-const section =
+window.openRoom=function(sectionId){
+
+const section=
 document.getElementById(sectionId);
 
-if(!room || !roomInner || !section){
-console.log("Section not found");
+if(!section){
+
+console.log(
+"Room not found:",
+sectionId
+);
+
 return;
+
 }
 
-roomInner.innerHTML =
+/* מעתיק תוכן */
+
+roomInner.innerHTML=
 section.innerHTML;
+
+/* מציג */
 
 room.style.display="flex";
 
-document.body.style.overflow="hidden";
+/* אנימציה */
 
-}
+setTimeout(()=>{
 
-function closeRoom(){
+room.classList.add(
+"show"
+);
 
-const room =
-document.getElementById("room");
+},20);
 
-if(room){
-room.style.display="none";
-}
+/* חוסם גלילה */
 
-document.body.style.overflow="auto";
+document.body.style.overflow=
+"hidden";
 
-window.toggleMenu = function(){
+/* סוגר תפריט מובייל אם פתוח */
 
-const menu =
-document.getElementById("mobileMenu");
+const mobileMenu=
+document.getElementById(
+"mobileMenu"
+);
 
-const nav =
-document.querySelector(".header-nav");
+if(mobileMenu){
 
-if(menu){
-menu.classList.toggle("active");
-}
+mobileMenu.classList.remove(
+"active"
+);
 
-if(nav){
-nav.classList.toggle("active");
 }
 
 };
 
+
+/* סגירת חדר */
+
+window.closeRoom=function(){
+
+room.classList.remove(
+"show"
+);
+
+setTimeout(()=>{
+
+room.style.display="none";
+
+roomInner.innerHTML="";
+
+},300);
+
+document.body.style.overflow=
+"auto";
+
+};
+
+
+/* לחיצה מחוץ לחדר */
+
+if(room){
+
+room.addEventListener(
+"click",
+function(e){
+
+if(
+e.target===room
+){
+
+closeRoom();
+
 }
-const fabMenu = document.getElementById("fabMenu");
-const fabMain = document.getElementById("fabMain");
-const backToTop = document.getElementById("backToTop");
-
-/* FAB MENU */
-
-if(fabMain){
-
-fabMain.addEventListener("click",()=>{
-
-fabMenu?.classList.toggle("open");
 
 });
 
 }
 
-/* חזור למעלה */
+
+/* ESC */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.key==="Escape"
+){
+
+closeRoom();
+
+}
+
+});
+
+
+/* ---------- MOBILE MENU ---------- */
+
+window.toggleMenu=function(){
+
+const menu=
+document.getElementById(
+"mobileMenu"
+);
+
+if(!menu)return;
+
+menu.classList.toggle(
+"active"
+);
+
+};
+
+
+/* ---------- FAB MENU ---------- */
+
+const fabMenu=
+document.getElementById(
+"fabMenu"
+);
+
+const fabMain=
+document.getElementById(
+"fabMain"
+);
+
+if(fabMain){
+
+fabMain.addEventListener(
+"click",
+()=>{
+
+fabMenu?.classList.toggle(
+"open"
+);
+
+});
+
+}
+
+
+/* ---------- BACK TO TOP ---------- */
+
+const backToTop=
+document.getElementById(
+"backToTop"
+);
 
 if(backToTop){
 
-backToTop.addEventListener("click",()=>{
+backToTop.addEventListener(
+"click",
+()=>{
 
 window.scrollTo({
 
@@ -2107,6 +2195,44 @@ behavior:"smooth"
 });
 
 }
+
+
+/* ---------- START ---------- */
+
+console.log(
+"🚀 Jerusalem Trips Premium UI Loaded"
+);
+/* ==========================
+   BACK TO TOP
+========================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+const backToTop =
+document.getElementById(
+"backToTop"
+);
+
+if(backToTop){
+
+backToTop.addEventListener(
+"click",
+function(){
+
+window.scrollTo({
+
+top:0,
+behavior:"smooth"
+
+});
+
+});
+
+}
+
+});
 
 /* הצגה בגלילה */
 
@@ -2126,25 +2252,6 @@ backToTop.style.display="none";
 
 });
 
-
-/* MOBILE MENU */
-
-window.toggleMenu=function(){
-
-const menu=
-document.getElementById(
-"mobileMenu"
-);
-
-if(menu){
-
-menu.classList.toggle(
-"active"
-);
-
-}
-
-};
 
 
 /* PHONE SANITIZE */

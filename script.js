@@ -1404,10 +1404,17 @@ const slides=document.querySelectorAll(
    EMAILJS
 ========================== */
 
+if (window.emailjs) {
+
 emailjs.init(
 "u9MRRRVgErghPjkuE"
 );
 
+} else {
+
+console.error("EmailJS לא נטען");
+
+}
 
 /* ==========================
    TOAST

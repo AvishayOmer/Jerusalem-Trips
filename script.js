@@ -74,7 +74,11 @@ let sliderInterval = setInterval(changeSliderImage, 7000);
 ========================================================= */
 
 const Analytics = {
+init(){
 
+this.load();
+
+},
 load(){
 
 const logs=
@@ -247,7 +251,7 @@ const Booking = {
         }
 
         const booking = {
-            userId: State.user.id,
+            userId:State.session.id,
             region: data.region,
             package: data.package,
             date: data.date,
@@ -547,72 +551,6 @@ const Availability = {
 
         return true;
     }
-};
-/* =========================================================
-   ANALYTICS CORE (FINAL VERSION)
-========================================================= */
-
-const Analytics = {
-
-load(){
-
-const logs=
-JSON.parse(
-localStorage.getItem(
-"jt_logs"
-)||"[]"
-);
-
-/* אם State לא קיים — צור אותו */
-window.State=
-window.State||{};
-
-window.State.analytics=
-window.State.analytics||{};
-
-window.State.analytics.views=
-logs.length;
-
-return logs;
-
-},
-
-track(event,data={}){
-
-const log={
-
-event,
-data,
-time:new Date().toISOString()
-
-};
-
-let history=
-JSON.parse(
-localStorage.getItem(
-"jt_logs"
-)||"[]"
-);
-
-history.push(log);
-
-localStorage.setItem(
-"jt_logs",
-JSON.stringify(history)
-);
-
-},
-
-getLogs(){
-
-return JSON.parse(
-localStorage.getItem(
-"jt_logs"
-)||"[]"
-);
-
-}
-
 };
 
 /* =========================================================
@@ -1129,74 +1067,264 @@ document.addEventListener("DOMContentLoaded", init);
 "use strict";
 
 /* =========================================================
-   GLOBAL EXTENSION
-========================================================= */
-
-if (!window.State) window.State = {};
-
-Object.assign(window.State, {
-    role: "guest",
-    token: null,
-    session: null
-});
-
-/* =========================================================
-   AUTH SYSTEM (REALISTIC MOCK)
+   AUTH SYSTEM v2
+   PRODUCTION STRUCTURE
 ========================================================= */
 
 const Auth = {
 
-    register(name, phone, password) {
+usersKey:"jt_users",
+sessionKey:"jt_session",
 
-        const user = {
-            id: "U_" + Date.now(),
-            name,
-            phone,
-            password,
-            role: "user"
-        };
+register(name,phone,password){
 
-        localStorage.setItem("jt_user", JSON.stringify(user));
+const users=
+JSON.parse(
+localStorage.getItem(this.usersKey)
+)||[];
 
-        window.State.role = "user";
-        window.State.session = user;
 
-        return user;
-    },
+/* בדיקה שמשתמש קיים */
 
-    login(phone, password) {
+const exists=
+users.find(
+u=>u.phone===phone
+);
 
-        const user = JSON.parse(localStorage.getItem("jt_user"));
+if(exists){
 
-        if (!user) throw new Error("USER_NOT_FOUND");
+throw new Error(
+"USER_ALREADY_EXISTS"
+);
 
-        if (user.phone !== phone || user.password !== password) {
-            throw new Error("INVALID_CREDENTIALS");
-        }
-
-        window.State.session = user;
-        window.State.role = user.role;
-
-        return user;
-    },
-
-  logout() {
-window.State.session = null;
-window.State.role = "guest";
-},
-
-isLoggedIn(){
-
-return !!window.State.session;
-
-},
-
-isAdmin() {
-return window.State.role === "admin";
 }
 
 
-    
+/* יצירת משתמש */
+
+const user={
+
+id:"U_"+Date.now(),
+
+name:name.trim(),
+
+phone:phone.replace(/\D/g,""),
+
+password:btoa(password),
+
+role:"user",
+
+createdAt:
+new Date().toISOString()
+
+};
+
+
+users.push(user);
+
+localStorage.setItem(
+
+this.usersKey,
+
+JSON.stringify(users)
+
+);
+
+
+/* יצירת סשן */
+
+this.createSession(user);
+
+return user;
+
+},
+
+
+login(phone,password){
+
+const users=
+JSON.parse(
+localStorage.getItem(
+this.usersKey
+)
+)||[];
+
+
+const user=
+users.find(
+
+u=>
+
+u.phone===phone.replace(/\D/g,"")
+
+);
+
+
+if(!user){
+
+throw new Error(
+"USER_NOT_FOUND"
+);
+
+}
+
+
+/* בדיקת סיסמה */
+
+if(
+
+user.password
+!==
+
+btoa(password)
+
+){
+
+throw new Error(
+"INVALID_CREDENTIALS"
+);
+
+}
+
+
+/* יצירת סשן */
+
+this.createSession(
+user
+);
+
+return user;
+
+},
+
+
+createSession(user){
+
+const session={
+
+userId:user.id,
+
+role:user.role,
+
+token:
+
+btoa(
+
+Date.now()
++"-"+
+Math.random()
+
+),
+
+createdAt:
+Date.now(),
+
+expires:
+
+Date.now()
++
+
+1000
+*
+60
+*
+60
+*
+24
+
+};
+
+
+localStorage.setItem(
+
+this.sessionKey,
+
+JSON.stringify(session)
+
+);
+
+
+window.State.session=
+session;
+
+window.State.role=
+user.role;
+
+window.State.user=
+user;
+
+},
+
+
+logout(){
+
+localStorage.removeItem(
+this.sessionKey
+);
+
+window.State.session=
+null;
+
+window.State.user=
+null;
+
+window.State.role=
+"guest";
+
+},
+
+
+isLoggedIn(){
+
+const session=
+
+JSON.parse(
+
+localStorage.getItem(
+this.sessionKey
+)
+
+);
+
+if(!session)
+return false;
+
+
+/* בדיקת תוקף */
+
+if(
+
+Date.now()
+>
+
+session.expires
+
+){
+
+this.logout();
+
+return false;
+
+}
+
+return true;
+
+},
+
+
+isAdmin(){
+
+return window.State.role==="admin";
+
+},
+
+
+currentUser(){
+
+return window.State.user;
+
+}
+
 };
 
 /* =========================================================
@@ -1351,7 +1479,7 @@ const CoreApi = {
    ADMIN ENGINE (FULL CONTROL PANEL)
 ========================================================= */
 
-const Admin = {
+window.Admin={
 
     open() {
         Roles.requireAdmin();
@@ -2236,8 +2364,13 @@ behavior:"smooth"
 
 /* הצגה בגלילה */
 
-window.addEventListener("scroll",()=>{
 
+const backToTop=
+document.getElementById(
+"backToTop"
+);
+
+window.addEventListener("scroll",()=>{
 if(!backToTop) return;
 
 if(window.scrollY>300){
@@ -2263,3 +2396,23 @@ document
 .replace(/\D/g,"")
 .substring(0,10)
 ||"";
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+initState();
+
+initPart2();
+
+Analytics.init();
+
+Search.init();
+
+ScrollFX.init();
+
+CalendarUI.generate(
+window.State.calendarMonth,
+window.State.calendarYear
+);
+
+});

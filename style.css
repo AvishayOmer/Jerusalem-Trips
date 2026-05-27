@@ -764,44 +764,25 @@ img {
 
 /* תפריט הנגישות */
 .a11y-menu{
+    display:none;
+    position:fixed;
 
-display:none;
-position:fixed;
+    bottom:220px;
+    right:20px;
 
-bottom:220px;
-right:20px;
+    width:250px;
 
-width:250px;
+    background:rgba(30,30,30,.96);
+    backdrop-filter:blur(10px);
 
-background:rgba(30,30,30,.96);
+    border:1px solid #15cfe0;
+    border-radius:15px;
 
-backdrop-filter:blur(10px);
+    padding:20px;
 
-border:1px solid #15cfe0;
+    z-index:9999998;
 
-border-radius:15px;
-
-padding:20px;
-
-z-index:10000;
-
-pointer-events:auto;
-
-}
-@media(max-width:768px){
-
-.a11y-menu{
-
-bottom:100px;
-
-right:10px;
-
-width:90%;
-
-max-width:300px;
-
-}
-
+    pointer-events:auto;
 }
 
 #accessibility-btn{
@@ -2340,6 +2321,21 @@ margin-top:20px;
 width:95%;
 
 max-height:75vh;
+
+}
+
+}
+@media(max-width:768px){
+
+.a11y-menu{
+
+bottom:100px;
+
+right:10px;
+
+width:90%;
+
+max-width:300px;
 
 }
 

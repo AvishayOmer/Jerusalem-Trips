@@ -29,8 +29,21 @@ const sliderImages = [
   "images/3.jpg",
   "images/4.jpg",
   "images/5.jpg",
-  "images/6.jpg"
+  "images/6.jpg",
+   "images/7.jpg",
+  "images/8.jpg",
+  "images/9.jpg",
+  "images/10.jpg",
+  "images/11.jpg",
+  "images/12.jpg",
+   "images/13.jpg",
+  "images/14.jpg",
+  "images/15.jpg",
+  "images/16.jpg",
+  "images/logo.jpg",
+  "images/logo2.jpg"
 ];
+
 
 let currentSlide = 0;
 
@@ -55,6 +68,74 @@ function changeSliderImage() {
 }
 
 let sliderInterval = setInterval(changeSliderImage, 7000);
+
+/* =========================================================
+   ANALYTICS CORE (FINAL VERSION)
+========================================================= */
+
+const Analytics = {
+
+load(){
+
+const logs=
+JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+/* אם State לא קיים — צור אותו */
+window.State=
+window.State||{};
+
+window.State.analytics=
+window.State.analytics||{};
+
+window.State.analytics.views=
+logs.length;
+
+return logs;
+
+},
+
+track(event,data={}){
+
+const log={
+
+event,
+data,
+time:new Date().toISOString()
+
+};
+
+let history=
+JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+history.push(log);
+
+localStorage.setItem(
+"jt_logs",
+JSON.stringify(history)
+);
+
+},
+
+getLogs(){
+
+return JSON.parse(
+localStorage.getItem(
+"jt_logs"
+)||"[]"
+);
+
+}
+
+};
+
 /* =========================================================
    GLOBAL STATE MANAGER
 ========================================================= */

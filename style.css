@@ -764,25 +764,44 @@ img {
 
 /* תפריט הנגישות */
 .a11y-menu{
-    display:none;
-    position:fixed;
 
-    bottom:220px;
-    right:20px;
+display:none;
+position:fixed;
 
-    width:250px;
+bottom:220px;
+right:20px;
 
-    background:rgba(30,30,30,.96);
-    backdrop-filter:blur(10px);
+width:250px;
 
-    border:1px solid #15cfe0;
-    border-radius:15px;
+background:rgba(30,30,30,.96);
 
-    padding:20px;
+backdrop-filter:blur(10px);
 
-    z-index:9999998;
+border:1px solid #15cfe0;
 
-    pointer-events:auto;
+border-radius:15px;
+
+padding:20px;
+
+z-index:10000;
+
+pointer-events:auto;
+
+}
+@media(max-width:768px){
+
+.a11y-menu{
+
+bottom:100px;
+
+right:10px;
+
+width:90%;
+
+max-width:300px;
+
+}
+
 }
 
 #accessibility-btn{
@@ -2010,11 +2029,11 @@ overflow:auto;
 
 body {
     padding-top: 100px;
-}.text-container,
-.hero,
-section {
+.text-container,
+.hero {
     position: relative;
     z-index: 2;
+}
 }/* ===== HEADER SAFE FIX ===== */
 
 header.premium-header {

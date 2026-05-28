@@ -1,70 +1,136 @@
+```js
+/* =========================
+   MOBILE MENU
+========================= */
 
-// תפריט מובייל
 function toggleMenu() {
-  document.getElementById("mobileMenu")
-    .classList.toggle("open");
+
+  const mobileMenu =
+    document.getElementById("mobileMenu");
+
+  if(mobileMenu){
+
+    mobileMenu.classList.toggle("open");
+
+  }
+
 }
 
 
-// פתיחת מודל צור קשר
-const modal = document.getElementById("contactModal");
-const openBtn = document.getElementById("openContactModal");
-const closeBtn = document.querySelector(".close");
+/* =========================
+   CONTACT MODAL
+========================= */
 
-openBtn.addEventListener("click", () => {
-  modal.style.display = "block";
-});
+const modal =
+document.getElementById("contactModal");
 
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+const openBtn =
+document.getElementById("openContactModal");
 
-window.addEventListener("click", (e) => {
-  if (e.target === modal) {
+const closeBtn =
+document.querySelector(".close");
+
+
+if(openBtn && modal){
+
+  openBtn.addEventListener("click", ()=>{
+
+    modal.style.display = "block";
+
+  });
+
+}
+
+
+if(closeBtn && modal){
+
+  closeBtn.addEventListener("click", ()=>{
+
     modal.style.display = "none";
+
+  });
+
+}
+
+
+window.addEventListener("click", (e)=>{
+
+  if(modal && e.target === modal){
+
+    modal.style.display = "none";
+
   }
+
 });
 
 
-// תפריט נגישות
+/* =========================
+   ACCESSIBILITY MENU
+========================= */
+
 const a11yBtn =
 document.getElementById("accessibility-btn");
 
 const a11yMenu =
 document.getElementById("accessibility-menu");
 
-a11yBtn.addEventListener("click", () => {
-  a11yMenu.classList.toggle("show");
-});
 
+if(a11yBtn && a11yMenu){
 
-// פונקציות נגישות
-let fontSize = 16;
+  a11yBtn.addEventListener("click", ()=>{
 
-function changeFontSize(delta) {
-  fontSize += delta;
-  document.body.style.fontSize =
-  fontSize + "px";
+    a11yMenu.classList.toggle("show");
+
+  });
+
 }
 
-function toggleHighContrast() {
+
+/* =========================
+   ACCESSIBILITY FUNCTIONS
+========================= */
+
+let fontSize = 16;
+
+
+function changeFontSize(delta){
+
+  fontSize += delta;
+
+  document.body.style.fontSize =
+    fontSize + "px";
+
+}
+
+
+function toggleHighContrast(){
+
   document.body.classList.toggle(
     "high-contrast"
   );
+
 }
 
-function toggleGrayscale() {
+
+function toggleGrayscale(){
+
   document.body.classList.toggle(
     "grayscale"
   );
+
 }
 
-function resetA11y() {
+
+function resetA11y(){
+
   document.body.classList.remove(
     "high-contrast",
     "grayscale"
   );
 
   document.body.style.fontSize = "16px";
+
   fontSize = 16;
+
 }
+```

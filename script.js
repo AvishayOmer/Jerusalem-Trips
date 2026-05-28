@@ -1643,6 +1643,36 @@ const slides=document.querySelectorAll(
 ".hero-slide"
 );
 
+/* ---------- BACK TO TOP ---------- */
+
+if(backBtn){
+
+backBtn.addEventListener(
+"click",
+()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY > 300){
+
+backBtn.style.display = "block";
+
+}else{
+
+backBtn.style.display = "none";
+
+}
+
+});
+
+}
 
 /* ==========================
    EMAILJS
@@ -2300,91 +2330,11 @@ fabMenu?.classList.toggle(
 }
 
 
-/* ---------- BACK TO TOP ---------- */
-
-const backToTop=
-document.getElementById(
-"backToTop"
-);
-
-if(backToTop){
-
-backToTop.addEventListener(
-"click",
-()=>{
-
-window.scrollTo({
-
-top:0,
-behavior:"smooth"
-
-});
-
-});
-
-}
-
-
 /* ---------- START ---------- */
 
 console.log(
 "🚀 Jerusalem Trips Premium UI Loaded"
 );
-/* ==========================
-   BACK TO TOP
-========================== */
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-const backToTop =
-document.getElementById(
-"backToTop"
-);
-
-if(backToTop){
-
-backToTop.addEventListener(
-"click",
-function(){
-
-window.scrollTo({
-
-top:0,
-behavior:"smooth"
-
-});
-
-});
-
-}
-
-});
-
-/* הצגה בגלילה */
-
-
-const backToTop=
-document.getElementById(
-"backToTop"
-);
-
-window.addEventListener("scroll",()=>{
-if(!backToTop) return;
-
-if(window.scrollY>300){
-
-backToTop.style.display="block";
-
-}else{
-
-backToTop.style.display="none";
-
-}
-
-});
-
 
 
 /* PHONE SANITIZE */

@@ -100,4 +100,104 @@ document.addEventListener("DOMContentLoaded", () => {
   window.App.init();
 });
 
-})();
+})();document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================
+     SAFE SELECTOR
+  ========================= */
+
+  const $ = (id) => document.getElementById(id);
+
+  const backToTop = $("backToTop");
+  const modeToggle = $("modeToggle");
+
+  const modal = $("contactModal");
+  const openModal = $("openContactModal");
+  const closeModal = document.querySelector(".close");
+
+  const a11yBtn = $("accessibility-btn");
+  const a11yMenu = $("accessibility-menu");
+
+  const mobileMenu = $("mobileMenu");
+
+  /* =========================
+     BACK TO TOP (FIXED)
+  ========================= */
+
+  if (backToTop) {
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", () => {
+      backToTop.style.display =
+        window.scrollY > 300 ? "block" : "none";
+    });
+
+  }
+
+  /* =========================
+     DARK MODE
+  ========================= */
+
+  if (modeToggle) {
+
+    modeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+
+  }
+
+  /* =========================
+     MODAL (CONTACT)
+  ========================= */
+
+  if (openModal && modal) {
+    openModal.addEventListener("click", () => {
+      modal.style.display = "block";
+    });
+  }
+
+  if (closeModal && modal) {
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  /* =========================
+     ACCESSIBILITY MENU FIX
+  ========================= */
+
+  if (a11yBtn && a11yMenu) {
+    a11yBtn.addEventListener("click", () => {
+      a11yMenu.classList.toggle("show");
+    });
+  }
+
+  /* =========================
+     MOBILE MENU
+  ========================= */
+
+  window.toggleMenu = function () {
+    if (mobileMenu) {
+      mobileMenu.classList.toggle("open");
+    }
+  };
+
+  /* =========================
+     IMAGE SAFETY (gallery + index)
+  ========================= */
+
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("contextmenu", e => e.preventDefault());
+    img.setAttribute("draggable", "false");
+  });
+
+});

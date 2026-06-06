@@ -1056,7 +1056,7 @@ Analytics.track();
     console.log("🎛️ PART 3 LOADED — UI + DASHBOARD READY");
 }
 
-document.addEventListener("DOMContentLoaded", init);
+
 
 })();/* =========================================================
    PART 4/4 — AUTH + ROLES + CACHE + SEO + PERFORMANCE CORE
@@ -1595,7 +1595,7 @@ function init() {
     Performance.report();
 }
 
-document.addEventListener("DOMContentLoaded", init);
+
 
 })();
 /* ====================================

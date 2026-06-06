@@ -1,0 +1,42 @@
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body{
+  width:100%;
+  overflow-x:hidden;
+  direction:rtl;
+  font-family:'Varela Round',sans-serif;
+  background:#111;
+  color:white;
+  line-height:1.6;
+}
+
+body{
+  background-image:url('../images/3.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+
+  padding-top:110px;
+}
+
+a{
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+  display:block;
+
+  -webkit-user-drag:none;
+  user-select:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+}

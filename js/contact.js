@@ -128,7 +128,7 @@ function validate(data) {
 
 function buildWhatsAppMessage(data) {
 
-    return `📩 פנייה חדשה מטיולי ירושלים
+   return `📩 פנייה חדשה מטיולי ירושלים
 
 👤 ${data.firstName} ${data.lastName}
 
@@ -161,17 +161,19 @@ async function sendForm(openWhatsApp = true) {
 
     if (isSending) return;
 
-    const data = getFormData();
+    const data = {
+        firstName: document.getElementById("firstName")?.value.trim(),
+        lastName: document.getElementById("lastName")?.value.trim(),
+        phone: document.getElementById("phone")?.value.trim(),
+        email: document.getElementById("email")?.value.trim(),
 
-    const error = validate(data);
+        tourType: document.getElementById("tourType")?.value,
+        date: document.getElementById("date")?.value,
+        people: document.getElementById("people")?.value
+    };
 
-    if (error) {
-        showToast(error, "error");
-        return;
-    }
-
-    if (typeof emailjs === "undefined") {
-        showToast("EmailJS לא נטען", "error");
+    if (!data.firstName || !data.phone || !data.email || !data.tourType || !data.date) {
+        showToast("נא למלא את כל השדות", "error");
         return;
     }
 
@@ -187,32 +189,41 @@ async function sendForm(openWhatsApp = true) {
                 first_name: data.firstName,
                 last_name: data.lastName,
                 phone: data.phone,
-                user_email: data.email
+                user_email: data.email,
+
+                tour_type: data.tourType,
+                tour_date: data.date,
+                people: data.people
             }
         );
 
-        showToast("נשלח בהצלחה ✅");
+        showToast("הזמנה נשלחה בהצלחה ✅");
 
         form?.reset();
-
         closeModal();
 
-        if (openWhatsApp) {
+        const message =
+`🚀 הזמנה חדשה - טיולי ירושלים
 
+👤 ${data.firstName} ${data.lastName}
+📞 ${data.phone}
+📧 ${data.email}
+
+🧭 סוג טיול: ${data.tourType}
+📅 תאריך: ${data.date}
+👥 משתתפים: ${data.people}`;
+
+        if (openWhatsApp) {
             window.open(
-                `https://wa.me/972503251251?text=${encodeURIComponent(
-                    buildWhatsAppMessage(data)
-                )}`,
+                `https://wa.me/972503251251?text=${encodeURIComponent(message)}`,
                 "_blank",
                 "noopener,noreferrer"
             );
-
         }
 
     } catch (err) {
 
         console.error(err);
-
         showToast("שגיאה בשליחה ❌", "error");
 
     } finally {
@@ -223,7 +234,6 @@ async function sendForm(openWhatsApp = true) {
     }
 
 }
-
 /* ==========================
    BUTTONS
 ========================== */

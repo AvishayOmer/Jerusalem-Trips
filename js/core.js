@@ -51,11 +51,7 @@ window.App = {
       this.toggleDarkMode();
     });
 
-    /* ================= ACCESSIBILITY TOGGLE ================= */
-    this.el.accessibilityBtn?.addEventListener("click", () => {
-      this.toggleAccessibilityMenu();
-    });
-
+    
     /* ================= ESC KEY ================= */
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -73,14 +69,7 @@ window.App = {
     this.el.body.classList.toggle("dark-mode");
   },
 
-  toggleAccessibilityMenu() {
-    const menu = this.el.accessibilityMenu;
-    if (!menu) return;
-
-    menu.style.display =
-      menu.style.display === "block" ? "none" : "block";
-  },
-
+ 
   closeAllModals() {
     document.querySelectorAll(".open").forEach(el => {
       el.classList.remove("open");

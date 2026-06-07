@@ -373,7 +373,27 @@ required>
     placeholder="מייל"
     required
   >
+<input
+  id="tourType"
+  name="tourType"
+  placeholder="סוג טיול (למשל ירושלים / מצדה)"
+  required
+>
 
+<input
+  id="date"
+  name="date"
+  type="date"
+  required
+>
+
+<input
+  id="people"
+  name="people"
+  type="number"
+  placeholder="כמה משתתפים?"
+  required
+>
 <button type="button" data-action="send">
     שליחה
   </button>
@@ -510,8 +530,9 @@ class="cta-btn">
 
 <!-- JS -->
 
-<script src="js/contact.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="js/contact.js"></script>
 <script src="js/core.js"></script>
 <script src="js/menu.js"></script>
 <script type="module" src="js/analytics.js"></script>

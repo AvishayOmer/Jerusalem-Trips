@@ -1598,6 +1598,9 @@ function init() {
 
 
 })();
+
+modal.classList.add("active");
+
 /* ====================================
    TRIP JERU PREMIUM FINAL
    HTML SYNC VERSION

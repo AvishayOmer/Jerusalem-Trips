@@ -1,0 +1,35 @@
+
+@media(max-width:768px){
+
+  body{
+    padding-top:90px;
+  }
+
+  .premium-header{
+    padding:10px;
+  }
+
+  .brand-title{
+    font-size:18px;
+  }
+
+  .gallery img{
+    width:90%;
+    height:220px;
+  }
+
+  .hero-text{
+    right:5%;
+    max-width:90%;
+  }
+
+  #whatsapp-chat{
+    width:55px;
+    height:55px;
+  }
+
+  .a11y-menu{
+    width:90%;
+    right:5%;
+  }
+}

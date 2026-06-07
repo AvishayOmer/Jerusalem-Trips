@@ -1,0 +1,26 @@
+
+.site-footer{
+  margin-top:60px;
+
+  padding:40px 20px;
+
+  background:rgba(0,0,0,.85);
+
+  text-align:center;
+
+  border-top:2px solid #15cfe0;
+}
+
+.footer-slogan{
+  color:#15cfe0;
+
+  font-size:1.5rem;
+
+  font-weight:bold;
+}
+
+.footer-copy{
+  opacity:.7;
+
+  margin-top:20px;
+}

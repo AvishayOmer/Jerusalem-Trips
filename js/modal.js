@@ -1,12 +1,32 @@
 
-const openBtn = document.getElementById("openContactModal");
-const modal = document.getElementById("contactModal");
-const closeBtn = document.querySelector(".close");
+function initModal(){
 
-openBtn?.addEventListener("click", () => {
-    modal.classList.add("show");
-});
+const modal=
+ document.getElementById('contactModal');
 
-closeBtn?.addEventListener("click", () => {
-    modal.classList.remove("show");
-});
+const openBtn=
+ document.getElementById('openContactModal');
+
+const closeBtn=
+ document.querySelector('.close');
+
+if(!modal || !openBtn || !closeBtn)
+return;
+
+openBtn.onclick=function(){
+ modal.style.display='flex';
+}
+
+closeBtn.onclick=function(){
+ modal.style.display='none';
+}
+
+window.onclick=function(e){
+
+if(e.target===modal){
+ modal.style.display='none';
+}
+
+}
+
+}

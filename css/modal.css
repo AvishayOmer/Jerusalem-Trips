@@ -1,0 +1,52 @@
+
+.modal,
+.room,
+.image-viewer-modal{
+  display:none;
+
+  position:fixed;
+
+  top:0;
+  right:0;
+
+  width:100%;
+  height:100%;
+
+  background:rgba(0,0,0,.8);
+
+  justify-content:center;
+  align-items:center;
+
+  z-index:999999;
+}
+
+.modal-content,
+.room-content{
+  width:90%;
+  max-width:700px;
+
+  max-height:85vh;
+
+  overflow-y:auto;
+
+  background:#111;
+
+  padding:30px;
+
+  border-radius:20px;
+}
+
+.close,
+.close-room,
+.close-viewer{
+  position:absolute;
+
+  top:15px;
+  left:20px;
+
+  color:white;
+
+  font-size:30px;
+
+  cursor:pointer;
+}

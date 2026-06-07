@@ -33,3 +33,18 @@ window.resetA11y = function () {
   fontSize = 16;
   applyFont();
 };
+function initAccessibility(){
+
+window.toggleGrayscale=function(){
+
+ document.body.classList.toggle('grayscale');
+
+}
+
+window.toggleHighContrast=function(){
+
+ document.body.classList.toggle('high-contrast');
+
+}
+
+}

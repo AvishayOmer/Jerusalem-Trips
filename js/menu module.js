@@ -1,9 +1,18 @@
+function initMenu(){
 
-export function initMenu() {
-  const btn = document.querySelector(".menu-btn");
-  const menu = document.querySelector(".menu");
+const hamburger=
+ document.querySelector('.hamburger');
 
-  btn?.addEventListener("click", () => {
-    menu.classList.toggle("open");
-  });
+const mobileMenu=
+ document.querySelector('.mobile-menu');
+
+if(!hamburger || !mobileMenu)
+return;
+
+hamburger.addEventListener(
+'click',
+()=>{
+mobileMenu.classList.toggle('active');
+});
+
 }

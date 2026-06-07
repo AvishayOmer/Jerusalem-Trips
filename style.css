@@ -2679,4 +2679,21 @@ cursor:pointer;
 
     }
 
+}.a11y-menu{
+  display:none;
+}
+
+.a11y-menu.show{
+  display:block;
+}.hero-text,
+.hero-text h2,
+.hero-text p,
+.main-title{
+
+  color:#fff;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.9),
+    0 0 15px rgba(0,0,0,.8);
+
 }

@@ -1,20 +1,26 @@
 .modal {
-    display: none;
     position: fixed;
     inset: 0;
 
-    background: rgba(0,0,0,0.7);
-
+    display: flex;
     justify-content: center;
     align-items: center;
 
+    background: rgba(0,0,0,0.7);
+
     z-index: 999999;
 
-    animation: fadeIn 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .modal.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .modal-content {
@@ -33,7 +39,12 @@
     max-height: 85vh;
     overflow-y: auto;
 
-    animation: slideUp 0.3s ease;
+    transform: translateY(20px);
+    transition: transform 0.25s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
 }
 
 .close-modal {
@@ -44,15 +55,4 @@
     font-size: 24px;
     cursor: pointer;
     color: white;
-}
-
-/* אנימציות */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
 }

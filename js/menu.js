@@ -94,17 +94,23 @@ document.addEventListener("DOMContentLoaded", () => {
    ACCESSIBILITY SYSTEM (GLOBAL)
 ===================================================== */
 
-let fontSize = 16;
+window.App = window.App || {};
+
+window.App.fontSize = window.App.fontSize || 16;
 
 function applyFont() {
-  document.body.style.fontSize = fontSize + "px";
+  document.body.style.fontSize =
+    window.App.fontSize + "px";
 }
 
 window.changeFontSize = function (delta) {
-  fontSize += delta;
+  window.App.fontSize += delta;
 
-  if (fontSize < 12) fontSize = 12;
-  if (fontSize > 30) fontSize = 30;
+ if (window.App.fontSize < 12)
+  window.App.fontSize = 12;
+
+if (window.App.fontSize > 30)
+  window.App.fontSize = 30;
 
   applyFont();
 };
@@ -124,6 +130,6 @@ window.resetA11y = function () {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  fontSize = 16;
+window.App.fontSize = 16;
   applyFont();
 });

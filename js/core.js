@@ -9,11 +9,15 @@
 window.App = {
   
   state: {
-    darkMode: false,
-    fontSize: 16,
-    grayscale: false,
-    highContrast: false
-  },
+  darkMode: false,
+  fontSize: 16,
+  grayscale: false,
+  highContrast: false,
+
+  analytics: {
+    views: 0
+  }
+},
 
   init() {
     this.cacheDOM();

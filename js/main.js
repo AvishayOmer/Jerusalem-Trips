@@ -1,45 +1,83 @@
+(() => {
+"use strict";
+
 function initApp() {
 
-  /* =========================
-     HERO + SLIDERS
-  ========================= */
-  if (typeof initHeroSlider === "function") initHeroSlider();
-  if (typeof initImageSlider === "function") initImageSlider();
+  console.log("🚀 MAIN BOOTSTRAP START");
 
   /* =========================
-     SCROLL ANIMATIONS
+     SAFE CORE INIT
   ========================= */
-  if (typeof initScrollFX === "function") initScrollFX();
+  if (window.App && typeof window.App.init === "function") {
+    window.App.init();
+  }
 
   /* =========================
-     GALLERY
+     MOBILE MENU FIX (NO DUPLICATES)
   ========================= */
-  if (typeof initGallery === "function") initGallery();
+  window.toggleMenu = function () {
+    const menu = document.getElementById("mobileMenu");
+    if (!menu) return;
+    menu.classList.toggle("active");
+  };
 
   /* =========================
-     MODAL
+     BACKUP SCROLL ANIMATION
   ========================= */
-  if (typeof initModal === "function") initModal();
+  const items = document.querySelectorAll(
+    "section, .service-card, .review-card"
+  );
+
+  const run = () => {
+    items.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+        el.classList.add("show");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", run, { passive: true });
+  run();
 
   /* =========================
-     BACK TO TOP
+     HERO SAFETY (ONLY IF NEEDED)
   ========================= */
-  if (typeof initBackToTop === "function") initBackToTop();
+  const slides = document.querySelectorAll(".hero-slide");
+
+  if (slides.length > 1) {
+    let i = 0;
+
+    setInterval(() => {
+      slides[i].classList.remove("active");
+      i = (i + 1) % slides.length;
+      slides[i].classList.add("active");
+    }, 7000);
+  }
 
   /* =========================
-     MENU
+     IMAGE SLIDER SAFETY
   ========================= */
-  if (typeof initMenu === "function") initMenu();
+  const img = document.getElementById("image-slider");
 
-  /* =========================
-     ACCESSIBILITY
-  ========================= */
-  if (typeof initAccessibility === "function") initAccessibility();
+  if (img) {
+    const images = [
+      "images/1.jpg","images/2.jpg","images/3.jpg",
+      "images/4.jpg","images/5.jpg","images/6.jpg",
+      "images/7.jpg","images/8.jpg","images/9.jpg",
+      "images/10.jpg","images/11.jpg","images/12.jpg"
+    ];
 
-  console.log("🚀 MAIN INIT LOADED");
+    let i = 0;
+
+    setInterval(() => {
+      i = (i + 1) % images.length;
+      img.src = images[i];
+    }, 5000);
+  }
+
+  console.log("✅ MAIN BOOTSTRAP READY");
 }
 
-/* =========================
-   START APP (SAFE)
-========================= */
 document.addEventListener("DOMContentLoaded", initApp);
+
+})();

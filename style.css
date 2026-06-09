@@ -1,5 +1,5 @@
 /* =========================
-   RESET
+   RESET + BASE
 ========================= */
 * {
   box-sizing: border-box;
@@ -13,15 +13,16 @@ html, body {
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Varela Round', Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 /* =========================
-   BODY BACKGROUND
+   BACKGROUND
 ========================= */
 body {
-  background: #f4f4f4;
-  color: #333;
+  background: #0b0f1a;
+  color: #fff;
   background-image: url("images/3.jpg");
   background-size: cover;
   background-position: center;
@@ -29,72 +30,51 @@ body {
   position: relative;
 }
 
-/* overlay עדין */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.32);
+  background: rgba(0,0,0,0.45);
   z-index: -1;
-  pointer-events: none;
 }
 
 /* =========================
-   TEXT / LINKS
+   GLOBAL TEXT
 ========================= */
-h2, p {
-  margin-bottom: 20px;
+h1, h2, h3, p {
+  margin-bottom: 15px;
 }
 
 a {
+  color: #00e5ff;
   text-decoration: none;
-  color: #008793;
   transition: 0.3s;
 }
 
 a:hover {
-  color: #004d7a;
+  color: #00bcd4;
 }
 
 /* =========================
-   HEADER / SECTIONS
+   ANIMATIONS (CORE)
 ========================= */
-header, section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* =========================
-   HERO
-========================= */
-.hero {
-  position: relative;
-  min-height: 70vh;
-  overflow: hidden;
-}
-
-.hero-text,
-.hero-text h2,
-.hero-text p,
-.main-title {
-  color: #fff !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-}
-
-/* =========================
-   LOGO
-========================= */
-.logo,
-.brand-logo {
-  max-width: 100%;
-  height: auto;
-}
-
-/* =========================
-   HEADER PREMIUM (שמור אחד)
+   HEADER
 ========================= */
 .premium-header {
   position: fixed;
@@ -108,11 +88,9 @@ header, section {
   padding: 12px 20px;
   background: rgba(10,15,25,0.92);
   backdrop-filter: blur(14px);
+  animation: fadeIn 0.6s ease;
 }
 
-/* =========================
-   BRAND
-========================= */
 .brand-box {
   display: flex;
   align-items: center;
@@ -120,29 +98,28 @@ header, section {
 }
 
 .brand-logo {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
+  transition: transform 0.4s ease;
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
+.brand-logo:hover {
+  transform: rotate(5deg) scale(1.05);
 }
 
 .brand-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  color: #fff;
 }
 
 .brand-subtitle {
-  font-size: 14px;
-  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  opacity: 0.8;
 }
 
 /* =========================
-   HAMBURGER + MOBILE MENU
+   HAMBURGER MENU
 ========================= */
 .hamburger {
   display: flex;
@@ -157,6 +134,7 @@ header, section {
   width: 28px;
   height: 3px;
   background: #fff;
+  transition: 0.3s;
 }
 
 .mobile-menu {
@@ -166,8 +144,10 @@ header, section {
   top: 100%;
   right: 0;
   width: 220px;
-  background: rgba(5,10,25,0.97);
+  background: rgba(0,0,0,0.95);
   padding: 15px;
+  border-radius: 10px;
+  animation: fadeUp 0.4s ease;
 }
 
 .mobile-menu.active {
@@ -175,26 +155,68 @@ header, section {
 }
 
 /* =========================
-   HERO CTA
+   HERO
+========================= */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  animation: fadeUp 1s ease;
+}
+
+/* =========================
+   CTA
 ========================= */
 .cta-box {
-  padding: 50px 20px;
-  text-align: center;
-  border-radius: 25px;
-  background: #111827;
-  color: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.6);
+  animation: zoomIn 0.6s ease;
 }
 
 .cta-btn {
   display: inline-block;
-  padding: 15px 30px;
-  border-radius: 40px;
-  background: #15cfe0;
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: #00e5ff;
   color: #000;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
 }
 
 /* =========================
-   GALLERY (מאוחד בלבד)
+   GALLERY
 ========================= */
 .gallery {
   display: flex;
@@ -209,13 +231,13 @@ header, section {
   object-fit: cover;
   border-radius: 12px;
   filter: grayscale(100%);
-  transition: 0.4s ease;
-  cursor: pointer;
+  transition: 0.4s;
+  animation: fadeUp 0.6s ease;
 }
 
 .gallery img:hover {
   filter: grayscale(0%);
-  transform: scale(1.08);
+  transform: scale(1.08) rotate(1deg);
 }
 
 /* =========================
@@ -225,16 +247,19 @@ header, section {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   z-index: 3000;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-  background: #222;
-  margin: auto;
-  padding: 30px;
-  border-radius: 16px;
-  max-width: 400px;
+  background: #111;
+  padding: 25px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  animation: zoomIn 0.4s ease;
 }
 
 /* =========================
@@ -244,9 +269,10 @@ header, section {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   z-index: 99999999;
+  animation: fadeUp 1s ease;
 }
 
 /* =========================
@@ -266,6 +292,7 @@ header, section {
 
 .a11y-menu.show {
   display: block;
+  animation: fadeUp 0.3s ease;
 }
 
 /* =========================
@@ -279,15 +306,23 @@ header, section {
   height: 50px;
   border-radius: 50%;
   display: none;
-  background: #15cfe0;
+  background: #00e5ff;
   z-index: 99999;
+}
+
+/* =========================
+   SCROLL ANIMATIONS
+========================= */
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
 }
 
 /* =========================
    MOBILE
 ========================= */
 @media (max-width: 768px) {
-
   .gallery img {
     width: 95%;
     height: 220px;
@@ -300,5 +335,86 @@ header, section {
   .cta-box {
     margin: 20px;
   }
+}/* =========================
+   PREMIUM ROOM TRANSITION
+========================= */
 
+.room {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 999999;
+}
+
+.room.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.room-content {
+  width: min(700px, 92%);
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 25px;
+
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
+
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.room.show .room-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* =========================
+   ROOM TITLE ANIMATION (ה"טקס")
+========================= */
+
+.room-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #00e5ff;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  letter-spacing: 2px;
+
+  animation: roomTitleIn 0.6s ease forwards;
+}
+
+.room.show .room-title {
+  animation: roomTitleIn 0.6s ease forwards;
+}
+
+@keyframes roomTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+    letter-spacing: 8px;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 2px;
+    filter: blur(0);
+  }
+}
+
+/* יציאה חלקה */
+.room.hide .room-content {
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
 }

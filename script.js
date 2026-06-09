@@ -328,3 +328,62 @@ function initApp() {
 document.addEventListener("DOMContentLoaded", initApp);
 
 })();
+/* =========================
+   PREMIUM ROOM SYSTEM FIX
+========================= */
+
+window.openRoom = function (id) {
+  const room = document.getElementById("room");
+  const inner = document.getElementById("room-inner");
+
+  const section = document.getElementById(id);
+  if (!room || !inner || !section) return;
+
+  // הכנסת תוכן
+  inner.innerHTML = section.innerHTML;
+
+  // הוספת כותרת טקס אוטומטית אם אין
+  const h2 = inner.querySelector("h2");
+  if (h2 && !h2.classList.contains("room-title")) {
+    h2.classList.add("room-title");
+  }
+
+  room.classList.remove("hide");
+  room.style.display = "flex";
+
+  requestAnimationFrame(() => {
+    room.classList.add("show");
+  });
+
+  document.body.style.overflow = "hidden";
+};
+
+window.closeRoom = function () {
+  const room = document.getElementById("room");
+  if (!room) return;
+
+  room.classList.add("hide");
+  room.classList.remove("show");
+
+  setTimeout(() => {
+    room.style.display = "none";
+    document.body.style.overflow = "auto";
+  }, 400);
+};
+
+/* ESC סוגר חדר */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    window.closeRoom();
+  }
+});
+
+/* קליק מחוץ לתוכן */
+document.addEventListener("click", (e) => {
+  const room = document.getElementById("room");
+  const content = document.querySelector(".room-content");
+
+  if (room && e.target === room) {
+    window.closeRoom();
+  }
+});

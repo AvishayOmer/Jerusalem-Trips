@@ -1,16 +1,45 @@
+function initApp() {
 
-initApp();
+  /* =========================
+     HERO + SLIDERS
+  ========================= */
+  if (typeof initHeroSlider === "function") initHeroSlider();
+  if (typeof initImageSlider === "function") initImageSlider();
 
-function initApp(){
+  /* =========================
+     SCROLL ANIMATIONS
+  ========================= */
+  if (typeof initScrollFX === "function") initScrollFX();
 
-  initMenu();
+  /* =========================
+     GALLERY
+  ========================= */
+  if (typeof initGallery === "function") initGallery();
 
-  initGallery();
+  /* =========================
+     MODAL
+  ========================= */
+  if (typeof initModal === "function") initModal();
 
-  initAccessibility();
+  /* =========================
+     BACK TO TOP
+  ========================= */
+  if (typeof initBackToTop === "function") initBackToTop();
 
-  initModal();
+  /* =========================
+     MENU
+  ========================= */
+  if (typeof initMenu === "function") initMenu();
 
-  initBackToTop();
+  /* =========================
+     ACCESSIBILITY
+  ========================= */
+  if (typeof initAccessibility === "function") initAccessibility();
 
+  console.log("🚀 MAIN INIT LOADED");
 }
+
+/* =========================
+   START APP (SAFE)
+========================= */
+document.addEventListener("DOMContentLoaded", initApp);

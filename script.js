@@ -110,6 +110,8 @@ function initImageSlider() {
    MOBILE MENU
 ========================================================= */
 
+const $ = (id) => document.getElementById(id);
+
 window.toggleMenu = function () {
     const menu = $("mobileMenu");
     if (!menu) return;

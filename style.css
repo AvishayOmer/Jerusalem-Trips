@@ -1,22 +1,25 @@
 /* =========================================================
-   DESIGN SYSTEM SAFE (COMPATIBLE WITH YOUR EXISTING HTML+JS)
+   DESIGN SYSTEM (PRO LEVEL FOUNDATION)
 ========================================================= */
 
 :root {
 
-  --bg: #0b0f1a;
-  --bg-dark: #0b0f17;
-
+  /* COLORS */
+  --bg-dark: #0b0f1a;
+  --bg-darker: #0b0f17;
   --text: #ffffff;
-
   --primary: #00e5ff;
   --primary-dark: #00bcd4;
 
-  --glass: rgba(0,0,0,0.55);
+  /* EFFECTS */
+  --glass: rgba(0,0,0,0.6);
   --glass-strong: rgba(0,0,0,0.75);
 
-  --shadow: 0 25px 60px rgba(0,0,0,0.35);
+  /* SHADOWS */
+  --shadow-lg: 0 30px 80px rgba(0,0,0,0.4);
+  --shadow-md: 0 15px 40px rgba(0,0,0,0.3);
 
+  /* TRANSITIONS */
   --t-fast: 0.2s ease;
   --t-med: 0.4s ease;
   --t-slow: 0.8s ease;
@@ -27,31 +30,36 @@
 ========================================================= */
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Varela Round', Arial, sans-serif;
+  line-height: 1.6;
   scroll-behavior: smooth;
-  color: var(--text);
 }
 
 /* =========================================================
-   BACKGROUND (SAFE)
+   BACKGROUND SYSTEM
 ========================================================= */
 
 body {
-  background: var(--bg);
+  background: var(--bg-dark);
+  color: var(--text);
+
   background-image: url("images/3.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+
+  transition: background var(--t-med), color var(--t-med);
 }
 
 body::before {
@@ -63,20 +71,158 @@ body::before {
 }
 
 /* =========================================================
-   DARK MODE (JS COMPATIBLE)
+   DARK MODE
 ========================================================= */
 
 .dark-mode {
-  background: var(--bg-dark);
+  background: var(--bg-darker);
+  color: var(--text);
 }
 
 /* =========================================================
-   HERO (JS: hero-slide active)
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+p {
+  margin-bottom: 15px;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--t-med);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* =========================================================
+   ANIMATIONS CORE
+========================================================= */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* =========================================================
+   HEADER SYSTEM
+========================================================= */
+
+.premium-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 20px;
+  background: rgba(10,15,25,0.92);
+  backdrop-filter: blur(14px);
+
+  animation: fadeIn var(--t-med);
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  transition: transform var(--t-med);
+}
+
+.brand-logo:hover {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.brand-subtitle {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  transition: var(--t-med);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+
+  position: absolute;
+  top: 100%;
+  right: 0;
+
+  width: 220px;
+  background: rgba(0,0,0,0.95);
+
+  padding: 15px;
+  border-radius: 10px;
+
+  animation: fadeUp var(--t-med);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+/* =========================================================
+   HERO SECTION
 ========================================================= */
 
 .hero {
   position: relative;
   min-height: 70vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,25 +244,31 @@ body::before {
   width: 100%;
   height: 70vh;
   object-fit: cover;
-  filter: brightness(0.55);
+  filter: brightness(0.5);
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  animation: fadeUp var(--t-slow);
 }
 
 /* =========================================================
-   CTA (EXISTING CLASSES)
+   CTA SYSTEM
 ========================================================= */
 
 .cta-box {
   padding: 40px;
   border-radius: 20px;
   background: var(--glass);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow);
+  animation: zoomIn var(--t-med);
 }
 
 .cta-btn {
   display: inline-block;
   padding: 14px 28px;
-  border-radius: 999px;
+  border-radius: 30px;
 
   background: var(--primary);
   color: #000;
@@ -130,7 +282,7 @@ body::before {
 }
 
 /* =========================================================
-   GALLERY (JS SAFE)
+   GALLERY
 ========================================================= */
 
 .gallery {
@@ -146,80 +298,179 @@ body::before {
   object-fit: cover;
 
   border-radius: 12px;
-
   filter: grayscale(100%);
   transition: var(--t-med);
+  animation: fadeUp var(--t-med);
 }
 
 .gallery img:hover {
   filter: grayscale(0%);
-  transform: scale(1.08);
+  transform: scale(1.08) rotate(1deg);
 }
 
 /* =========================================================
-   MODAL (JS: display block / none)
+   MODAL SYSTEM
 ========================================================= */
 
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-
   background: rgba(0,0,0,0.7);
-
+  z-index: 3000;
   justify-content: center;
   align-items: center;
-
-  z-index: 9999;
 }
 
 .modal-content {
   background: #111;
   padding: 25px;
-  border-radius: 16px;
-
-  width: min(520px, 92%);
-
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
   animation: zoomIn var(--t-med);
 }
 
 /* =========================================================
-   WHATSAPP (JS ID SAFE)
+   WHATSAPP
 ========================================================= */
 
 #whatsapp-chat {
   position: fixed;
   bottom: 20px;
   left: 20px;
-
   width: 60px;
   height: 60px;
+  z-index: 99999;
+  animation: fadeUp var(--t-slow);
+}
 
+/* =========================================================
+   ACCESSIBILITY MENU
+========================================================= */
+
+.a11y-menu {
+  display: none;
+  position: fixed;
+  bottom: 220px;
+  right: 20px;
+  width: 250px;
+  background: #111;
+  padding: 15px;
+  border-radius: 12px;
   z-index: 9999;
+}
 
+.a11y-menu.show {
+  display: block;
+  animation: fadeUp var(--t-med);
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+#backToTop {
+  position: fixed;
+  bottom: 220px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: none;
+  background: var(--primary);
+  z-index: 9999;
   transition: var(--t-med);
 }
 
 /* =========================================================
-   ACCESSIBILITY MENU (JS .show)
+   SCROLL REVEAL
+========================================================= */
+
+section.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp var(--t-med) forwards;
+}
+/* =========================================================
+   FLOATING LOGO
+========================================================= */
+
+.floating-logo {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+  width: 70px;
+  height: 70px;
+  z-index: 9999;
+  animation: floatLogo 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   ROOM SYSTEM (NETFLIX STYLE)
+========================================================= */
+
+.room {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-med);
+}
+
+.room.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.room-content {
+  width: min(700px, 92%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 25px;
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
+  transition: all var(--t-slow);
+}
+
+.room.show .room-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* =========================================================
+   WAVE SYSTEM (APPLE STYLE)
+========================================================= */
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23007aff' fill-opacity='0.25' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128V320H0Z'%3E%3C/path%3E%3C/svg%3E");
+  animation: waveMove 8s linear infinite;
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-50px); }
+  100% { transform: translateX(0); }
+}
+
+/* =========================================================
+   ACCESSIBILITY MENU FIX
 ========================================================= */
 
 #accessibility-menu {
-  position: fixed;
-  bottom: 220px;
-  right: 20px;
-
-  width: 250px;
-
-  background: var(--glass-strong);
-  padding: 15px;
-  border-radius: 12px;
-
   opacity: 0;
   transform: translateY(10px);
-
   transition: var(--t-med);
-
   pointer-events: none;
 }
 
@@ -230,186 +481,20 @@ body::before {
 }
 
 /* =========================================================
-   BACK TO TOP (JS CONTROLLED)
+   MOBILE RESPONSIVE
 ========================================================= */
 
-#backToTop {
-  position: fixed;
-  bottom: 220px;
-  right: 20px;
-
-  width: 50px;
-  height: 50px;
-
-  border-radius: 50%;
-
-  background: var(--primary);
-
-  opacity: 0;
-  transform: translateY(20px);
-
-  transition: var(--t-med);
-
-  z-index: 9999;
-}
-
-/* =========================================================
-   MOBILE MENU (JS: active)
-========================================================= */
-
-.mobile-menu {
-  display: none;
-}
-
-.mobile-menu.active {
-  display: flex;
-  flex-direction: column;
-}
-
-/* =========================================================
-   HERO TEXT
-========================================================= */
-
-.hero-text {
-  position: absolute;
-  bottom: 20%;
-  width: 100%;
-  animation: fadeUp var(--t-slow);
-}
-
-/* =========================================================
-   ANIMATIONS (SAFE)
-========================================================= */
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}/* =========================================================
-   SAFE PREMIUM UPGRADE PATCH (NO BREAKING CHANGES)
-========================================================= */
-
-/* =========================
-   SMOOTHER TRANSITIONS GLOBALLY
-========================= */
-
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
-/* =========================
-   IMPROVED BUTTON FEEL (NO CLASS CHANGE)
-========================= */
-
-button,
-.cta-btn {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-button:hover,
-.cta-btn:hover {
-  transform: translateY(-3px) scale(1.04);
-}
-
-/* =========================
-   HERO SMOOTHER LAYER
-========================= */
-
-.hero-slide img {
-  transition: transform 6s ease;
-}
-
-.hero-slide.active img {
-  transform: scale(1.05);
-}
-
-/* =========================
-   MODAL PREMIUM FEEL (NO JS CHANGE)
-========================= */
-
-.modal {
-  backdrop-filter: blur(8px);
-}
-
-.modal-content {
-  transform: translateY(20px);
-  opacity: 0;
-  animation: modalIn 0.35s ease forwards;
-}
-
-@keyframes modalIn {
-  to {
-    transform: translateY(0);
-    opacity: 1;
+@media (max-width: 768px) {
+  .gallery img {
+    width: 95%;
+    height: 220px;
   }
-}
 
-/* =========================
-   GALLERY PREMIUM HOVER LIFT
-========================= */
+  .brand-title {
+    font-size: 18px;
+  }
 
-.gallery img {
-  will-change: transform;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-.gallery img:hover {
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-}
-
-/* =========================
-   BACK TO TOP SMOOTHER
-========================= */
-
-#backToTop {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* =========================
-   MOBILE MENU POLISH
-========================= */
-
-.mobile-menu {
-  transform: translateY(-10px);
-  opacity: 0;
-  transition: 0.25s ease;
-}
-
-.mobile-menu.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* =========================
-   ACCESSIBILITY MENU POLISH
-========================= */
-
-#accessibility-menu {
-  transition: 0.25s ease;
-}
-
-/* =========================
-   SUBTLE FLOATING EFFECTS
-========================= */
-
-.floating-logo {
-  will-change: transform;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-}
-
-/* =========================
-   SECTION REVEAL SMOOTHER
-========================= */
-
-section {
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  .cta-box {
+    margin: 20px;
+  }
 }

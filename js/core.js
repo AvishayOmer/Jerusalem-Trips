@@ -2,51 +2,39 @@
 "use strict";
 
 window.App = {
-
   state: {
-    darkMode: localStorage.getItem("darkMode") === "true",
-    uiLocked: false
+    darkMode: false
   },
 
   init() {
     this.cacheDOM();
-    this.applyInitialState();
     this.bindEvents();
-    this.bindUI();
-    console.log("🚀 LEVEL 10 UI ACTIVE");
+    console.log("🚀 CORE FIXED + ROOM SYSTEM OK");
   },
 
   /* ================= DOM ================= */
-
   cacheDOM() {
     this.el = {
       body: document.body,
 
       backToTop: document.getElementById("backToTop"),
       whatsapp: document.getElementById("whatsapp-chat"),
-      modeToggle: document.getElementById("modeToggle"),
 
-      contactModal: document.getElementById("contactModal"),
-      openModal: document.getElementById("openContactModal"),
-      closeModal: document.querySelector(".close"),
+      mobileMenu: document.getElementById("mobileMenu"),
+
+      modal: document.getElementById("contactModal"),
+      openModal: document.getElementById("floatingContactBtn"),
+      closeModal: document.querySelector(".close-modal"),
 
       accessibilityBtn: document.getElementById("accessibility-btn"),
       accessibilityMenu: document.getElementById("accessibility-menu"),
 
-      mobileMenu: document.getElementById("mobileMenu")
+      room: document.getElementById("room"),
+      roomInner: document.getElementById("room-inner")
     };
   },
 
-  /* ================= INIT STATE ================= */
-
-  applyInitialState() {
-    if (this.state.darkMode) {
-      this.el.body.classList.add("dark-mode");
-    }
-  },
-
   /* ================= EVENTS ================= */
-
   bindEvents() {
 
     /* BACK TO TOP */
@@ -54,49 +42,30 @@ window.App = {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    window.addEventListener("scroll", () => {
-      const show = window.scrollY > 250;
-
-      if (!this.el.backToTop) return;
-
-      this.el.backToTop.style.opacity = show ? "1" : "0";
-      this.el.backToTop.style.transform = show
-        ? "translateY(0)"
-        : "translateY(25px)";
-    });
-
     /* WHATSAPP */
     this.el.whatsapp?.addEventListener("click", () => {
       window.open("https://wa.me/972503251251", "_blank");
     });
 
-    /* DARK MODE */
-    this.el.modeToggle?.addEventListener("click", () => {
-      this.toggleDarkMode();
-    });
-
-    /* ESC GLOBAL */
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") this.closeAll();
-    });
-  },
-
-  /* ================= UI ================= */
-
-  bindUI() {
-
-    /* MODAL (NETFLIX STYLE) */
+    /* MODAL OPEN */
     this.el.openModal?.addEventListener("click", () => {
-      this.openModal(this.el.contactModal);
+      this.openModal();
     });
 
     this.el.closeModal?.addEventListener("click", () => {
-      this.closeModal(this.el.contactModal);
+      this.closeModal();
     });
 
     window.addEventListener("click", (e) => {
-      if (e.target === this.el.contactModal) {
-        this.closeModal(this.el.contactModal);
+      if (e.target === this.el.modal) {
+        this.closeModal();
+      }
+    });
+
+    /* ESC */
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.closeAll();
       }
     });
 
@@ -104,69 +73,82 @@ window.App = {
     this.el.accessibilityBtn?.addEventListener("click", () => {
       this.el.accessibilityMenu?.classList.toggle("show");
     });
+  },
 
-    /* MOBILE MENU */
+  /* ================= ROOM SYSTEM (CRITICAL FIX) ================= */
+
+  openRoom(id) {
+    const section = document.getElementById(id);
+    if (!section || !this.el.room || !this.el.roomInner) return;
+
+    this.el.roomInner.innerHTML = section.innerHTML;
+    this.el.room.style.display = "flex";
+
+    requestAnimationFrame(() => {
+      this.el.room.classList.add("show");
+    });
+
+    document.body.style.overflow = "hidden";
+  },
+
+  closeRoom() {
+    if (!this.el.room) return;
+
+    this.el.room.classList.remove("show");
+
+    setTimeout(() => {
+      this.el.room.style.display = "none";
+      this.el.roomInner.innerHTML = "";
+      document.body.style.overflow = "";
+    }, 250);
+  },
+
+  /* expose globally (חשוב לכפתורים שלך ב-HTML) */
+  bindRoomGlobals() {
+    window.openRoom = (id) => this.openRoom(id);
+    window.closeRoom = () => this.closeRoom();
+  },
+
+  /* ================= MODAL ================= */
+
+  openModal() {
+    if (!this.el.modal) return;
+
+    this.el.modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  },
+
+  closeModal() {
+    if (!this.el.modal) return;
+
+    this.el.modal.style.display = "none";
+    document.body.style.overflow = "";
+  },
+
+  /* ================= MENU ================= */
+
+  bindMenu() {
     window.toggleMenu = () => {
-      this.el.mobileMenu?.classList.toggle("open");
+      this.el.mobileMenu?.classList.toggle("active");
     };
   },
 
-  /* ================= DARK MODE ================= */
-
-  toggleDarkMode() {
-    this.state.darkMode = !this.state.darkMode;
-
-    this.el.body.classList.toggle("dark-mode");
-
-    localStorage.setItem("darkMode", this.state.darkMode);
-  },
-
-  /* ================= MODAL ANIMATION ================= */
-
-  openModal(el) {
-    if (!el) return;
-
-    el.style.display = "flex";
-    el.style.opacity = "0";
-    el.style.transform = "scale(0.9) translateY(40px)";
-    this.el.body.style.overflow = "hidden";
-
-    requestAnimationFrame(() => {
-      el.style.transition = "0.4s cubic-bezier(.2,.8,.2,1)";
-      el.style.opacity = "1";
-      el.style.transform = "scale(1) translateY(0)";
-      this.el.body.style.filter = "blur(4px)";
-    });
-  },
-
-  closeModal(el) {
-    if (!el) return;
-
-    el.style.transition = "0.3s ease";
-    el.style.opacity = "0";
-    el.style.transform = "scale(0.9) translateY(30px)";
-
-    this.el.body.style.filter = "none";
-    this.el.body.style.overflow = "";
-
-    setTimeout(() => {
-      el.style.display = "none";
-    }, 300);
-  },
-
-  /* ================= GLOBAL CLOSE ================= */
+  /* ================= CLOSE ALL ================= */
 
   closeAll() {
-    this.closeModal(this.el.contactModal);
+    this.closeRoom();
+    this.closeModal();
     this.el.accessibilityMenu?.classList.remove("show");
-    this.el.mobileMenu?.classList.remove("open");
+    this.el.mobileMenu?.classList.remove("active");
   }
 };
 
-/* ================= START ================= */
+/* ================= INIT ================= */
 
 document.addEventListener("DOMContentLoaded", () => {
   window.App.init();
+  window.App.bindRoomGlobals();
+  window.App.bindMenu();
 });
 
 })();

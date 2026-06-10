@@ -1,83 +1,60 @@
-(() => {
-"use strict";
+document.addEventListener("DOMContentLoaded", () => {
 
-function initApp() {
+  const $ = (id) => document.getElementById(id);
 
-  console.log("🚀 MAIN BOOTSTRAP START");
+  const backToTop = $("backToTop");
+  const modeToggle = $("modeToggle");
+  const modal = $("contactModal");
+  const openModal = $("openContactModal");
+  const closeModal = document.querySelector(".close");
+  const a11yBtn = $("accessibility-btn");
+  const a11yMenu = $("accessibility-menu");
+  const mobileMenu = $("mobileMenu");
 
-  /* =========================
-     SAFE CORE INIT
-  ========================= */
-  if (window.App && typeof window.App.init === "function") {
-    window.App.init();
-  }
+  /* ================= BACK TO TOP ================= */
+  backToTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
-  /* =========================
-     MOBILE MENU FIX (NO DUPLICATES)
-  ========================= */
+  window.addEventListener("scroll", () => {
+    if (backToTop) {
+      backToTop.style.display =
+        window.scrollY > 300 ? "block" : "none";
+    }
+  });
+
+  /* ================= DARK MODE ================= */
+  modeToggle?.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+
+  /* ================= MODAL ================= */
+  openModal?.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+  closeModal?.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+  /* ================= ACCESSIBILITY ================= */
+  a11yBtn?.addEventListener("click", () => {
+    a11yMenu.classList.toggle("show");
+  });
+
+  /* ================= MOBILE MENU ================= */
   window.toggleMenu = function () {
-    const menu = document.getElementById("mobileMenu");
-    if (!menu) return;
-    menu.classList.toggle("active");
+    mobileMenu?.classList.toggle("active");
   };
 
-  /* =========================
-     BACKUP SCROLL ANIMATION
-  ========================= */
-  const items = document.querySelectorAll(
-    "section, .service-card, .review-card"
-  );
+  /* ================= IMAGE SAFETY ================= */
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("contextmenu", e => e.preventDefault());
+    img.setAttribute("draggable", "false");
+  });
 
-  const run = () => {
-    items.forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-        el.classList.add("show");
-      }
-    });
-  };
-
-  window.addEventListener("scroll", run, { passive: true });
-  run();
-
-  /* =========================
-     HERO SAFETY (ONLY IF NEEDED)
-  ========================= */
-  const slides = document.querySelectorAll(".hero-slide");
-
-  if (slides.length > 1) {
-    let i = 0;
-
-    setInterval(() => {
-      slides[i].classList.remove("active");
-      i = (i + 1) % slides.length;
-      slides[i].classList.add("active");
-    }, 7000);
-  }
-
-  /* =========================
-     IMAGE SLIDER SAFETY
-  ========================= */
-  const img = document.getElementById("image-slider");
-
-  if (img) {
-    const images = [
-      "images/1.jpg","images/2.jpg","images/3.jpg",
-      "images/4.jpg","images/5.jpg","images/6.jpg",
-      "images/7.jpg","images/8.jpg","images/9.jpg",
-      "images/10.jpg","images/11.jpg","images/12.jpg"
-    ];
-
-    let i = 0;
-
-    setInterval(() => {
-      i = (i + 1) % images.length;
-      img.src = images[i];
-    }, 5000);
-  }
-
-  console.log("✅ MAIN BOOTSTRAP READY");
-}
-
-document.addEventListener("DOMContentLoaded", initApp);
-
-})();
+});

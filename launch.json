@@ -2,17 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome (TripJeru)",
+      "name": "Launch Chrome (Live Server)",
       "type": "pwa-chrome",
       "request": "launch",
-      "url": "https://tripjeru.org.il/",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "Launch Edge (TripJeru)",
-      "type": "pwa-msedge",
-      "request": "launch",
-      "url": "https://tripjeru.org.il/",
+      "url": "http://localhost:5500",
       "webRoot": "${workspaceFolder}"
     }
   ]

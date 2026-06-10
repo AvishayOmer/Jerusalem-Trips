@@ -1,29 +1,43 @@
 /* =========================================================
-   DESIGN SYSTEM (PRO LEVEL FOUNDATION)
+   APPLE+++ DESIGN SYSTEM (PRODUCTION CLEAN VERSION)
 ========================================================= */
 
 :root {
 
   /* COLORS */
-  --bg-dark: #0b0f1a;
-  --bg-darker: #0b0f17;
+  --bg: #0b0f1a;
+  --bg-dark: #0b0f17;
   --text: #ffffff;
+
   --primary: #00e5ff;
   --primary-dark: #00bcd4;
 
-  /* EFFECTS */
-  --glass: rgba(0,0,0,0.6);
-  --glass-strong: rgba(0,0,0,0.75);
+/* =========================
+   GLASS ULTRA PREMIUM
+========================= */
+
+.glass {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
 
   /* SHADOWS */
-  --shadow-lg: 0 30px 80px rgba(0,0,0,0.4);
+  --shadow-sm: 0 10px 25px rgba(0,0,0,0.25);
   --shadow-md: 0 15px 40px rgba(0,0,0,0.3);
+  --shadow-lg: 0 30px 80px rgba(0,0,0,0.4);
 
-  /* TRANSITIONS */
+  /* RADIUS */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-full: 999px;
+
+  /* MOTION */
   --t-fast: 0.2s ease;
   --t-med: 0.4s ease;
   --t-slow: 0.8s ease;
-
 }
 
 /* =========================================================
@@ -31,9 +45,11 @@
 ========================================================= */
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
@@ -42,24 +58,20 @@ html, body {
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Varela Round', Arial, sans-serif;
-  line-height: 1.6;
   scroll-behavior: smooth;
+  color: var(--text);
+  background: var(--bg);
 }
 
 /* =========================================================
-   BACKGROUND SYSTEM
+   BACKGROUND
 ========================================================= */
 
 body {
-  background: var(--bg-dark);
-  color: var(--text);
-
   background-image: url("images/3.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
-  transition: background var(--t-med), color var(--t-med);
 }
 
 body::before {
@@ -75,8 +87,7 @@ body::before {
 ========================================================= */
 
 .dark-mode {
-  background: var(--bg-darker);
-  color: var(--text);
+  background: var(--bg-dark);
 }
 
 /* =========================================================
@@ -98,32 +109,47 @@ a:hover {
 }
 
 /* =========================================================
-   ANIMATIONS CORE
+   LAYOUT
 ========================================================= */
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.grid {
+  display: grid;
+  gap: 20px;
 }
 
-@keyframes zoomIn {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
 
-@keyframes floatLogo {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+@media (max-width: 768px) {
+
+  .gallery img {
+    width: 95%;
+    height: 220px;
+  }
+
+  .premium-header {
+    padding: 10px 12px;
+  }
+
+  .hero-slide img {
+    height: 60vh;
+  }
+
+  .cta-box {
+    padding: 20px;
+  }
+
 }
+  
+
 
 /* =========================================================
-   HEADER SYSTEM
+   HEADER
 ========================================================= */
 
 .premium-header {
@@ -131,7 +157,7 @@ a:hover {
   top: 0;
   right: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 100;
 
   display: flex;
   justify-content: space-between;
@@ -144,82 +170,46 @@ a:hover {
   animation: fadeIn var(--t-med);
 }
 
-.brand-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-logo {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  transition: transform var(--t-med);
-}
-
-.brand-logo:hover {
-  transform: rotate(5deg) scale(1.05);
-}
-
-.brand-title {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.brand-subtitle {
-  font-size: 13px;
-  opacity: 0.8;
-}
-
 /* =========================================================
-   MOBILE MENU
+   BUTTONS
 ========================================================= */
 
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 22px;
+  border-radius: var(--r-full);
+  font-weight: 700;
+
+  transition: var(--t-med);
   cursor: pointer;
 }
 
-.hamburger span {
-  width: 28px;
-  height: 3px;
-  background: #fff;
-  transition: var(--t-med);
+.btn-primary {
+  background: var(--primary);
+  color: #000;
 }
 
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-
-  position: absolute;
-  top: 100%;
-  right: 0;
-
-  width: 220px;
-  background: rgba(0,0,0,0.95);
-
-  padding: 15px;
-  border-radius: 10px;
-
-  animation: fadeUp var(--t-med);
+.btn-dark {
+  background: var(--glass);
+  color: #fff;
 }
 
-.mobile-menu.active {
-  display: flex;
+button:hover,
+.btn:hover,
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.04);
 }
 
 /* =========================================================
-   HERO SECTION
+   HERO (JS SAFE)
 ========================================================= */
 
 .hero {
   position: relative;
   min-height: 70vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,41 +231,33 @@ a:hover {
   width: 100%;
   height: 70vh;
   object-fit: cover;
-  filter: brightness(0.5);
+  filter: brightness(0.55);
+  transition: transform 6s ease;
 }
 
-.hero-text {
-  position: absolute;
-  bottom: 20%;
-  width: 100%;
-  animation: fadeUp var(--t-slow);
+.hero-slide.active img {
+  transform: scale(1.05);
 }
 
 /* =========================================================
-   CTA SYSTEM
+   CTA
 ========================================================= */
 
 .cta-box {
   padding: 40px;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   background: var(--glass);
-  animation: zoomIn var(--t-med);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
 }
 
 .cta-btn {
   display: inline-block;
   padding: 14px 28px;
-  border-radius: 30px;
-
+  border-radius: var(--r-full);
   background: var(--primary);
   color: #000;
   font-weight: bold;
-
-  transition: var(--t-med);
-}
-
-.cta-btn:hover {
-  transform: scale(1.05);
 }
 
 /* =========================================================
@@ -293,88 +275,72 @@ a:hover {
   width: 220px;
   height: 150px;
   object-fit: cover;
-
-  border-radius: 12px;
+  border-radius: var(--r-md);
 
   filter: grayscale(100%);
   transition: var(--t-med);
 
-  animation: fadeUp var(--t-med);
+  box-shadow: var(--shadow-sm);
 }
 
 .gallery img:hover {
   filter: grayscale(0%);
-  transform: scale(1.08) rotate(1deg);
+  transform: scale(1.08);
+  box-shadow: var(--shadow-lg);
 }
 
 /* =========================================================
-   MODAL SYSTEM
+   MODAL (JS SAFE)
 ========================================================= */
 
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-
   background: rgba(0,0,0,0.7);
-
-  z-index: 3000;
-
   justify-content: center;
   align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+
+.modal.open {
+  display: flex;
 }
 
 .modal-content {
+  width: min(520px, 92%);
   background: #111;
   padding: 25px;
-  border-radius: 14px;
-
-  width: 90%;
-  max-width: 420px;
-
+  border-radius: var(--r-lg);
   animation: zoomIn var(--t-med);
 }
 
 /* =========================================================
-   WHATSAPP
+   ACCESSIBILITY + UI STATES
 ========================================================= */
 
-#whatsapp-chat {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-
-  width: 60px;
-  height: 60px;
-
-  z-index: 99999;
-
-  animation: fadeUp var(--t-slow);
-}
-
-/* =========================================================
-   ACCESSIBILITY MENU
-========================================================= */
-
-.a11y-menu {
-  display: none;
-
+.a11y-menu,
+#accessibility-menu {
   position: fixed;
   bottom: 220px;
   right: 20px;
 
   width: 250px;
+  background: var(--glass-strong);
+  border-radius: var(--r-md);
 
-  background: #111;
-  padding: 15px;
-  border-radius: 12px;
-
-  z-index: 9999;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--t-med);
+  pointer-events: none;
 }
 
-.a11y-menu.show {
-  display: block;
-  animation: fadeUp var(--t-med);
+.a11y-menu.show,
+#accessibility-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 /* =========================================================
@@ -388,151 +354,108 @@ a:hover {
 
   width: 50px;
   height: 50px;
-
   border-radius: 50%;
-  display: none;
 
   background: var(--primary);
 
-  z-index: 9999;
-
-  transition: var(--t-med);
-}
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-section {
   opacity: 0;
-  transform: translateY(30px);
-
-  animation: fadeUp var(--t-med) forwards;
-}
-
-/* =========================================================
-   FLOATING LOGO
-========================================================= */
-
-.floating-logo {
-  position: fixed;
-  top: 90px;
-  left: 20px;
-
-  width: 70px;
-  height: 70px;
+  transform: translateY(20px);
+  transition: var(--t-med);
 
   z-index: 9999;
-
-  animation: floatLogo 3s ease-in-out infinite;
 }
 
 /* =========================================================
-   ROOM SYSTEM (NETFLIX STYLE)
+   MOBILE MENU (JS SAFE)
 ========================================================= */
 
-.room {
-  position: fixed;
-  inset: 0;
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+}
 
-  background: rgba(0,0,0,0.75);
-
+.mobile-menu.active {
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: opacity var(--t-med);
-}
-
-.room.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.room-content {
-  width: min(700px, 92%);
-  max-height: 85vh;
-
-  overflow-y: auto;
-
-  background: #0f172a;
-
-  border-radius: 16px;
-  padding: 25px;
-
-  transform: translateY(40px) scale(0.98);
-  opacity: 0;
-
-  transition: all var(--t-slow);
-}
-
-.room.show .room-content {
-  transform: translateY(0) scale(1);
-  opacity: 1;
 }
 
 /* =========================================================
-   WAVE SYSTEM (APPLE STYLE)
+   FLOATING ELEMENTS
 ========================================================= */
 
-.wave {
-  position: absolute;
-  bottom: 0;
-
-  width: 100%;
-  height: 120px;
-
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23007aff' fill-opacity='0.25' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128V320H0Z'%3E%3C/path%3E%3C/svg%3E");
-
-  animation: waveMove 8s linear infinite;
-}
-
-@keyframes waveMove {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-50px); }
-  100% { transform: translateX(0); }
+.float {
+  animation: float 3s ease-in-out infinite;
 }
 
 /* =========================================================
-   ACCESSIBILITY MENU FIX
+   ANIMATIONS
 ========================================================= */
 
-#accessibility-menu {
-  opacity: 0;
-  transform: translateY(10px);
-
-  transition: var(--t-med);
-
-  pointer-events: none;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-#accessibility-menu.show {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  pointer-events: auto;
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
 /* =========================================================
-   MOBILE RESPONSIVE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 768px) {
-
   .gallery img {
     width: 95%;
     height: 220px;
   }
 
-  .brand-title {
-    font-size: 18px;
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
   }
+}/* =========================
+   PERFORMANCE BOOST
+========================= */
 
-  .cta-box {
-    margin: 20px;
-  }
+img {
+  content-visibility: auto;
+}
 
+.hero-slide,
+.modal-content,
+.gallery img {
+  will-change: transform, opacity;
+}/* =========================
+   ULTRA SMOOTH HOVER SYSTEM
+========================= */
+
+.btn,
+.cta-btn,
+.gallery img,
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btn:hover,
+.cta-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }

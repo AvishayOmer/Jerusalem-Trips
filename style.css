@@ -1,6 +1,35 @@
-/* =========================
-   RESET + BASE
-========================= */
+/* =========================================================
+   DESIGN SYSTEM (PRO LEVEL FOUNDATION)
+========================================================= */
+
+:root {
+
+  /* COLORS */
+  --bg-dark: #0b0f1a;
+  --bg-darker: #0b0f17;
+  --text: #ffffff;
+  --primary: #00e5ff;
+  --primary-dark: #00bcd4;
+
+  /* EFFECTS */
+  --glass: rgba(0,0,0,0.6);
+  --glass-strong: rgba(0,0,0,0.75);
+
+  /* SHADOWS */
+  --shadow-lg: 0 30px 80px rgba(0,0,0,0.4);
+  --shadow-md: 0 15px 40px rgba(0,0,0,0.3);
+
+  /* TRANSITIONS */
+  --t-fast: 0.2s ease;
+  --t-med: 0.4s ease;
+  --t-slow: 0.8s ease;
+
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,17 +46,20 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* =========================================================
+   BACKGROUND SYSTEM
+========================================================= */
+
 body {
-  background: #0b0f1a;
-  color: #fff;
+  background: var(--bg-dark);
+  color: var(--text);
+
   background-image: url("images/3.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  position: relative;
+
+  transition: background var(--t-med), color var(--t-med);
 }
 
 body::before {
@@ -38,26 +70,37 @@ body::before {
   z-index: -1;
 }
 
-/* =========================
-   GLOBAL TEXT
-========================= */
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark-mode {
+  background: var(--bg-darker);
+  color: var(--text);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
 h1, h2, h3, p {
   margin-bottom: 15px;
 }
 
 a {
-  color: #00e5ff;
+  color: var(--primary);
   text-decoration: none;
-  transition: 0.3s;
+  transition: var(--t-med);
 }
 
 a:hover {
-  color: #00bcd4;
+  color: var(--primary-dark);
 }
 
-/* =========================
-   ANIMATIONS (CORE)
-========================= */
+/* =========================================================
+   ANIMATIONS CORE
+========================================================= */
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
@@ -73,22 +116,32 @@ a:hover {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* =========================
-   HEADER
-========================= */
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* =========================================================
+   HEADER SYSTEM
+========================================================= */
+
 .premium-header {
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
-  z-index: 999999;
+  z-index: 9999;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 12px 20px;
   background: rgba(10,15,25,0.92);
   backdrop-filter: blur(14px);
-  animation: fadeIn 0.6s ease;
+
+  animation: fadeIn var(--t-med);
 }
 
 .brand-box {
@@ -101,7 +154,7 @@ a:hover {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  transition: transform 0.4s ease;
+  transition: transform var(--t-med);
 }
 
 .brand-logo:hover {
@@ -118,9 +171,10 @@ a:hover {
   opacity: 0.8;
 }
 
-/* =========================
-   HAMBURGER MENU
-========================= */
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -134,32 +188,38 @@ a:hover {
   width: 28px;
   height: 3px;
   background: #fff;
-  transition: 0.3s;
+  transition: var(--t-med);
 }
 
 .mobile-menu {
   display: none;
   flex-direction: column;
+
   position: absolute;
   top: 100%;
   right: 0;
+
   width: 220px;
   background: rgba(0,0,0,0.95);
+
   padding: 15px;
   border-radius: 10px;
-  animation: fadeUp 0.4s ease;
+
+  animation: fadeUp var(--t-med);
 }
 
 .mobile-menu.active {
   display: flex;
 }
 
-/* =========================
-   HERO
-========================= */
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
 .hero {
   position: relative;
   min-height: 70vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,36 +248,40 @@ a:hover {
   position: absolute;
   bottom: 20%;
   width: 100%;
-  animation: fadeUp 1s ease;
+  animation: fadeUp var(--t-slow);
 }
 
-/* =========================
-   CTA
-========================= */
+/* =========================================================
+   CTA SYSTEM
+========================================================= */
+
 .cta-box {
   padding: 40px;
   border-radius: 20px;
-  background: rgba(0,0,0,0.6);
-  animation: zoomIn 0.6s ease;
+  background: var(--glass);
+  animation: zoomIn var(--t-med);
 }
 
 .cta-btn {
   display: inline-block;
   padding: 14px 28px;
   border-radius: 30px;
-  background: #00e5ff;
+
+  background: var(--primary);
   color: #000;
   font-weight: bold;
-  transition: 0.3s;
+
+  transition: var(--t-med);
 }
 
 .cta-btn:hover {
   transform: scale(1.05);
 }
 
-/* =========================
+/* =========================================================
    GALLERY
-========================= */
+========================================================= */
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -229,10 +293,13 @@ a:hover {
   width: 220px;
   height: 150px;
   object-fit: cover;
+
   border-radius: 12px;
+
   filter: grayscale(100%);
-  transition: 0.4s;
-  animation: fadeUp 0.6s ease;
+  transition: var(--t-med);
+
+  animation: fadeUp var(--t-med);
 }
 
 .gallery img:hover {
@@ -240,15 +307,19 @@ a:hover {
   transform: scale(1.08) rotate(1deg);
 }
 
-/* =========================
-   MODAL
-========================= */
+/* =========================================================
+   MODAL SYSTEM
+========================================================= */
+
 .modal {
   display: none;
   position: fixed;
   inset: 0;
+
   background: rgba(0,0,0,0.7);
+
   z-index: 3000;
+
   justify-content: center;
   align-items: center;
 }
@@ -257,72 +328,200 @@ a:hover {
   background: #111;
   padding: 25px;
   border-radius: 14px;
+
   width: 90%;
   max-width: 420px;
-  animation: zoomIn 0.4s ease;
+
+  animation: zoomIn var(--t-med);
 }
 
-/* =========================
+/* =========================================================
    WHATSAPP
-========================= */
+========================================================= */
+
 #whatsapp-chat {
   position: fixed;
   bottom: 20px;
   left: 20px;
+
   width: 60px;
   height: 60px;
-  z-index: 99999999;
-  animation: fadeUp 1s ease;
+
+  z-index: 99999;
+
+  animation: fadeUp var(--t-slow);
 }
 
-/* =========================
-   ACCESSIBILITY
-========================= */
+/* =========================================================
+   ACCESSIBILITY MENU
+========================================================= */
+
 .a11y-menu {
   display: none;
+
   position: fixed;
   bottom: 220px;
   right: 20px;
+
   width: 250px;
+
   background: #111;
   padding: 15px;
   border-radius: 12px;
-  z-index: 999999;
+
+  z-index: 9999;
 }
 
 .a11y-menu.show {
   display: block;
-  animation: fadeUp 0.3s ease;
+  animation: fadeUp var(--t-med);
 }
 
-/* =========================
+/* =========================================================
    BACK TO TOP
-========================= */
+========================================================= */
+
 #backToTop {
   position: fixed;
   bottom: 220px;
   right: 20px;
+
   width: 50px;
   height: 50px;
+
   border-radius: 50%;
   display: none;
-  background: #00e5ff;
-  z-index: 99999;
+
+  background: var(--primary);
+
+  z-index: 9999;
+
+  transition: var(--t-med);
 }
 
-/* =========================
-   SCROLL ANIMATIONS
-========================= */
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
 section {
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeUp 0.8s ease forwards;
+
+  animation: fadeUp var(--t-med) forwards;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* =========================================================
+   FLOATING LOGO
+========================================================= */
+
+.floating-logo {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+
+  width: 70px;
+  height: 70px;
+
+  z-index: 9999;
+
+  animation: floatLogo 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   ROOM SYSTEM (NETFLIX STYLE)
+========================================================= */
+
+.room {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity var(--t-med);
+}
+
+.room.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.room-content {
+  width: min(700px, 92%);
+  max-height: 85vh;
+
+  overflow-y: auto;
+
+  background: #0f172a;
+
+  border-radius: 16px;
+  padding: 25px;
+
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
+
+  transition: all var(--t-slow);
+}
+
+.room.show .room-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* =========================================================
+   WAVE SYSTEM (APPLE STYLE)
+========================================================= */
+
+.wave {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 120px;
+
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23007aff' fill-opacity='0.25' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128V320H0Z'%3E%3C/path%3E%3C/svg%3E");
+
+  animation: waveMove 8s linear infinite;
+}
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-50px); }
+  100% { transform: translateX(0); }
+}
+
+/* =========================================================
+   ACCESSIBILITY MENU FIX
+========================================================= */
+
+#accessibility-menu {
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition: var(--t-med);
+
+  pointer-events: none;
+}
+
+#accessibility-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+
+  pointer-events: auto;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
 @media (max-width: 768px) {
+
   .gallery img {
     width: 95%;
     height: 220px;
@@ -335,150 +534,5 @@ section {
   .cta-box {
     margin: 20px;
   }
-}/* =========================
-   PREMIUM ROOM TRANSITION
-========================= */
 
-.room {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  z-index: 999999;
-}
-
-.room.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.room-content {
-  width: min(700px, 92%);
-  max-height: 85vh;
-  overflow-y: auto;
-
-  background: #0f172a;
-  border-radius: 16px;
-  padding: 25px;
-
-  transform: translateY(40px) scale(0.98);
-  opacity: 0;
-
-  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.room.show .room-content {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-/* =========================
-   ROOM TITLE ANIMATION (ה"טקס")
-========================= */
-
-.room-title {
-  font-size: 26px;
-  font-weight: 800;
-  color: #00e5ff;
-
-  opacity: 0;
-  transform: translateY(-20px);
-  letter-spacing: 2px;
-
-  animation: roomTitleIn 0.6s ease forwards;
-}
-
-.room.show .room-title {
-  animation: roomTitleIn 0.6s ease forwards;
-}
-
-@keyframes roomTitleIn {
-  from {
-    opacity: 0;
-    transform: translateY(-25px);
-    letter-spacing: 8px;
-    filter: blur(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    letter-spacing: 2px;
-    filter: blur(0);
-  }
-}
-
-/* יציאה חלקה */
-.room.hide .room-content {
-  transform: translateY(40px) scale(0.98);
-  opacity: 0;
-}/* =========================
-   SCROLL REVEAL SYSTEM
-========================= */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-  will-change: transform, opacity;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* וריאציות כניסה */
-.reveal-left {
-  transform: translateX(-60px);
-}
-
-.reveal-right {
-  transform: translateX(60px);
-}
-
-.reveal-left.active,
-.reveal-right.active {
-  transform: translateX(0);
-}
-
-/* =========================
-   ROOM ENTRY (כותרות/טקסט שנפתח)
-========================= */
-
-.room {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.6s ease;
-}
-
-.room.open {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* =========================
-   FLOATING LOGO (לוגו צף)
-========================= */
-
-.floating-logo {
-  position: fixed;
-  top: 90px;
-  left: 20px;
-  width: 70px;
-  height: 70px;
-  z-index: 999999;
-  animation: floatLogo 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes floatLogo {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
 }

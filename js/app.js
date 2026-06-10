@@ -20,7 +20,8 @@ document.querySelectorAll("img").forEach(img => {
   img.addEventListener("contextmenu", e => e.preventDefault());
   img.setAttribute("draggable", "false");
 });
-initGalleryRoom()
+function initGalleryRoom()
+ 
  {
   const modal = document.getElementById("imageModal");
   const fullImage = document.getElementById("fullImage");
@@ -46,7 +47,7 @@ initGalleryRoom()
     }
   });
 }
-initButtons() 
+function initButtons() 
 {
 
   document.getElementById("backToTop")?.addEventListener("click", () => {

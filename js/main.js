@@ -56,10 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
     img.setAttribute("draggable", "false");
   });
 
-});bindImageSafety()
- {
+});
+function bindImageSafety() {
   document.querySelectorAll("img").forEach(img => {
     img.addEventListener("contextmenu", e => e.preventDefault());
     img.setAttribute("draggable", "false");
   });
 }
+
+bindImageSafety();

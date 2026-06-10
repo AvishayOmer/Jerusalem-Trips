@@ -1,22 +1,3 @@
-"use strict";
-
-function trackView() {
-
-  if (!window.App?.state?.analytics) return;
-
-  window.App.state.analytics.views++;
-
-  console.log(
-    `👀 Views: ${window.App.state.analytics.views}`
-  );
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  trackView();
-});
-
-console.log("📊 ANALYTICS LOADED");
-
 /* ==========================================
    ANALYTICS
 ========================================== */

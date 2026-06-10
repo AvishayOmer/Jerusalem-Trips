@@ -22,16 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const backToTop = document.getElementById("backToTop");
 
-  /* =========================
-     MOBILE MENU
-  ========================= */
-
-  window.toggleMenu = function () {
-    if (mobileMenu) {
-      mobileMenu.classList.toggle("open");
-    }
-  };
-
+ 
   /* =========================
      CONTACT MODAL
   ========================= */

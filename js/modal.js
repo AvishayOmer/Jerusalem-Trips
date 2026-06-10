@@ -1,7 +1,7 @@
 function initModal() {
 
     const modal = document.getElementById('contactModal');
-    const openBtn = document.getElementById('openContactModal');
+ const openBtn = document.getElementById('floatingContactBtn');
     const closeBtn = modal ? modal.querySelector('.close') : null;
 
     if (!modal || !openBtn || !closeBtn) {

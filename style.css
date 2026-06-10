@@ -1,5 +1,5 @@
 /* =========================================================
-   APPLE+++ DESIGN SYSTEM (CLEAN PRODUCTION / NETFLIX STYLE)
+   APPLE+++ DESIGN SYSTEM (PRODUCTION CLEAN VERSION)
 ========================================================= */
 
 :root {
@@ -12,9 +12,16 @@
   --primary: #00e5ff;
   --primary-dark: #00bcd4;
 
-  /* GLASS */
-  --glass: rgba(0,0,0,0.35);
-  --glass-strong: rgba(0,0,0,0.75);
+/* =========================
+   GLASS ULTRA PREMIUM
+========================= */
+
+.glass {
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
 
   /* SHADOWS */
   --shadow-sm: 0 10px 25px rgba(0,0,0,0.25);
@@ -43,11 +50,6 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 html, body {
@@ -56,15 +58,16 @@ html, body {
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Varela Round', Arial, sans-serif;
+  scroll-behavior: smooth;
   color: var(--text);
+  background: var(--bg);
 }
 
 /* =========================================================
-   BACKGROUND (SAFE - לא שובר תמונה)
+   BACKGROUND
 ========================================================= */
 
 body {
-  background: var(--bg);
   background-image: url("images/3.jpg");
   background-size: cover;
   background-position: center;
@@ -88,6 +91,24 @@ body::before {
 }
 
 /* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1, h2, h3, p {
+  margin-bottom: 15px;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--t-med);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* =========================================================
    LAYOUT
 ========================================================= */
 
@@ -105,14 +126,14 @@ body::before {
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 
 @media (max-width: 768px) {
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
 
   .gallery img {
     width: 95%;
     height: 220px;
+  }
+
+  .premium-header {
+    padding: 10px 12px;
   }
 
   .hero-slide img {
@@ -122,10 +143,13 @@ body::before {
   .cta-box {
     padding: 20px;
   }
+
 }
+  
+
 
 /* =========================================================
-   HEADER (NETFLIX STYLE FIXED)
+   HEADER
 ========================================================= */
 
 .premium-header {
@@ -142,10 +166,12 @@ body::before {
   padding: 12px 20px;
   background: rgba(10,15,25,0.92);
   backdrop-filter: blur(14px);
+
+  animation: fadeIn var(--t-med);
 }
 
 /* =========================================================
-   BUTTONS (JS SAFE)
+   BUTTONS
 ========================================================= */
 
 .btn {
@@ -157,7 +183,7 @@ body::before {
   border-radius: var(--r-full);
   font-weight: 700;
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: var(--t-med);
   cursor: pointer;
 }
 
@@ -174,11 +200,11 @@ body::before {
 button:hover,
 .btn:hover,
 .cta-btn:hover {
-  transform: translateY(-4px) scale(1.04);
+  transform: translateY(-3px) scale(1.04);
 }
 
 /* =========================================================
-   HERO (JS SAFE - CRITICAL)
+   HERO (JS SAFE)
 ========================================================= */
 
 .hero {
@@ -235,7 +261,7 @@ button:hover,
 }
 
 /* =========================================================
-   GALLERY (NO DUPLICATES)
+   GALLERY
 ========================================================= */
 
 .gallery {
@@ -249,11 +275,10 @@ button:hover,
   width: 220px;
   height: 150px;
   object-fit: cover;
-
   border-radius: var(--r-md);
-  filter: grayscale(100%);
 
-  transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
+  filter: grayscale(100%);
+  transition: var(--t-med);
 
   box-shadow: var(--shadow-sm);
 }
@@ -288,6 +313,7 @@ button:hover,
   background: #111;
   padding: 25px;
   border-radius: var(--r-lg);
+  animation: zoomIn var(--t-med);
 }
 
 /* =========================================================
@@ -340,7 +366,7 @@ button:hover,
 }
 
 /* =========================================================
-   MOBILE MENU
+   MOBILE MENU (JS SAFE)
 ========================================================= */
 
 .mobile-menu {
@@ -353,11 +379,30 @@ button:hover,
 }
 
 /* =========================================================
-   FLOAT ANIMATION
+   FLOATING ELEMENTS
 ========================================================= */
 
 .float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes float {
@@ -367,8 +412,46 @@ button:hover,
 }
 
 /* =========================================================
-   PERFORMANCE SAFE
+   MOBILE
 ========================================================= */
+
+@media (max-width: 768px) {
+  .gallery img {
+    width: 95%;
+    height: 220px;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================
+   ULTRA SMOOTH HOVER SYSTEM
+========================= */
+
+.btn,
+.cta-btn,
+.gallery img,
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btn:hover,
+.cta-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+}
+/* PERFORMANCE BOOST */
 
 img {
   content-visibility: auto;

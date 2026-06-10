@@ -220,3 +220,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fontSize = 16;
   applyFont();
 });
+init()
+ {
+  this.cacheDOM();
+  this.bindEvents();
+
+  // 👇 הוספה חדשה
+  this.analytics.init();
+
+  console.log("✅ APP CORE LOADED");
+}

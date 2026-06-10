@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.App.init();
 });
 
-})();document.addEventListener("DOMContentLoaded", () => {
+
 
   /* =========================
      SAFE SELECTOR
@@ -183,14 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileMenu.classList.toggle("open");
     }
   };
+});
 
-  /* =========================
-     IMAGE SAFETY (gallery + index)
-  ========================= */
-
-  document.querySelectorAll("img").forEach(img => {
-    img.addEventListener("contextmenu", e => e.preventDefault());
-    img.setAttribute("draggable", "false");
-  });
-
+document.addEventListener("DOMContentLoaded", () => {
+  window.App.init();
 });

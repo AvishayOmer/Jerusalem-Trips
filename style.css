@@ -417,4 +417,68 @@ section {
 .room.hide .room-content {
   transform: translateY(40px) scale(0.98);
   opacity: 0;
+}/* =========================
+   SCROLL REVEAL SYSTEM
+========================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+  will-change: transform, opacity;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* וריאציות כניסה */
+.reveal-left {
+  transform: translateX(-60px);
+}
+
+.reveal-right {
+  transform: translateX(60px);
+}
+
+.reveal-left.active,
+.reveal-right.active {
+  transform: translateX(0);
+}
+
+/* =========================
+   ROOM ENTRY (כותרות/טקסט שנפתח)
+========================= */
+
+.room {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.6s ease;
+}
+
+.room.open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================
+   FLOATING LOGO (לוגו צף)
+========================= */
+
+.floating-logo {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+  width: 70px;
+  height: 70px;
+  z-index: 999999;
+  animation: floatLogo 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes floatLogo {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }

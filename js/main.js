@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToTop = $("backToTop");
   const modeToggle = $("modeToggle");
   const modal = $("contactModal");
-  const openModal = $("openContactModal");
-  const closeModal = document.querySelector(".close");
+  const openModal = $("floatingContactBtn"); // תיקון חשוב
+  const closeModal = document.querySelector(".close-modal");
   const a11yBtn = $("accessibility-btn");
   const a11yMenu = $("accessibility-menu");
   const mobileMenu = $("mobileMenu");
@@ -17,10 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("scroll", () => {
-    if (backToTop) {
-      backToTop.style.display =
-        window.scrollY > 300 ? "block" : "none";
-    }
+    if (!backToTop) return;
+    backToTop.style.display =
+      window.scrollY > 300 ? "block" : "none";
   });
 
   /* ================= DARK MODE ================= */
@@ -47,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ================= MOBILE MENU ================= */
-  window.toggleMenu = function () {
+  window.toggleMenu = () => {
     mobileMenu?.classList.toggle("active");
   };
 
@@ -57,4 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
     img.setAttribute("draggable", "false");
   });
 
-});
+});bindImageSafety()
+ {
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("contextmenu", e => e.preventDefault());
+    img.setAttribute("draggable", "false");
+  });
+}

@@ -1,5 +1,5 @@
 /* =========================================================
-   APPLE+++ DESIGN SYSTEM (PRODUCTION CLEAN VERSION)
+   APPLE+++ DESIGN SYSTEM (CLEAN PRODUCTION / NETFLIX STYLE)
 ========================================================= */
 
 :root {
@@ -12,16 +12,9 @@
   --primary: #00e5ff;
   --primary-dark: #00bcd4;
 
-/* =========================
-   GLASS ULTRA PREMIUM
-========================= */
-
-.glass {
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.06);
-}
+  /* GLASS */
+  --glass: rgba(0,0,0,0.35);
+  --glass-strong: rgba(0,0,0,0.75);
 
   /* SHADOWS */
   --shadow-sm: 0 10px 25px rgba(0,0,0,0.25);
@@ -50,6 +43,11 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html, body {
@@ -58,16 +56,15 @@ html, body {
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Varela Round', Arial, sans-serif;
-  scroll-behavior: smooth;
   color: var(--text);
-  background: var(--bg);
 }
 
 /* =========================================================
-   BACKGROUND
+   BACKGROUND (SAFE - לא שובר תמונה)
 ========================================================= */
 
 body {
+  background: var(--bg);
   background-image: url("images/3.jpg");
   background-size: cover;
   background-position: center;
@@ -91,24 +88,6 @@ body::before {
 }
 
 /* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
-h1, h2, h3, p {
-  margin-bottom: 15px;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: var(--t-med);
-}
-
-a:hover {
-  color: var(--primary-dark);
-}
-
-/* =========================================================
    LAYOUT
 ========================================================= */
 
@@ -126,14 +105,14 @@ a:hover {
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 
 @media (max-width: 768px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
 
   .gallery img {
     width: 95%;
     height: 220px;
-  }
-
-  .premium-header {
-    padding: 10px 12px;
   }
 
   .hero-slide img {
@@ -143,13 +122,10 @@ a:hover {
   .cta-box {
     padding: 20px;
   }
-
 }
-  
-
 
 /* =========================================================
-   HEADER
+   HEADER (NETFLIX STYLE FIXED)
 ========================================================= */
 
 .premium-header {
@@ -166,12 +142,10 @@ a:hover {
   padding: 12px 20px;
   background: rgba(10,15,25,0.92);
   backdrop-filter: blur(14px);
-
-  animation: fadeIn var(--t-med);
 }
 
 /* =========================================================
-   BUTTONS
+   BUTTONS (JS SAFE)
 ========================================================= */
 
 .btn {
@@ -183,7 +157,7 @@ a:hover {
   border-radius: var(--r-full);
   font-weight: 700;
 
-  transition: var(--t-med);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
 }
 
@@ -200,11 +174,11 @@ a:hover {
 button:hover,
 .btn:hover,
 .cta-btn:hover {
-  transform: translateY(-3px) scale(1.04);
+  transform: translateY(-4px) scale(1.04);
 }
 
 /* =========================================================
-   HERO (JS SAFE)
+   HERO (JS SAFE - CRITICAL)
 ========================================================= */
 
 .hero {
@@ -261,7 +235,7 @@ button:hover,
 }
 
 /* =========================================================
-   GALLERY
+   GALLERY (NO DUPLICATES)
 ========================================================= */
 
 .gallery {
@@ -275,10 +249,11 @@ button:hover,
   width: 220px;
   height: 150px;
   object-fit: cover;
-  border-radius: var(--r-md);
 
+  border-radius: var(--r-md);
   filter: grayscale(100%);
-  transition: var(--t-med);
+
+  transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
 
   box-shadow: var(--shadow-sm);
 }
@@ -313,7 +288,6 @@ button:hover,
   background: #111;
   padding: 25px;
   border-radius: var(--r-lg);
-  animation: zoomIn var(--t-med);
 }
 
 /* =========================================================
@@ -366,7 +340,7 @@ button:hover,
 }
 
 /* =========================================================
-   MOBILE MENU (JS SAFE)
+   MOBILE MENU
 ========================================================= */
 
 .mobile-menu {
@@ -379,30 +353,11 @@ button:hover,
 }
 
 /* =========================================================
-   FLOATING ELEMENTS
+   FLOAT ANIMATION
 ========================================================= */
 
 .float {
   animation: float 3s ease-in-out infinite;
-}
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes float {
@@ -412,22 +367,8 @@ button:hover,
 }
 
 /* =========================================================
-   MOBILE
+   PERFORMANCE SAFE
 ========================================================= */
-
-@media (max-width: 768px) {
-  .gallery img {
-    width: 95%;
-    height: 220px;
-  }
-
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}/* =========================
-   PERFORMANCE BOOST
-========================= */
 
 img {
   content-visibility: auto;
@@ -437,25 +378,4 @@ img {
 .modal-content,
 .gallery img {
   will-change: transform, opacity;
-}/* =========================
-   ULTRA SMOOTH HOVER SYSTEM
-========================= */
-
-.btn,
-.cta-btn,
-.gallery img,
-.card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-}
-
-.btn:hover,
-.cta-btn:hover {
-  transform: translateY(-4px) scale(1.04);
-}
-html {
-  scroll-behavior: smooth;
-}
-
-* {
-  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }

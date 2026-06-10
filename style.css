@@ -289,4 +289,127 @@ body::before {
 @keyframes zoomIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}/* =========================================================
+   SAFE PREMIUM UPGRADE PATCH (NO BREAKING CHANGES)
+========================================================= */
+
+/* =========================
+   SMOOTHER TRANSITIONS GLOBALLY
+========================= */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* =========================
+   IMPROVED BUTTON FEEL (NO CLASS CHANGE)
+========================= */
+
+button,
+.cta-btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+button:hover,
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* =========================
+   HERO SMOOTHER LAYER
+========================= */
+
+.hero-slide img {
+  transition: transform 6s ease;
+}
+
+.hero-slide.active img {
+  transform: scale(1.05);
+}
+
+/* =========================
+   MODAL PREMIUM FEEL (NO JS CHANGE)
+========================= */
+
+.modal {
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: modalIn 0.35s ease forwards;
+}
+
+@keyframes modalIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   GALLERY PREMIUM HOVER LIFT
+========================= */
+
+.gallery img {
+  will-change: transform;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.gallery img:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   BACK TO TOP SMOOTHER
+========================= */
+
+#backToTop {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* =========================
+   MOBILE MENU POLISH
+========================= */
+
+.mobile-menu {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: 0.25s ease;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* =========================
+   ACCESSIBILITY MENU POLISH
+========================= */
+
+#accessibility-menu {
+  transition: 0.25s ease;
+}
+
+/* =========================
+   SUBTLE FLOATING EFFECTS
+========================= */
+
+.floating-logo {
+  will-change: transform;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+/* =========================
+   SECTION REVEAL SMOOTHER
+========================= */
+
+section {
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }

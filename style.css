@@ -1,10 +1,10 @@
 /* =========================================================
-   APPLE+++ DESIGN SYSTEM (PRODUCTION CLEAN VERSION)
+   DESIGN SYSTEM - APPLE+++ LEVEL (UNIFIED)
 ========================================================= */
 
 :root {
 
-  /* COLORS */
+  /* ================= COLORS ================= */
   --bg: #0b0f1a;
   --bg-dark: #0b0f17;
   --text: #ffffff;
@@ -12,32 +12,26 @@
   --primary: #00e5ff;
   --primary-dark: #00bcd4;
 
-/* =========================
-   GLASS ULTRA PREMIUM
-========================= */
+  /* ================= GLASS ================= */
+  --glass: rgba(0,0,0,0.55);
+  --glass-strong: rgba(0,0,0,0.75);
 
-.glass {
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.06);
-}
-
-  /* SHADOWS */
+  /* ================= SHADOWS ================= */
   --shadow-sm: 0 10px 25px rgba(0,0,0,0.25);
   --shadow-md: 0 15px 40px rgba(0,0,0,0.3);
   --shadow-lg: 0 30px 80px rgba(0,0,0,0.4);
 
-  /* RADIUS */
+  /* ================= RADIUS ================= */
   --r-sm: 10px;
   --r-md: 14px;
   --r-lg: 20px;
   --r-full: 999px;
 
-  /* MOTION */
+  /* ================= MOTION ================= */
   --t-fast: 0.2s ease;
   --t-med: 0.4s ease;
   --t-slow: 0.8s ease;
+
 }
 
 /* =========================================================
@@ -45,11 +39,9 @@
 ========================================================= */
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
@@ -58,13 +50,14 @@ html, body {
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Varela Round', Arial, sans-serif;
+  line-height: 1.6;
   scroll-behavior: smooth;
-  color: var(--text);
   background: var(--bg);
+  color: var(--text);
 }
 
 /* =========================================================
-   BACKGROUND
+   BACKGROUND SYSTEM
 ========================================================= */
 
 body {
@@ -109,7 +102,7 @@ a:hover {
 }
 
 /* =========================================================
-   LAYOUT
+   LAYOUT SYSTEM
 ========================================================= */
 
 .container {
@@ -122,31 +115,60 @@ a:hover {
   gap: 20px;
 }
 
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
 
 @media (max-width: 768px) {
-
-  .gallery img {
-    width: 95%;
-    height: 220px;
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
   }
-
-  .premium-header {
-    padding: 10px 12px;
-  }
-
-  .hero-slide img {
-    height: 60vh;
-  }
-
-  .cta-box {
-    padding: 20px;
-  }
-
 }
-  
 
+/* =========================================================
+   ANIMATIONS SYSTEM (UNIFIED)
+========================================================= */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes blurIn {
+  from { opacity: 0; filter: blur(10px); transform: scale(0.98); }
+  to { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
 
 /* =========================================================
    HEADER
@@ -157,6 +179,7 @@ a:hover {
   top: 0;
   right: 0;
   width: 100%;
+
   z-index: 100;
 
   display: flex;
@@ -164,6 +187,7 @@ a:hover {
   align-items: center;
 
   padding: 12px 20px;
+
   background: rgba(10,15,25,0.92);
   backdrop-filter: blur(14px);
 
@@ -171,7 +195,7 @@ a:hover {
 }
 
 /* =========================================================
-   BUTTONS
+   BUTTON SYSTEM
 ========================================================= */
 
 .btn {
@@ -181,6 +205,7 @@ a:hover {
 
   padding: 12px 22px;
   border-radius: var(--r-full);
+
   font-weight: 700;
 
   transition: var(--t-med);
@@ -197,19 +222,37 @@ a:hover {
   color: #fff;
 }
 
-button:hover,
-.btn:hover,
-.cta-btn:hover {
-  transform: translateY(-3px) scale(1.04);
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
 }
 
 /* =========================================================
-   HERO (JS SAFE)
+   CARD SYSTEM
+========================================================= */
+
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+
+  border-radius: var(--r-lg);
+  padding: 20px;
+
+  transition: var(--t-med);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================================================
+   HERO
 ========================================================= */
 
 .hero {
   position: relative;
   min-height: 70vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -231,33 +274,38 @@ button:hover,
   width: 100%;
   height: 70vh;
   object-fit: cover;
-  filter: brightness(0.55);
-  transition: transform 6s ease;
-}
-
-.hero-slide.active img {
-  transform: scale(1.05);
+  filter: brightness(0.5);
 }
 
 /* =========================================================
-   CTA
+   MODAL (NETFLIX STYLE)
 ========================================================= */
 
-.cta-box {
-  padding: 40px;
-  border-radius: var(--r-lg);
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-md);
+.modal {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.7);
+
+  z-index: 2000;
 }
 
-.cta-btn {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: var(--r-full);
-  background: var(--primary);
-  color: #000;
-  font-weight: bold;
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  width: min(520px, 92%);
+
+  background: #111;
+  border-radius: var(--r-lg);
+  padding: 25px;
+
+  animation: zoomIn var(--t-med);
 }
 
 /* =========================================================
@@ -274,70 +322,51 @@ button:hover,
 .gallery img {
   width: 220px;
   height: 150px;
+
   object-fit: cover;
+
   border-radius: var(--r-md);
 
   filter: grayscale(100%);
   transition: var(--t-med);
-
-  box-shadow: var(--shadow-sm);
 }
 
 .gallery img:hover {
   filter: grayscale(0%);
   transform: scale(1.08);
-  box-shadow: var(--shadow-lg);
 }
 
 /* =========================================================
-   MODAL (JS SAFE)
+   FLOATING ELEMENTS
 ========================================================= */
 
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  backdrop-filter: blur(8px);
-}
-
-.modal.open {
-  display: flex;
-}
-
-.modal-content {
-  width: min(520px, 92%);
-  background: #111;
-  padding: 25px;
-  border-radius: var(--r-lg);
-  animation: zoomIn var(--t-med);
+.float {
+  animation: float 3s ease-in-out infinite;
 }
 
 /* =========================================================
-   ACCESSIBILITY + UI STATES
+   ACCESSIBILITY
 ========================================================= */
 
-.a11y-menu,
-#accessibility-menu {
+.a11y-menu {
   position: fixed;
   bottom: 220px;
   right: 20px;
 
   width: 250px;
+
   background: var(--glass-strong);
   border-radius: var(--r-md);
 
   opacity: 0;
   transform: translateY(10px);
+
   transition: var(--t-med);
+
   pointer-events: none;
 }
 
-.a11y-menu.show,
-#accessibility-menu.show {
+.a11y-menu.show {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -354,61 +383,37 @@ button:hover,
 
   width: 50px;
   height: 50px;
+
   border-radius: 50%;
 
   background: var(--primary);
 
   opacity: 0;
   transform: translateY(20px);
+
   transition: var(--t-med);
 
   z-index: 9999;
 }
 
 /* =========================================================
-   MOBILE MENU (JS SAFE)
+   WAVE (APPLE STYLE)
 ========================================================= */
 
-.mobile-menu {
-  display: none;
-  flex-direction: column;
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23007aff' fill-opacity='0.25' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128V320H0Z'%3E%3C/path%3E%3C/svg%3E");
+
+  animation: waveMove 8s linear infinite;
 }
 
-.mobile-menu.active {
-  display: flex;
-}
-
-/* =========================================================
-   FLOATING ELEMENTS
-========================================================= */
-
-.float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50px); }
 }
 
 /* =========================================================
@@ -420,45 +425,4 @@ button:hover,
     width: 95%;
     height: 220px;
   }
-
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* =========================
-   ULTRA SMOOTH HOVER SYSTEM
-========================= */
-
-.btn,
-.cta-btn,
-.gallery img,
-.card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-}
-
-.btn:hover,
-.cta-btn:hover {
-  transform: translateY(-4px) scale(1.04);
-}
-html {
-  scroll-behavior: smooth;
-}
-
-* {
-  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-
-}
-/* PERFORMANCE BOOST */
-
-img {
-  content-visibility: auto;
-}
-
-.hero-slide,
-.modal-content,
-.gallery img {
-  will-change: transform, opacity;
 }

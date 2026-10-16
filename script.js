@@ -118,23 +118,38 @@ window.toggleMenu = function () {
 
     menu.classList.toggle("active");
 };
-
 /* =========================================================
    ROOM SYSTEM (MODAL CONTENT VIEW)
 ========================================================= */
 
-const room = $("room");
-const roomInner = $("room-inner");
+const room = document.getElementById("room");
+const roomInner = document.getElementById("room-inner");
 
 window.openRoom = function (id) {
-    const section = $(id);
+    const section = document.getElementById(id);
     if (!section || !room || !roomInner) return;
 
     roomInner.innerHTML = section.innerHTML;
+
     room.style.display = "flex";
 
-    setTimeout(() => room.classList.add("show"), 10);
+    requestAnimationFrame(() => {
+        room.classList.add("show");
+    });
+
     document.body.style.overflow = "hidden";
+
+    /* ================= FIX: re-bind buttons inside room ================= */
+    if (id === "contact") {
+        const btn = roomInner.querySelector("#floatingContactBtn");
+
+        if (btn) {
+            btn.onclick = () => {
+                const modal = document.getElementById("contactModal");
+                if (modal) modal.style.display = "flex";
+            };
+        }
+    }
 };
 
 window.closeRoom = function () {
@@ -145,19 +160,20 @@ window.closeRoom = function () {
     setTimeout(() => {
         room.style.display = "none";
         if (roomInner) roomInner.innerHTML = "";
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = "";
     }, 250);
 };
 
+/* close on background click */
 if (room) {
     room.addEventListener("click", (e) => {
-        if (e.target === room) closeRoom();
+        if (e.target === room) window.closeRoom();
     });
 }
 
 /* ESC closes room */
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeRoom();
+    if (e.key === "Escape") window.closeRoom();
 });
 
 /* =========================================================
